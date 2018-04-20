@@ -108,7 +108,8 @@ class UserRepository extends BaseRepository
                 /*
                  * Add the default site role to the new user
                  */
-                $user->assignRole(config('access.users.default_role'));
+                $role = $data['type'] == 0 ? config('access.users.default_role') : 'teacher';
+                $user->assignRole($role);
             }
 
             /*
