@@ -19,6 +19,7 @@
         <!-- Check if the language is set to RTL, so apply the RTL layouts -->
         <!-- Otherwise apply the normal LTR layouts -->
         {{ style(mix('css/frontend.css')) }}
+        {{ style(mix('css/backend.css')) }}
 
         @stack('after-styles')
     </head>
@@ -27,9 +28,17 @@
             @include('includes.partials.logged-in-as')
             @include('frontend.includes.nav')
 
-            <div class="container">
+            <div class="container-fluid">
                 @include('includes.partials.messages')
-                @yield('content')
+                <div class="row col-md-12">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 main-panel">
+                        @yield('content')
+                    </div>
+                    <div class="col-md-2 rigth-sidebar">
+                        @yield('right')
+                    </div>
+                </div>
             </div><!-- container -->
         </div><!-- #app -->
 

@@ -63283,165 +63283,23 @@ module.exports = function normalizeComponent (
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1dfd4ae9\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/frontend/components/AddQuestion.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-12 with-padding" },
-        [
-          _c("quill-editor", {
-            attrs: { content: _vm.form.description, options: _vm.editorOption },
-            on: {
-              change: function($event) {
-                _vm.update($event)
-              }
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-12 with-padding" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.discipline,
-                expression: "form.discipline"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { name: "disciplines", id: "" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.form,
-                  "discipline",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              }
-            }
-          },
-          [
-            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
-              _vm._v("Selecteaza disciplina")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Matematica" } }, [
-              _vm._v("Matematica")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Istorie" } }, [_vm._v("Istorie")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 with-padding" }, [
-      _c("button", { staticClass: "btn btn-primary" }, [_vm._v("Trimite")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1dfd4ae9", module.exports)
-  }
-}
+throw new Error("Module build failed: JSONError: Unexpected string in JSON at position 1927 while parsing '{  \"private\": true,  \"scripts\": {    ' in package.json\n    at module.exports (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3650:19)\n    at parse$2 (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3747:31)\n    at Function.sync$2 [as sync] (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3750:20)\n    at Function.module.exports.sync (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:6874:25)\n    at Function.module.exports.sync.opts [as sync] (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:6907:16)\n    at loadPlugins (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:19369:19)\n    at normalize$2 (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:23182:19)\n    at Object.format (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:32787:25)\n    at Object.module.exports (/opt/lampp/htdocs/hackaton/node_modules/vue-loader/lib/template-compiler/index.js:80:23)");
 
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-47bc71e1\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/frontend/components/ExampleComponent.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _c("i", { staticClass: "fas fa-code" }),
-        _vm._v(" Example Vue Component\n    ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _vm._v("\n        I'm an example Vue component!\n    ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer" }, [_vm._v("§\n    asldjsaldsal")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-47bc71e1", module.exports)
-  }
-}
+throw new Error("Module build failed: JSONError: Unexpected string in JSON at position 1927 while parsing '{  \"private\": true,  \"scripts\": {    ' in package.json\n    at module.exports (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3650:19)\n    at parse$2 (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3747:31)\n    at Function.sync$2 [as sync] (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3750:20)\n    at Function.module.exports.sync (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:6874:25)\n    at Function.module.exports.sync.opts [as sync] (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:6907:16)\n    at loadPlugins (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:19369:19)\n    at normalize$2 (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:23182:19)\n    at Object.format (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:32787:25)\n    at Object.module.exports (/opt/lampp/htdocs/hackaton/node_modules/vue-loader/lib/template-compiler/index.js:80:23)");
 
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-bab82966\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/frontend/components/TestComponent.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _vm._v(
-      "\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ducimus earum laborum maiores necessitatibus non sequi suscipit velit. Est illo nisi odit voluptate. Accusamus adipisci cupiditate dolore expedita, fugit temporibus.\n    "
-    ),
-    _c("div", { staticClass: "card-footer" }, [
-      _vm._v("\n        ++ " + _vm._s(this.test) + " 00\n    ")
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-bab82966", module.exports)
-  }
-}
+throw new Error("Module build failed: JSONError: Unexpected string in JSON at position 1927 while parsing '{  \"private\": true,  \"scripts\": {    ' in package.json\n    at module.exports (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3650:19)\n    at parse$2 (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3747:31)\n    at Function.sync$2 [as sync] (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3750:20)\n    at Function.module.exports.sync (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:6874:25)\n    at Function.module.exports.sync.opts [as sync] (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:6907:16)\n    at loadPlugins (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:19369:19)\n    at normalize$2 (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:23182:19)\n    at Object.format (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:32787:25)\n    at Object.module.exports (/opt/lampp/htdocs/hackaton/node_modules/vue-loader/lib/template-compiler/index.js:80:23)");
 
 /***/ }),
 
@@ -74880,6 +74738,8 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 Vue.component('example-component', __webpack_require__("./resources/assets/js/frontend/components/ExampleComponent.vue"));
 Vue.component('test-component', __webpack_require__("./resources/assets/js/frontend/components/TestComponent.vue"));
 Vue.component('add-question', __webpack_require__("./resources/assets/js/frontend/components/AddQuestion.vue"));
+Vue.component('search', __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/Search.vue\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
+Vue.component('questions-list', __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/questions/List.vue\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var app = new Vue({
   el: '#app'
