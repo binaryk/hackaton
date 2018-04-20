@@ -20,6 +20,7 @@ class QuestionsTableSeeder extends Seeder
     public function run()
     {
         $this->disableForeignKeys();
+        Question::truncate();
         $faker = Faker\Factory::create();
         $questions = [
         ];
@@ -32,6 +33,8 @@ class QuestionsTableSeeder extends Seeder
                     'dislikes' => $faker->numberBetween(0, 100),
                     'views' => $faker->numberBetween(0, 1000),
                     'answered' => $faker->numberBetween(0, 1),
+                    'created_at' => $faker->dateTime(),
+                    'updated_at' => $faker->dateTime()
                 ];
         }
 

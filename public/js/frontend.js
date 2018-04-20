@@ -6956,7 +6956,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         case 2:
                             list = _context.sent;
 
-                            this.list = list;
+                            this.list = list.data;
                             console.log(list, 'list form');
 
                         case 5:
@@ -6994,7 +6994,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'Question',
-    props: ['title', 'content', 'time']
+    props: ['question'],
+    created: function created() {
+        console.log(this.question, 'euasdjsal');
+    }
 });
 
 /***/ }),
@@ -49922,7 +49925,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-sm-12 col-xl-6" }, [
+  return _c("div", { staticClass: "col-sm-12 col-xl-12" }, [
     _c("div", { staticClass: "card" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -49931,7 +49934,7 @@ var render = function() {
           "div",
           { staticClass: "list-group" },
           _vm._l(_vm.list, function(q) {
-            return _c("question", { key: q.id, attrs: { content: q.content } })
+            return _c("question", { key: q.id, attrs: { question: q } })
           })
         )
       ])
@@ -49945,8 +49948,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("i", { staticClass: "fa fa-align-justify" }),
-      _vm._v(" List group\n            "),
-      _c("small", [_vm._v("custom content")])
+      _vm._v(" Intrebari\n            "),
+      _c("small", [_vm._v("cele mai recente")])
     ])
   }
 ]
@@ -49972,15 +49975,16 @@ var render = function() {
     "a",
     {
       staticClass:
-        "list-group-item list-group-item-action flex-column align-items-start active",
+        "list-group-item list-group-item-action flex-column align-items-start",
+      class: { active: false },
       attrs: { href: "#" }
     },
     [
       _c("div", { staticClass: "d-flex w-100 justify-content-between" }, [
-        _c("small", [_vm._v(_vm._s(_vm.time))])
+        _c("small", [_vm._v(_vm._s(_vm.question.created_at))])
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "mb-1" }, [_vm._v(_vm._s(_vm.content))]),
+      _c("p", { staticClass: "mb-1" }, [_vm._v(_vm._s(_vm.question.content))]),
       _vm._v(" "),
       _c("small", [_vm._v("Donec id elit non mi porta.")])
     ]
