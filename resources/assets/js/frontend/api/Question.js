@@ -4,4 +4,16 @@ export default new class {
     list() {
         return axios.get(`questions`);
     }
+
+    like(id) {
+        return axios.get(`questions/${id}/like`);
+    }
+
+    dislike(id) {
+        return axios.get(`questions/${id}/dislike`);
+    }
+
+    view(id) {
+        return axios.get(`questions/${id}/view`);
+    }
 };
