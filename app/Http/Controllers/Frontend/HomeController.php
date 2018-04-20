@@ -14,6 +14,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.index');
+        return view('frontend.index')->with(['test' => [ 'keya' => 'date' ]]);
+    }
+
+    public function table()
+    {
+        return view('frontend.table');
     }
 }
