@@ -6930,30 +6930,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -6964,10 +6940,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     data: function data() {
         return {
-            list: [{
-                id: 1,
-                content: 'Content'
-            }]
+            list: []
         };
     },
     created: function () {
@@ -6983,9 +6956,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         case 2:
                             list = _context.sent;
 
+                            this.list = list;
                             console.log(list, 'list form');
 
-                        case 4:
+                        case 5:
                         case 'end':
                             return _context.stop();
                     }
@@ -49956,21 +49930,9 @@ var render = function() {
         _c(
           "div",
           { staticClass: "list-group" },
-          [
-            _vm._l(_vm.list, function(q) {
-              return _c("question", {
-                key: q.id,
-                attrs: { content: q.content }
-              })
-            }),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _vm._m(3)
-          ],
-          2
+          _vm._l(_vm.list, function(q) {
+            return _c("question", { key: q.id, attrs: { content: q.content } })
+          })
         )
       ])
     ])
@@ -49986,100 +49948,6 @@ var staticRenderFns = [
       _vm._v(" List group\n            "),
       _c("small", [_vm._v("custom content")])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass:
-          "list-group-item list-group-item-action flex-column align-items-start active",
-        attrs: { href: "#" }
-      },
-      [
-        _c("div", { staticClass: "d-flex w-100 justify-content-between" }, [
-          _c("h5", { staticClass: "mb-1" }, [
-            _vm._v("List group item heading")
-          ]),
-          _vm._v(" "),
-          _c("small", [_vm._v("3 days ago")])
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "mb-1" }, [
-          _vm._v(
-            "Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit."
-          )
-        ]),
-        _vm._v(" "),
-        _c("small", [_vm._v("Donec id elit non mi porta.")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass:
-          "list-group-item list-group-item-action flex-column align-items-start",
-        attrs: { href: "#" }
-      },
-      [
-        _c("div", { staticClass: "d-flex w-100 justify-content-between" }, [
-          _c("h5", { staticClass: "mb-1" }, [
-            _vm._v("List group item heading")
-          ]),
-          _vm._v(" "),
-          _c("small", { staticClass: "text-muted" }, [_vm._v("3 days ago")])
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "mb-1" }, [
-          _vm._v(
-            "Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit."
-          )
-        ]),
-        _vm._v(" "),
-        _c("small", { staticClass: "text-muted" }, [
-          _vm._v("Donec id elit non mi porta.")
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass:
-          "list-group-item list-group-item-action flex-column align-items-start",
-        attrs: { href: "#" }
-      },
-      [
-        _c("div", { staticClass: "d-flex w-100 justify-content-between" }, [
-          _c("h5", { staticClass: "mb-1" }, [
-            _vm._v("List group item heading")
-          ]),
-          _vm._v(" "),
-          _c("small", { staticClass: "text-muted" }, [_vm._v("3 days ago")])
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "mb-1" }, [
-          _vm._v(
-            "Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit."
-          )
-        ]),
-        _vm._v(" "),
-        _c("small", { staticClass: "text-muted" }, [
-          _vm._v("Donec id elit non mi porta.")
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
