@@ -28,3 +28,4 @@ output.txt
 coverage.xml
 /coverage
 public/js/frontend.js
+public/js/backend.js
