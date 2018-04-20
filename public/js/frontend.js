@@ -7038,6 +7038,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7048,7 +7062,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     data: function data() {
         return {
-            list: []
+            list: [],
+            currentView: 1,
+            showInstitutions: false
         };
     },
     created: function () {
@@ -7064,7 +7080,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         case 2:
                             list = _context.sent;
 
-                            this.list = list;
+                            this.list = list.data;
                             console.log(list, 'list form');
 
                         case 5:
@@ -7102,7 +7118,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'Question',
-    props: ['title', 'content', 'time']
+    props: ['question'],
+    created: function created() {
+        console.log(this.question, 'euasdjsal');
+    }
 });
 
 /***/ }),
@@ -64240,48 +64259,9 @@ module.exports = function normalizeComponent (
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03fa8e4e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/frontend/components/questions/List.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-sm-12 col-xl-6" }, [
-    _c("div", { staticClass: "card" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c(
-          "div",
-          { staticClass: "list-group" },
-          _vm._l(_vm.list, function(q) {
-            return _c("question", { key: q.id, attrs: { content: q.content } })
-          })
-        )
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("i", { staticClass: "fa fa-align-justify" }),
-      _vm._v(" List group\n            "),
-      _c("small", [_vm._v("custom content")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-03fa8e4e", module.exports)
-  }
-}
+throw new Error("Module build failed: JSONError: Unexpected token < in JSON at position 1924 while parsing near '...-editor\": \"^3.0.6\",<<<<<<< HEAD    \"vu...' in package.json\n    at module.exports (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3650:19)\n    at parse$2 (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3747:31)\n    at Function.sync$2 [as sync] (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3750:20)\n    at Function.module.exports.sync (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:6874:25)\n    at Function.module.exports.sync.opts [as sync] (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:6907:16)\n    at loadPlugins (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:19369:19)\n    at normalize$2 (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:23182:19)\n    at Object.format (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:32787:25)\n    at Object.module.exports (/opt/lampp/htdocs/hackaton/node_modules/vue-loader/lib/template-compiler/index.js:80:23)");
 
 /***/ }),
 
@@ -64379,39 +64359,9 @@ if (false) {
 /***/ }),
 
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2b706996\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/frontend/components/questions/Question.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "a",
-    {
-      staticClass:
-        "list-group-item list-group-item-action flex-column align-items-start active",
-      attrs: { href: "#" }
-    },
-    [
-      _c("div", { staticClass: "d-flex w-100 justify-content-between" }, [
-        _c("small", [_vm._v(_vm._s(_vm.time))])
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "mb-1" }, [_vm._v(_vm._s(_vm.content))]),
-      _vm._v(" "),
-      _c("small", [_vm._v("Donec id elit non mi porta.")])
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2b706996", module.exports)
-  }
-}
+throw new Error("Module build failed: JSONError: Unexpected token < in JSON at position 1924 while parsing near '...-editor\": \"^3.0.6\",<<<<<<< HEAD    \"vu...' in package.json\n    at module.exports (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3650:19)\n    at parse$2 (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3747:31)\n    at Function.sync$2 [as sync] (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:3750:20)\n    at Function.module.exports.sync (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:6874:25)\n    at Function.module.exports.sync.opts [as sync] (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:6907:16)\n    at loadPlugins (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:19369:19)\n    at normalize$2 (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:23182:19)\n    at Object.format (/opt/lampp/htdocs/hackaton/node_modules/prettier/index.js:32787:25)\n    at Object.module.exports (/opt/lampp/htdocs/hackaton/node_modules/vue-loader/lib/template-compiler/index.js:80:23)");
 
 /***/ }),
 
@@ -75879,6 +75829,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_free_solid__ = __webpack_require__("./node_modules/@fortawesome/fontawesome-free-solid/index.es.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_free_regular__ = __webpack_require__("./node_modules/@fortawesome/fontawesome-free-regular/index.es.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_fontawesome_free_brands__ = __webpack_require__("./node_modules/@fortawesome/fontawesome-free-brands/index.es.js");
+throw new Error("Cannot find module \"laravel-echo\"");
 /**
  * This bootstrap file is used for both frontend and backend
  */
@@ -75945,16 +75896,16 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+window.Pusher = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"pusher-js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+window.Echo = new __WEBPACK_IMPORTED_MODULE_5_laravel_echo___default.a({
+  broadcaster: 'pusher',
+  key: "",
+  cluster: "mt1",
+  encrypted: true
+});
 
 /***/ }),
 
@@ -76034,6 +75985,7 @@ Vue.component('test-component', __webpack_require__("./resources/assets/js/front
 Vue.component('add-question', __webpack_require__("./resources/assets/js/frontend/components/questions/AddQuestion.vue"));
 Vue.component('search', __webpack_require__("./resources/assets/js/frontend/components/Search.vue"));
 Vue.component('questions-list', __webpack_require__("./resources/assets/js/frontend/components/questions/List.vue"));
+Vue.component('chat', __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/Chat/Chat.vue\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 
 var app = new Vue({
   el: '#app'
@@ -76255,6 +76207,10 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"!!vue-style-loader!css-loader!../../../../../../node_modules/vue-loader/lib/style-compiler/index?{\"vue\":true,\"id\":\"data-v-03fa8e4e\",\"scoped\":false,\"hasInlineConfig\":true}!sass-loader!../../../../../../node_modules/vue-loader/lib/selector?type=styles&index=0!./List.vue\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+}
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
 var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]],\"env\":{\"test\":{\"presets\":[[\"env\",{\"targets\":{\"node\":\"current\"}}]]},\"development\":{\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":\"> 2%\",\"uglify\":true}}]]},\"production\":{\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":\"> 2%\",\"uglify\":true}}]]}}}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/frontend/components/questions/List.vue")
@@ -76263,7 +76219,7 @@ var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/templa
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */

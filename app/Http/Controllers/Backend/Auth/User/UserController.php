@@ -148,4 +148,15 @@ class UserController extends Controller
 
         return redirect()->route('admin.auth.user.deleted')->withFlashSuccess(__('alerts.backend.users.deleted'));
     }
+
+    /**
+     *
+     * @return mixed
+     * @throws \Exception
+     */
+    public function listAll() {
+        $users = User::all();
+
+        return $users->toJson();
+    }
 }

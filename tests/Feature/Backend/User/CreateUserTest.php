@@ -51,7 +51,7 @@ class CreateUserTest extends TestCase
                 'confirmed' => '0',
                 'timezone' => 'UTC',
                 'confirmation_email' => '1',
-                'roles' => [1 => 'executive', 2 => 'user'],
+                'roles' => [1 => 'teacher', 2 => 'student'],
             ]);
 
         $response->assertSessionHasErrors('email');
