@@ -27,3 +27,5 @@ output.txt
 .php_cs.cache
 coverage.xml
 /coverage
+public/js/frontend.js
+public/js/backend.js
