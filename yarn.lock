@@ -8275,20 +8275,18 @@ vue-property-decorator@6.0.0:
     reflect-metadata "^0.1.10"
     vue-class-component "^6.0.0"
 
-<<<<<<< HEAD
 vue-quill-editor@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/vue-quill-editor/-/vue-quill-editor-3.0.6.tgz#1f85646211d68a31a80a72cb7f45bb2f119bc8fb"
   dependencies:
     object-assign "^4.1.1"
     quill "^1.3.4"
-=======
+
 vue-resource@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/vue-resource/-/vue-resource-1.5.0.tgz#ba0c6ef7af2eeace03cf24a91f529471be974c72"
   dependencies:
     got "^8.0.3"
->>>>>>> 291f95efcf7fd0ad65321f2f5f169af6f058aaa0
 
 vue-style-loader@^3.0.0:
   version "3.1.2"
