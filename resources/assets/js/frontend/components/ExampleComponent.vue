@@ -6,6 +6,8 @@
         <div class="card-body">
             I'm an example Vue component!
         </div>
+        <div class="card-footer">§
+        asldjsaldsal</div>
     </div>
 </template>
 

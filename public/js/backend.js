@@ -49583,8 +49583,13 @@ module.exports = function(module) {
 /***/ }),
 
 /***/ "./resources/assets/js/backend/app.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__test_js__ = __webpack_require__("./resources/assets/js/backend/test.js");
+
+console.log(__WEBPACK_IMPORTED_MODULE_0__test_js__["a" /* default */], 'test');
 /*****
  * CONFIGURATION
  */
@@ -49700,6 +49705,16 @@ function init(url) {
 __webpack_require__("./resources/assets/js/bootstrap.js");
 __webpack_require__("./node_modules/pace/pace.js");
 __webpack_require__("./resources/assets/js/plugins.js");
+
+/***/ }),
+
+/***/ "./resources/assets/js/backend/test.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    test: '123'
+});
 
 /***/ }),
 
