@@ -15,7 +15,7 @@
                 </select>
             </div>
             <div class="col-12 with-padding">
-                <button class="btn btn-primary">Trimite</button>
+                <button class="btn btn-primary" @click="submit">Trimite</button>
             </div>
         </div>
     </div>
@@ -26,7 +26,9 @@
     import 'quill/dist/quill.bubble.css';
 
     import { quillEditor } from 'vue-quill-editor';
-    import { toolbar } from './config'
+    import { toolbar } from '../config'
+
+    import API from '../../api/index.js';
     export default {
         components: {
             quillEditor
@@ -48,7 +50,10 @@
             update($event) {
                 this.form.description = $event.html;
             },
-            submit(){
+            async submit(){
+                const list = await API.Question.store(this.form).then(res => {
+                    console.log(list, 'added with success');
+                });
 
             }
         }

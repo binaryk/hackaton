@@ -16,4 +16,9 @@ export default new class {
     view(id) {
         return axios.get(`questions/${id}/view`);
     }
+    
+    store(data){
+        return axios.post('questions', data);
+    }
+
 };
