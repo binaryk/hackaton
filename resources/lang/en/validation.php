@@ -171,6 +171,8 @@ return [
             'password'                  => 'Password',
             'password_confirmation'     => 'Password Confirmation',
             'phone'                     => 'Phone',
+            'school'                    => 'School',
+            'type'                      => 'Type',
             'message'                   => 'Message',
             'new_password'              => 'New Password',
             'new_password_confirmation' => 'New Password Confirmation',
