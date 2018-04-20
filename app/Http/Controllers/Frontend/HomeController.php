@@ -21,4 +21,10 @@ class HomeController extends Controller
     {
         return view('frontend.table');
     }
+
+    public function chat()
+    {
+        return view('frontend.chat');
+    }
+
 }

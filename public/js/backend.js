@@ -49729,6 +49729,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fortawesome_fontawesome_free_solid__ = __webpack_require__("./node_modules/@fortawesome/fontawesome-free-solid/index.es.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fortawesome_fontawesome_free_regular__ = __webpack_require__("./node_modules/@fortawesome/fontawesome-free-regular/index.es.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fortawesome_fontawesome_free_brands__ = __webpack_require__("./node_modules/@fortawesome/fontawesome-free-brands/index.es.js");
+throw new Error("Cannot find module \"laravel-echo\"");
 /**
  * This bootstrap file is used for both frontend and backend
  */
@@ -49795,16 +49796,16 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+window.Pusher = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"pusher-js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+window.Echo = new __WEBPACK_IMPORTED_MODULE_5_laravel_echo___default.a({
+  broadcaster: 'pusher',
+  key: "",
+  cluster: "mt1",
+  encrypted: true
+});
 
 /***/ }),
 
