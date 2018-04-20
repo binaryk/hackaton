@@ -35,7 +35,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all()->toJson();
+        return User::with('roles')->get()->toJson();
     }
 
     /**
