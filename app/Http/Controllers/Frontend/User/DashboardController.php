@@ -16,4 +16,8 @@ class DashboardController extends Controller
     {
         return view('frontend.user.dashboard');
     }
+
+    public function main(){
+        return view('frontend.user.main');
+    }
 }
