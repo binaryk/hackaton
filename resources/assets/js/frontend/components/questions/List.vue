@@ -1,45 +1,59 @@
 <template>
-    <div class="col-sm-12 col-xl-6">
+    <div class="col-sm-12 col-xl-12">
         <div class="card">
+            <div class="switch-container col-md-12">
+                <button type="button" class="col-md-4 float-left btn btn-outline-secondary btn-md btn-">Recente</button>
+                <button type="button" class="col-md-4 float-left btn btn-outline-primary btn-md btn-">Dupa interese</button>
+                <div class="btn-group show">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" @click="showInstitutions = !showInstitutions">
+                        Selecteaza institutia
+                    </button>
+                    <div class="dropdown-menu" v-bind:class="{show: showInstitutions}" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <a class="dropdown-item" href="#" v-for="inst in institutions" :key="institution.id">
+                            {{ institution.name }}
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div class="card-header">
-                <i class="fa fa-align-justify"></i> List group
-                <small>custom content</small>
+                <i class="fa fa-align-justify"></i> Intrebari
+                <small>cele mai recente</small>
             </div>
             <div class="card-body">
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small>3 days ago</small>
-                        </div>
-                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        <small>Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                        </div>
-                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                        </div>
-                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        <small class="text-muted">Donec id elit non mi porta.</small>
-                    </a>
+
+                    <question v-for="q in list" :question="q" :key="q.id"></question>
+
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
+    import Question from './Question.vue';
+    import API from '../../api/index.js';
     export default {
-
-
+        name: 'QuestionsList',
+        components: {
+            Question
+        },
+        data() {
+            return {
+                list: [],
+                currentView: 1,
+                showInstitutions: false
+            }
+        },
+        async created() {
+            const list = await API.Question.list();
+            this.list = list.data;
+            console.log(list, 'list form');
+        }
 
     }
 </script>
+<style lang="scss">
+    .switch-container {
+        margin: 10px;
+    }
+</style>
