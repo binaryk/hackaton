@@ -91,7 +91,7 @@
                 <label for="disciplines">Disciplines</label>
                 <select name="disciplines[]" multiple class="form-control" id="">
                     @foreach ($disciplines as $discipline)
-                        <option value="{{ $discipline->id }}">{{ $discipline->name }}</option>
+                        <option value="{{ $discipline->id }}" @if(in_array($discipline->id, $selectedDisciplines)) selected="selected" @endif>{{ $discipline->name }}</option>
                     @endforeach
                 </select>
             </div><!--form-group-->

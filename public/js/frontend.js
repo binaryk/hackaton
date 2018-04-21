@@ -7653,11 +7653,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'QuestionLayout',
     props: ['question'],
     created: function created() {
         console.log(this.question, 'this question');
+    },
+    data: function data() {
+        return {
+            dislikes: this.question.dislikes,
+            likes: this.question.likes
+        };
     },
 
     methods: {
@@ -7667,13 +7674,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
+                                this.$notify({
+                                    group: 'foo',
+                                    type: 'success',
+                                    title: 'Notificare',
+                                    text: 'Like-ul a fost aprobat'
+                                });
+                                _context.next = 3;
                                 return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Question.like(this.question.id);
 
-                            case 2:
-                                this.question.likes++;
-
                             case 3:
+                                this.likes++;
+
+                            case 4:
                             case 'end':
                                 return _context.stop();
                         }
@@ -7693,13 +7706,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                _context2.next = 2;
+                                this.dislikes++;
+                                this.$notify({
+                                    group: 'foo',
+                                    type: 'success',
+                                    title: 'Notificare',
+                                    text: 'Disike-ul a fost aprobat'
+                                });
+                                _context2.next = 4;
                                 return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Question.dislike(this.question.id);
 
-                            case 2:
-                                this.question.dislikes++;
-
-                            case 3:
+                            case 4:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -70516,7 +70533,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-          _vm._v(_vm._s(_vm.question.dislikes))
+          _vm._v(_vm._s(_vm.dislikes))
         ]),
         _vm._v(" "),
         _c(
@@ -70536,7 +70553,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-          _vm._v(_vm._s(_vm.question.likes))
+          _vm._v(_vm._s(_vm.likes))
         ])
       ])
     ])
@@ -82907,17 +82924,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
         key: 'like',
         value: function like(id) {
-            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/questions/' + id + '/like');
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/question/' + id + '/like');
         }
     }, {
         key: 'dislike',
         value: function dislike(id) {
-            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/questions/' + id + '/dislike');
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/question/' + id + '/dislike');
         }
     }, {
         key: 'view',
         value: function view(id) {
-            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/questions/' + id + '/view');
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/question/' + id + '/view');
         }
     }, {
         key: 'store',
@@ -82986,8 +83003,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 /***/ }),
 
 /***/ "./resources/assets/js/frontend/app.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+throw new Error("Cannot find module \"vue-notification\"");
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -83006,19 +83028,23 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__("./resources/assets/js/frontend/components/ExampleComponent.vue"));
-Vue.component('test-component', __webpack_require__("./resources/assets/js/frontend/components/TestComponent.vue"));
-Vue.component('add-question', __webpack_require__("./resources/assets/js/frontend/components/questions/AddQuestion.vue"));
-Vue.component('search', __webpack_require__("./resources/assets/js/frontend/components/Search.vue"));
-Vue.component('questions-list', __webpack_require__("./resources/assets/js/frontend/components/questions/List.vue"));
-Vue.component('chat', __webpack_require__("./resources/assets/js/frontend/components/Chat/Chat.vue"));
-Vue.component('question-layout', __webpack_require__("./resources/assets/js/frontend/components/questions/single/QuestionLayout.vue"));
-Vue.component('add-comment', __webpack_require__("./resources/assets/js/frontend/components/comments/AddComment.vue"));
-Vue.component('comments-list', __webpack_require__("./resources/assets/js/frontend/components/comments/List.vue"));
-Vue.component('users-list', __webpack_require__("./resources/assets/js/frontend/components/users/UsersList.vue"));
-Vue.component('user-page', __webpack_require__("./resources/assets/js/frontend/components/users/UserPage.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('example-component', __webpack_require__("./resources/assets/js/frontend/components/ExampleComponent.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('test-component', __webpack_require__("./resources/assets/js/frontend/components/TestComponent.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('add-question', __webpack_require__("./resources/assets/js/frontend/components/questions/AddQuestion.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('search', __webpack_require__("./resources/assets/js/frontend/components/Search.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('questions-list', __webpack_require__("./resources/assets/js/frontend/components/questions/List.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('chat', __webpack_require__("./resources/assets/js/frontend/components/Chat/Chat.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('question-layout', __webpack_require__("./resources/assets/js/frontend/components/questions/single/QuestionLayout.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('add-comment', __webpack_require__("./resources/assets/js/frontend/components/comments/AddComment.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('comments-list', __webpack_require__("./resources/assets/js/frontend/components/comments/List.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('users-list', __webpack_require__("./resources/assets/js/frontend/components/users/UsersList.vue"));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('user-page', __webpack_require__("./resources/assets/js/frontend/components/users/UserPage.vue"));
 
-var app = new Vue({
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_notification___default.a);
+
+var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app'
 });
 

@@ -36,14 +36,13 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $student = $this->getUser();
-        echo $this->getUserInfo();
-        die();
+        $user = $this->getUserInfo();
         $disciplines = $this->disciplineRepository->get();
-//        $currentUserDisciplines = $this->studentDisciplinesRepository->find()
-//        foreach ($currentUserDisciplines as $c) {
-//            dump($c);
-//        }
-        return view('frontend.user.account')->with('disciplines', $disciplines);
+
+        $disciplines_ids = [];
+        foreach($user->disciplines as $discipline)
+            $disciplines_ids[] = $discipline->id;
+
+        return view('frontend.user.account')->with(['disciplines' => $disciplines, 'selectedDisciplines' => $disciplines_ids]);
     }
 }
