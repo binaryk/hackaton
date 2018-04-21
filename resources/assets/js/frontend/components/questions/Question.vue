@@ -20,7 +20,7 @@
             }
         },
         created() {
-            console.log(this.question, 'question');
+
         },
         methods: {
             async like(e) {

@@ -20,13 +20,21 @@
                     <option value="organica">Chimia organica</option>
                 </select>
             </tab-content>
-            <tab-content title="Detalii" :before-change="beforeVideo">
+            <tab-content title="Detalii" :before-change="beforeSearch">
                 <p> Ce anume nu intelegi din disciplina <strong>{{ discipline }}</strong> si domeniul <strong>{{direction}}</strong> ? </p>
                 <textarea name="" id="" cols="70" rows="10" v-model="q"></textarea>
             </tab-content>
-            <tab-content title="Rezultat">
+            <tab-content title="Cautare" :before-change="beforeEnd">
                 <p>Cu ajutorului motorului de cautare inteligent am depistat urmatorul rezultat:</p>
-                <iframe width="560" height="315" :src="youtube" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <div v-if="steps[0] === 'youtube'">
+                    <iframe width="560" height="315" :src="youtube" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <div v-if="steps[0] === 'simulation'">
+                    <iframe width="100%" height="400" :src="simulationURL"></iframe>
+                </div>
+                <div v-if="steps[0] === 'wolphram'">
+                    Wolphram
+                </div>
             </tab-content>
         </form-wizard>
     </div>
@@ -41,13 +49,15 @@
                 discipline: 0,
                 direction: '',
                 q: '',
-                videoId: 'iAid_eh-eTA'
+                videoId: 'iAid_eh-eTA',
+                simulationURL: null,
+                wolphramURL: null,
+                steps: ['youtube', 'simulation', 'wolphram']
             }
         },
-        async created() {
-            const res = await API.Discipline.list();
-            this.disciplines = res.data;
-            console.log(res.data);
+        created() {
+            API.Discipline.list().then(res => this.disciplines = res.data);
+
         },
         computed: {
             youtube() {
@@ -56,23 +66,61 @@
         },
         methods: {
             onComplete() {
-//                this.search();
-                console.log(this.direction, this.q);
+                console.log('complete')
+            },
+            beforeSearch() {
+                this.searchYoutube();
+                this.searchSimulation();
+                this.searchWolphram();
+                return true;
+            },
+            searchYoutube() {
+
+                let str = `${this.discipline} ${this.direction} ${this.q}`;
+                API.Question.youtube({q: str}).then(res => {
+                    let data = res.data
+                    let first = data.items[0];
+                    let video = first.id.videoId;
+                    this.videoId = video;
+                });
+
+            },
+            searchSimulation() {
+                // search for simulation
+                const simulations = {
+                    'echilibrul': 'https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_ro.html',
+                    'frecarea': 'https://phet.colorado.edu/sims/html/friction/latest/friction_ro.html',
+                    'faraday': 'https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_ro.html',
+                    'hooke': 'https://phet.colorado.edu/sims/html/hookes-law/latest/hookes-law_ro.html',
+                    'refractia': 'https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_ro.html'
+                };
+
+
+                Object.keys(simulations).map((keyword) => {
+                    if(this.q.indexOf(keyword) !== -1) {
+                        this.simulationURL = simulations[keyword];
+                    }
+                });
+                if(this.steps[0] === 'simulation' && !this.simulationURL) {
+                    this.steps.shift();
+                }
+
+            },
+            searchWolphram() {
+                //
             },
 
-            async search() {
-                let str = `${this.discipline} ${this.direction} ${this.q}`;
-                const {data} = await API.Question.youtube({q: str});
-                console.log(data, 'data the');
-                let first = data.items[0];
-                let video = first.id.videoId;
-                this.videoId = video;
-                console.log(this.youtube, 'asldjaskljdsa');
-                console.log(data, 'res you');
-            },
-            beforeVideo() {
-                this.search();
-                return true;
+            beforeEnd() {
+                if(this.steps.length) {
+                    let goNext = confirm('Ai aflat raspunsul?');
+                    if(!goNext) {
+                        this.steps.shift();
+                    } else {
+                        window.location.href = '/dashboard';
+                    }
+                } else {
+                    window.location.href = '/dashboard';
+                }
             }
         }
     }
