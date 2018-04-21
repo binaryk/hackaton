@@ -23,16 +23,22 @@
                 <span class="badge badge-primary badge-pill">{{likes}}</span>
             </div>
         </div>
+        <comments-list :user="user" :question="question"></comments-list>
     </div>
 </template>
 <script>
     import API from '../../../api';
+    import CommentsList from '../../comments/List.vue';
 
     export default {
         name: 'QuestionLayout',
-        props: ['question'],
+        components: {
+            CommentsList
+        },
+        props: ['question', 'user'],
         created() {
             console.log(this.question, 'this question');
+            console.log(this.user, 'this user');
         },
         data() {
             return {
