@@ -34,10 +34,13 @@ class Controller extends BaseController
      */
     public function getUserInfo($id = null) {
         $user = $id ? User::with('roles')->find($id) : $this->getUser();
+        $user->disciplines = [];
         if($user->hasRole('student')){
             $user->student = Student::where('user_id', $user->id)->with('disciplines')->first();
+            $user->disciplines = !empty($user->student->disciplines) ? $user->student->disciplines : [];
         } else if($user->hasRole('teacher')){
             $user->teacher = Teacher::where('user_id', $user->id)->with('disciplines')->first();
+            $user->disciplines = !empty($user->teacher->disciplines) ? $user->teacher->disciplines : [];
         }
 
         return $user;
