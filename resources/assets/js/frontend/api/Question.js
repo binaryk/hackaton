@@ -25,11 +25,13 @@ export default new class {
     }
 
     youtube(params) {
-        return axios.get(`/youtube/v3/search`, {
-            params: {'maxResults': '25',
+        return axios.get(`https://www.googleapis.com/youtube/v3/search`, {
+            params: {
+                'maxResults': '25',
                 'part': 'snippet',
-                'q': 'legea lui arhimede',
-                'type': ''}
+                'q': params.q,
+                'type': '',
+                'key': 'AIzaSyAdrWk4INZuSaKFG1h7aakMJSRnbMvoRgo' }
         });
     }
 

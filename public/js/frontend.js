@@ -7092,6 +7092,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8229,6 +8234,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8238,7 +8248,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             disciplines: [],
             discipline: 0,
             direction: '',
-            q: ''
+            q: '',
+            videoId: 'iAid_eh-eTA'
         };
     },
     created: function () {
@@ -8272,11 +8283,58 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return created;
     }(),
 
+    computed: {
+        youtube: function youtube() {
+            return 'https://www.youtube.com/embed/' + this.videoId + '?rel=0&amp;controls=0&amp;showinfo=0';
+        }
+    },
     methods: {
         onComplete: function onComplete() {
+            //                this.search();
             console.log(this.direction, this.q);
         },
-        search: function search() {}
+        search: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var str, _ref3, data, first, video;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                str = this.discipline + ' ' + this.direction + ' ' + this.q;
+                                _context2.next = 3;
+                                return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Question.youtube({ q: str });
+
+                            case 3:
+                                _ref3 = _context2.sent;
+                                data = _ref3.data;
+
+                                console.log(data, 'data the');
+                                first = data.items[0];
+                                video = first.id.videoId;
+
+                                this.videoId = video;
+                                console.log(this.youtube, 'asldjaskljdsa');
+                                console.log(data, 'res you');
+
+                            case 11:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function search() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return search;
+        }(),
+        beforeVideo: function beforeVideo() {
+            this.search();
+            return true;
+        }
     }
 });
 
@@ -14487,7 +14545,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.landing .with-text {\n  position: relative !important;\n}\n.landing .with-text .text {\n    font-size: 60px;\n    position: absolute;\n    top: 10%;\n    color: #30b172;\n    font-weight: 600;\n    background-color: #e6e6e6b8;\n    width: 100%;\n    text-align: center;\n}\n.landing .with-text .left-text {\n    font-size: 60px;\n    position: absolute;\n    top: 10%;\n    left: 10%;\n    color: #30b177;\n    font-weight: 600;\n}\n.landing .with-text .actions {\n    width: 100%;\n    position: absolute;\n    top: 30%;\n    height: 200px;\n    background-color: #ece8e8ed;\n    line-height: 200px;\n    text-align: center;\n}\n.landing .with-text .actions .login, .landing .with-text .actions .register {\n      border: none;\n      color: #0c77d8;\n      font-weight: 600;\n      border-bottom: 1px solid;\n      margin-right: 30px;\n      font-size: 26px;\n      outline: none;\n      background: transparent;\n}\n.landing .with-text .actions .login:hover, .landing .with-text .actions .register:hover {\n        color: #389e76;\n}\n.landing .Masthead:last-child {\n  z-index: 1 !important;\n}\n", ""]);
+exports.push([module.i, "\n.landing .with-text {\n  position: relative !important;\n}\n.landing .with-text .text {\n    font-size: 60px;\n    position: absolute;\n    top: 10%;\n    color: #30b172;\n    font-weight: 600;\n    background-color: #e6e6e6b8;\n    width: 100%;\n    text-align: center;\n}\n.landing .with-text .left-text {\n    font-size: 60px;\n    position: absolute;\n    top: 10%;\n    left: 10%;\n    color: #30b177;\n    font-weight: 600;\n}\n.landing .with-text .actions {\n    width: 100%;\n    position: absolute;\n    top: 30%;\n    height: 200px;\n    background-color: #ece8e8ed;\n    line-height: 200px;\n    text-align: center;\n}\n.landing .with-text .actions .login, .landing .with-text .actions .register {\n      border: none;\n      color: #0c77d8;\n      font-weight: 600;\n      border-bottom: 1px solid;\n      margin-right: 30px;\n      font-size: 26px;\n      outline: none;\n      background: transparent;\n}\n.landing .with-text .actions .login:hover, .landing .with-text .actions .register:hover {\n        color: #389e76;\n}\n.landing .Masthead:last-child {\n  z-index: 1 !important;\n}\n.navbar {\n  position: fixed;\n  top: 0;\n  z-index: 99;\n  left: 0;\n  right: 0;\n  width: 100%;\n}\n.landing-background {\n  width: 100%;\n}\n.test {\n  margin: 50px 0;\n  color: #6f6f6f;\n  text-align: center;\n}\n.align-self-center {\n  float: none;\n  margin: 0 auto;\n}\n.test p {\n  font-size: 22px;\n}\n.test h4 {\n  font-size: 26px;\n  font-weight: bold;\n  margin-bottom: 20px;\n}\n.test img {\n  float: none;\n  margin: 0 auto;\n}\n", ""]);
 
 // exports
 
@@ -70979,50 +71037,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "landing" },
-    [
-      _c("parralax", { attrs: { fixed: true } }, [
-        _c("div", { staticClass: "with-text" }, [
-          _c("img", { attrs: { src: "images/1.jpg", alt: "" } }),
-          _vm._v(" "),
-          _c("p", { staticClass: "text" }, [
-            _vm._v("7Code - Millennium school")
-          ])
-        ])
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "landing" }, [
+      _c("div", { staticClass: "with-text" }, [
+        _c("img", {
+          staticClass: "landing-background",
+          attrs: { src: "images/landing-header.png", alt: "" }
+        })
       ]),
       _vm._v(" "),
-      _c("parralax", [
-        _c("div", { staticClass: "with-text" }, [
-          _c("img", { attrs: { src: "images/2.jpg", alt: "Login" } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "actions" }, [
-            _c(
-              "a",
-              {
-                staticClass: "login btn btn-outline-primary active",
-                attrs: { href: "/login" }
-              },
-              [_vm._v("Hai pe platforma :) ")]
-            ),
+      _c("div", { staticClass: "with-text test" }, [
+        _c("p", [
+          _vm._v(
+            "Millenium School este locul in care poti primi si oferi informatii utile"
+          )
+        ]),
+        _vm._v(" "),
+        _c("h4", [_vm._v("Alatura-te comunitatii noastre")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-8 align-self-center" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-4" }, [
+              _c("img", {
+                staticClass: "img-responsive",
+                attrs: { src: "images/junior.png", alt: "" }
+              })
+            ]),
             _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "register btn btn-outline-secondary active",
-                attrs: { href: "/register" }
-              },
-              [_vm._v("Sau creeaza un cont nou acum")]
-            )
+            _c("div", { staticClass: "col-4" }, [
+              _c("img", {
+                staticClass: "img-responsive",
+                attrs: { src: "images/senior.png", alt: "" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-4" }, [
+              _c("img", {
+                staticClass: "img-responsive",
+                attrs: { src: "images/teacher.png", alt: "" }
+              })
+            ])
           ])
         ])
       ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -71484,41 +71550,65 @@ var render = function() {
                 _vm._v(" "),
                 _c("option", { attrs: { value: "dinamica" } }, [
                   _vm._v("Dinamica")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "termodinamica" } }, [
+                  _vm._v("Termodinamica")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "romane" } }, [
+                  _vm._v("Romane")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "poezii" } }, [
+                  _vm._v("Poezii")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "formule" } }, [
+                  _vm._v("Formule")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "organica" } }, [
+                  _vm._v("Chimia organica")
                 ])
               ]
             )
           ]),
           _vm._v(" "),
-          _c("tab-content", { attrs: { title: "Detalii" } }, [
-            _c("p", [
-              _vm._v(" Ce anume nu intelegi din disciplina "),
-              _c("strong", [_vm._v(_vm._s(_vm.discipline))]),
-              _vm._v(" si domeniul "),
-              _c("strong", [_vm._v(_vm._s(_vm.direction))]),
-              _vm._v(" ? ")
-            ]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.q,
-                  expression: "q"
-                }
-              ],
-              attrs: { name: "", id: "", cols: "70", rows: "10" },
-              domProps: { value: _vm.q },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+          _c(
+            "tab-content",
+            { attrs: { title: "Detalii", "before-change": _vm.beforeVideo } },
+            [
+              _c("p", [
+                _vm._v(" Ce anume nu intelegi din disciplina "),
+                _c("strong", [_vm._v(_vm._s(_vm.discipline))]),
+                _vm._v(" si domeniul "),
+                _c("strong", [_vm._v(_vm._s(_vm.direction))]),
+                _vm._v(" ? ")
+              ]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.q,
+                    expression: "q"
                   }
-                  _vm.q = $event.target.value
+                ],
+                attrs: { name: "", id: "", cols: "70", rows: "10" },
+                domProps: { value: _vm.q },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.q = $event.target.value
+                  }
                 }
-              }
-            })
-          ]),
+              })
+            ]
+          ),
           _vm._v(" "),
           _c("tab-content", { attrs: { title: "Rezultat" } }, [
             _c("p", [
@@ -71531,8 +71621,7 @@ var render = function() {
               attrs: {
                 width: "560",
                 height: "315",
-                src:
-                  "https://www.youtube.com/embed/iAid_eh-eTA?rel=0&controls=0&showinfo=0",
+                src: _vm.youtube,
                 frameborder: "0",
                 allow: "autoplay; encrypted-media",
                 allowfullscreen: ""
@@ -86280,11 +86369,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
         key: 'youtube',
         value: function youtube(params) {
-            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/youtube/v3/search', {
-                params: { 'maxResults': '25',
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('https://www.googleapis.com/youtube/v3/search', {
+                params: {
+                    'maxResults': '25',
                     'part': 'snippet',
-                    'q': 'legea lui arhimede',
-                    'type': '' }
+                    'q': params.q,
+                    'type': '',
+                    'key': 'AIzaSyAdrWk4INZuSaKFG1h7aakMJSRnbMvoRgo' }
             });
         }
     }]);
