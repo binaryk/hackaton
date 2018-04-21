@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <i class="fas fa-tachometer-alt"></i> Profilul utilizatorului
                     <strong>
-                          {{ $user->user->first_name }} {{$user->user->last_name}}
+
                     </strong>
                 </div><!--card-header-->
 
@@ -15,21 +15,18 @@
                     <div class="row">
                         <div class="col col-sm-4 order-1 order-sm-2  mb-4">
                             <div class="card mb-4 bg-light">
-                                <img class="card-img-top" src="{{ $user->user->picture }}" alt="Profile Picture">
+                                <img class="card-img-top" src="{{ $user->picture }}" alt="Profile Picture">
 
                                 <div class="card-body">
                                     <h4 class="card-title">
                                         {{ $user->name }}<br/>
                                     </h4>
 
-                                    <p class="card-text">
-                                        <small>
-                                            <i class="fas fa-envelope"></i> {{ $user->user->email }}<br/>
-                                            <i class="fas fa-calendar-check"></i> {{ __('strings.frontend.general.joined') }} {{ $user->created_at->timezone(get_user_timezone())->format('F jS, Y') }}
-                                            <br>
-                                            <i class="icon-star icons font-2xl d-block mt-4"></i> {!! $user->ratio !!}
-                                        </small>
-                                    </p>
+                                    <div class="card-text">
+                                        <p><i class="fas fa-envelope"></i> &nbsp; {{ $user->email }}<br/></p>
+                                        <p><i class="fas fa-calendar-check"></i> &nbsp; {{ __('strings.frontend.general.joined') }} {{ $user->created_at->format('F jS, Y') }}</p>
+                                        <p><i class="fa fa-star"></i>  &nbsp; {{ (int) $user->reputation }}</p>
+                                    </div>
 
                                     <p class="card-text">
 
@@ -41,7 +38,7 @@
                             </div>
                         </div><!--col-md-4-->
                         <div class="col-md-8 order-2 order-sm-1">
-
+                            <pre>{{ dd($user->toArray()) }}</pre>
                             @if(count($user->disciplines) > 0)
                                 <div class="row">
                                     <div class="col">
@@ -52,6 +49,7 @@
 
                                             <div class="card-body">
                                                 <ul class="list-group">
+
                                                     @foreach($user->disciplines as $discipline)
                                                         <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
                                                             {{ $discipline->name }}
@@ -75,7 +73,7 @@
                                                 <ul class="list-group">
                                                     @foreach($classmates as $classmate)
                                                         <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
-                                                            {{ $classmate->user->first_name }} {{ $classmate->user->last_name }}
+                                                            {{ $classmate->first_name }} {{ $classmate->last_name }}
                                                         </li>
                                                     @endforeach
                                                 </ul>

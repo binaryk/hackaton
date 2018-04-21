@@ -25,7 +25,27 @@
                     <span class="badge badge-primary badge-pill">{{dislikes}}</span>
                 </div>
             </div>
+            <div class="card-body">
+                <p v-html="question.content"></p>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-sm btn-primary">
+                    <i class="fa fa-eye"></i> &nbsp;
+                    <span class="badge badge-light">{{question.views}}</span>
+                </button>
+
+                <button type="button" class="btn btn-sm btn-danger" @click="dislike($event); return false;">
+                    <i class="fa fa-thumbs-down"></i> &nbsp;
+                    <span class="badge badge-light">{{question.dislikes}}</span>
+                </button>
+
+                <button type="button" class="btn  btn-sm btn-success" @click="like($event); return false;">
+                    <i class="fa fa-thumbs-up"></i> &nbsp;
+                    <span class="badge badge-light">{{question.likes}}</span>
+                </button>
+            </div>
         </div>
+
         <comments-list :user="user" :question="question"></comments-list>
     </div>
 </template>

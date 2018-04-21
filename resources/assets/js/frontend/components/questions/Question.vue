@@ -20,11 +20,13 @@
             }
         },
         methods: {
-            async like() {
+            async like(e) {
+                e.preventDefault();
                 await API.Question.like(this.question.id).then(res => {
                 });
             },
-            async dislike() {
+            async dislike(e) {
+                e.preventDefault();
                 await API.Question.dislike(this.question.id).then(res => {
                     this.question.dislikes +=1;
                 });
