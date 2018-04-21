@@ -7,4 +7,5 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
         Route::get('questions/{id}/view', 'QuestionController@view');
         Route::get('question/{id}/show', 'QuestionController@show');
 
+
 });

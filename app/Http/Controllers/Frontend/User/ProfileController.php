@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Frontend\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Api\Student;
+use App\Repositories\Frontend\Api\StudentDisciplinesRepository;
+use App\Repositories\Frontend\Api\StudentRepository;
 use App\Repositories\Frontend\Auth\UserRepository;
 use App\Http\Requests\Frontend\User\UpdateProfileRequest;
 
@@ -17,13 +20,26 @@ class ProfileController extends Controller
     protected $userRepository;
 
     /**
+     * @var StudentDisciplinesRepository
+     */
+    protected $studentDisciplinesRepository;
+
+    /**
+     * @var StudentRepository
+     */
+    protected $studentRepository;
+
+    /**
      * ProfileController constructor.
      *
      * @param UserRepository $userRepository
+     * @param StudentDisciplinesRepository $studentDisciplinesRepository
      */
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, StudentDisciplinesRepository $studentDisciplinesRepository, StudentRepository $studentRepository)
     {
         $this->userRepository = $userRepository;
+        $this->studentDisciplinesRepository = $studentDisciplinesRepository;
+        $this->studentRepository = $studentRepository;
     }
 
     /**
@@ -40,6 +56,8 @@ class ProfileController extends Controller
             $request->has('avatar_location') ? $request->file('avatar_location') : false
         );
 
+        $this->updateDisciplines($request->get('disciplines'), $request->user()->id);
+
         // E-mail address was updated, user has to reconfirm
         if (is_array($output) && $output['email_changed']) {
             auth()->logout();
@@ -48,5 +66,19 @@ class ProfileController extends Controller
         }
 
         return redirect()->route('frontend.user.account')->withFlashSuccess(__('strings.frontend.user.profile_updated'));
+    }
+
+    /**
+     * @param $data
+     * @param $id
+     */
+    private function updateDisciplines($data, $id)
+    {
+        $student = $this->studentRepository->where('user_id', $id)->first();
+
+        $this->studentDisciplinesRepository->where('student_id', $student->id)->delete();
+        foreach($data as $d) {
+            $this->studentDisciplinesRepository->create(['student_id' => $student->id, 'discipline_id' => $d]);
+        }
     }
 }

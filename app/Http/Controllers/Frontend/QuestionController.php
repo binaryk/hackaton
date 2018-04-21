@@ -136,6 +136,7 @@ class QuestionController extends Controller
         $views++;
         $question->views = $views;
 
+
         $question->save();
 
         return response()->json([

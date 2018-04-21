@@ -13,4 +13,14 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function getUser() {
+        return \Auth::user()->with('roles');
+    }
+
+    public function getUserInfo() {
+        $user = $this->getUser();
+        dump($user);
+        die();
+    }
 }
