@@ -14,7 +14,7 @@
                         Selecteaza institutia
                     </button>
                     <div class="dropdown-menu" v-bind:class="{show: showInstitutions}" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item" href="#" v-for="s in schools" :key="s.id">
+                        <a class="dropdown-item" hchref="#" v-for="s in schools" :key="s.id">
                             {{ s.name }}
                         </a>
                     </div>

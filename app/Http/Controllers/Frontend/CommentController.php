@@ -86,7 +86,7 @@ class CommentController extends Controller
     }
 
     public function questionComments(Request $request){
-        return Comment::with('user')->where('question_id', $request->get('question_id'))->get();
+        return Comment::with('user')->where('question_id', $request->get('question_id'))->orderBy('id', 'desc')->get();
     }
 
     /**

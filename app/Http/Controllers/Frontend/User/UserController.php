@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Frontend\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Api\Student;
 use App\Models\Auth\User;
 use App\Repositories\Backend\Auth\UserRepository;
 use Illuminate\Http\Request;
@@ -40,15 +41,18 @@ class UserController extends Controller
 
     public function listView()
     {
-        // TODO: Get intereses MALAI
-        $users = User::with('roles')->get();
+        $users = Student::with('user')->with('disciplines')->get();
         return view('frontend.users.list')->with(compact('users'));
     }
 
     public function singleView($id)
     {
-        $user = User::where('id', $id)->with('roles')->first();
-        return view('frontend.users.single')->with(compact('user'));
+        $user = $this->getUserInfo($id);
+        $classmates = [];
+        if($user instanceof Student){
+            $classmates = Student::where('classroom', '=', $user->classroom)->where( 'id', '<>', $user->id)->with('user')->get();
+        }
+        return view('frontend.users.single')->with(compact('user', 'classmates'));
     }
 
     /**
