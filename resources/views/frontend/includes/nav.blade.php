@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <img style="float:left; max-height: 35px;" src="/images/logo.png">
     @guest
         <ul class="nav navbar-nav d-md-down-none">
             <li class="nav-item"><a href="{{route('frontend.about')}}" class="nav-link" {{ active_class(Active::checkRoute('frontend.contact')) }}>Despre noi</a></li>
             <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.about')) }}">Alatura-te echipei</a></li>
             <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">{{ __('navs.frontend.contact') }}</a></li>
-
         </ul>
     @endguest
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
@@ -15,6 +15,7 @@
             @if (config('locale.status') && count(config('locale.languages')) > 1)
                 <li class="nav-item dropdown">
                     @include('includes.partials.lang')
+
                 </li>
             @endif
 
