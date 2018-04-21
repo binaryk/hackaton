@@ -5,14 +5,8 @@
         </div>
         <p class="mb-1" v-html="question.content"></p>
         <small>Views <span class="badge badge-primary badge-pill">{{question.views}}</span></small>
-        <button class="btn btn-sm  btn-danger" @click="dislike()">
-            <i class="fa fa-thumbs-down"></i> Dislike
-        </button>
-        <span class="badge badge-primary badge-pill">{{question.likes}}</span>
-        <button class="btn  btn-sm btn-success" @click="like()">
-            <i class="fa fa-thumbs-up"></i> Like
-        </button>
-        <span class="badge badge-primary badge-pill">{{question.likes}}</span>
+        <small>Likes <span class="badge badge-success badge-pill">{{question.likes}}</span></small>
+        <small>Dislikes <span class="badge badge-danger badge-pill">{{question.dislikes}}</span></small>
     </a>
 </template>
 <script>

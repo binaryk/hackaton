@@ -1,26 +1,28 @@
 <template>
-    <div class="col-md-12">
-        <div class="card card-accent-info">
-            <div class="card-header">
-                <i class="fa fa-check"></i>Content
-                <div class="card-actions">
-                    <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
-                    <a href="#" class="btn-minimize" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true"><i class="icon-arrow-up"></i></a>
+    <div>
+        <div class="col-md-12">
+            <div class="card card-accent-info">
+                <div class="card-header">
+                    <i class="fa fa-check"></i>Content
+                    <div class="card-actions">
+                        <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
+                        <a href="#" class="btn-minimize" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true"><i class="icon-arrow-up"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="card-body">
-                <p v-html="question.content"></p>
-            </div>
-            <div class="card-footer">
-                <small>Views <span class="badge badge-primary badge-pill">{{question.views}}</span></small>
-                <button class="btn btn-sm  btn-danger" @click="dislike()">
-                    <i class="fa fa-thumbs-down"></i> Dislike
-                </button>
-                <span class="badge badge-primary badge-pill">{{dislikes}}</span>
-                <button class="btn  btn-sm btn-success" @click="like()">
-                    <i class="fa fa-thumbs-up"></i> Like
-                </button>
-                <span class="badge badge-primary badge-pill">{{likes}}</span>
+                <div class="card-body">
+                    <p v-html="question.content"></p>
+                </div>
+                <div class="card-footer">
+                    <small>Views <span class="badge badge-primary badge-pill">{{question.views}}</span></small>
+                    <button class="btn  btn-sm btn-success" @click="like()">
+                        <i class="fa fa-thumbs-up"></i> Like
+                    </button>
+                    <span class="badge badge-primary badge-pill">{{likes}}</span>
+                    <button class="btn btn-sm  btn-danger" @click="dislike()">
+                        <i class="fa fa-thumbs-down"></i> Dislike
+                    </button>
+                    <span class="badge badge-primary badge-pill">{{dislikes}}</span>
+                </div>
             </div>
         </div>
         <comments-list :user="user" :question="question"></comments-list>
