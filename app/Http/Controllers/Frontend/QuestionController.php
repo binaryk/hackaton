@@ -177,10 +177,7 @@ class QuestionController extends Controller
             $usersIds = $this->getUsersBySchoolsId($schools);
         }
 
-        $this->questionRepository->filter($sort, $usersIds, $disciplines, $user->id);
-//        Question::filter($sort, $disciplines, $usersIds, $user->id);
-        die();
-        return Question::orderBy('updated_at', 'desc')->get()->toJson();
+        return $this->questionRepository->filter($sort, $usersIds, $disciplines, $user->id)->toJson();
     }
 
     /**

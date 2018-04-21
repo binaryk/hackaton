@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Api\Student;
 use App\Repositories\Frontend\Api\StudentDisciplinesRepository;
 use App\Repositories\Frontend\Api\StudentRepository;
+use App\Repositories\Frontend\Api\TeacherDisciplinesRepository;
+use App\Repositories\Frontend\Api\TeacherRepository;
 use App\Repositories\Frontend\Auth\UserRepository;
 use App\Http\Requests\Frontend\User\UpdateProfileRequest;
 
@@ -23,11 +25,13 @@ class ProfileController extends Controller
      * @var StudentDisciplinesRepository
      */
     protected $studentDisciplinesRepository;
+    protected $teacherDisciplinesRepository;
 
     /**
      * @var StudentRepository
      */
     protected $studentRepository;
+    protected $teacherRepository;
 
     /**
      * ProfileController constructor.
@@ -35,11 +39,13 @@ class ProfileController extends Controller
      * @param UserRepository $userRepository
      * @param StudentDisciplinesRepository $studentDisciplinesRepository
      */
-    public function __construct(UserRepository $userRepository, StudentDisciplinesRepository $studentDisciplinesRepository, StudentRepository $studentRepository)
+    public function __construct(UserRepository $userRepository, StudentDisciplinesRepository $studentDisciplinesRepository, StudentRepository $studentRepository, TeacherRepository $teacherRepository, TeacherDisciplinesRepository $teacherDisciplinesRepository)
     {
         $this->userRepository = $userRepository;
         $this->studentDisciplinesRepository = $studentDisciplinesRepository;
         $this->studentRepository = $studentRepository;
+        $this->teacherRepository = $teacherRepository;
+        $this->teacherDisciplinesRepository = $teacherDisciplinesRepository;
     }
 
     /**
@@ -56,7 +62,13 @@ class ProfileController extends Controller
             $request->has('avatar_location') ? $request->file('avatar_location') : false
         );
 
-        $this->updateDisciplines($request->get('disciplines'), $request->user()->id);
+        if($request->get('disciplines')) {
+            if($request->get('teacher') === '1') {
+                $this->updateDisciplinesTeachers($request->get('disciplines'), $request->user()->id);
+            } else {
+                $this->updateDisciplines($request->get('disciplines'), $request->user()->id);
+            }
+        }
 
         // E-mail address was updated, user has to reconfirm
         if (is_array($output) && $output['email_changed']) {
@@ -74,11 +86,26 @@ class ProfileController extends Controller
      */
     private function updateDisciplines($data, $id)
     {
-        $student = $this->studentRepository->where('user_id', $id)->first();
+        try{
+            $student = $this->studentRepository->where('user_id', $id)->first();
+            dd($student);
+            $this->studentDisciplinesRepository->where('student_id', $student->id)->delete();
+            foreach($data as $d) {
+                $this->studentDisciplinesRepository->create(['student_id' => $student->id, 'discipline_id' => $d]);
+            }
+        } catch(\Exception $e) {
+        }
+    }
 
-        $this->studentDisciplinesRepository->where('student_id', $student->id)->delete();
-        foreach($data as $d) {
-            $this->studentDisciplinesRepository->create(['student_id' => $student->id, 'discipline_id' => $d]);
+    private function updateDisciplinesTeachers($data, $id)
+    {
+        try{
+            $teacher = $this->teacherRepository->where('user_id', $id)->first();
+            $this->teacherDisciplinesRepository->where('teacher_id', $teacher->id)->delete();
+            foreach($data as $d) {
+                $this->teacherDisciplinesRepository->create(['teacher_id' => $teacher->id, 'discipline_id' => $d]);
+            }
+        } catch(\Exception $e) {
         }
     }
 }

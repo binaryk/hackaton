@@ -14,7 +14,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.index')->with(['test' => [ 'keya' => 'date' ]]);
+        $isLogged = auth()->user();
+        $v = 'frontend.index';
+        if(! $isLogged) {
+
+            $v = 'frontend.parallax';
+
+        }
+        return view($v);
     }
 
     public function table()

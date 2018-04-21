@@ -29,6 +29,8 @@ Vue.component('user-page', require('./components/users/UserPage.vue'));
 
 Vue.component('private-chat', require('./components/Chat/PrivateChat.vue'));
 Vue.component('users-chat', require('./components/Chat/UsersChat.vue'));
+Vue.component('parallax', require('./components/Parallax.vue'));
+Vue.component('top-users', require('./components/TopUsers.vue'));
 
 
 import Vue           from 'vue'

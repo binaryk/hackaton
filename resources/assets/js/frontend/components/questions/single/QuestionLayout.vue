@@ -1,5 +1,6 @@
 <template>
     <div>
+<<<<<<< HEAD
         <div class="col-md-12">
             <div class="card card-accent-info">
                 <div class="card-header">
@@ -28,21 +29,21 @@
             <div class="card-body">
                 <p v-html="question.content"></p>
             </div>
-            <div class="card-footer">
+            <div class="card-footer text-right">
                 <button type="button" class="btn btn-sm btn-primary">
                     <i class="fa fa-eye"></i> &nbsp;
                     <span class="badge badge-light">{{question.views}}</span>
                 </button>
 
-                <button type="button" class="btn btn-sm btn-danger" @click="dislike($event); return false;">
-                    <i class="fa fa-thumbs-down"></i> &nbsp;
-                    <span class="badge badge-light">{{question.dislikes}}</span>
-                </button>
-
                 <button type="button" class="btn  btn-sm btn-success" @click="like($event); return false;">
                     <i class="fa fa-thumbs-up"></i> &nbsp;
-                    <span class="badge badge-light">{{question.likes}}</span>
+                    <span class="badge badge-light">{{likes}}</span>
                 </button>
+                <button type="button" class="btn btn-sm btn-danger" @click="dislike($event); return false;">
+                    <i class="fa fa-thumbs-down"></i> &nbsp;
+                    <span class="badge badge-light">{{dislikes}}</span>
+                </button>
+
             </div>
         </div>
 
@@ -90,7 +91,6 @@
                     text: 'Disike-ul a fost aprobat'
                 });
                 await API.Question.dislike(this.question.id);
-
             },
         }
     }

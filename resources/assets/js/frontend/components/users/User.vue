@@ -1,19 +1,29 @@
 <template>
-    <div @click="goToUser()" class="user col-md-3 card">
-        <div class="card-body">
-            <img :src="url" :alt="user.first_name">
-
-            <div class="box about-box" v-if="user.disciplines.length > 0">
-                <p class="preferinte">Preferinte</p>
-                <ul class="list-group">
-                    <li class="list-item" v-for="discipline in user.disciplines">{{discipline.name}}</li>
-                </ul>
+    <div class="col-4">
+        <div class="card" @click="goToUser()">
+            <div class="card-header">
+                {{ user.user.full_name }}
+                <span class="badge badge-success" v-if="checkOnline(user.user.last_activity)">Online</span>
+                <span class="badge badge-danger" v-if="!checkOnline(user.user.last_activity)">Offline</span>
             </div>
+            <div class="card-body chat-body">
+                <p>
+                    <img :src="url" :alt="user.user.full_name" style="width: 100%;">
+                </p>
+                <p v-if="user.school">
+                    Scoala: <span class="badge badge-warning">{{ user.school.name }}</span>
+                </p>
 
-        </div>
-        <div class="card-footer user-footer">
-            <a class="pretty"> {{ user.user.first_name }} {{ user.user.last_name }} </a>
-            <div class="ratio pull-right"><i class="icon-star icons font-2xl d-block mt-4"></i> <strong>{{ user.user.reputation }}</strong></div>
+                <div class="box about-box" v-if="user.disciplines.length > 0">
+                    <p>
+                        Interese: <br />
+                        <span class="badge badge-primary" v-for="discipline in user.disciplines">{{discipline.name}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span><i class="fa fa-star"></i>  &nbsp; {{ user.user.reputation }}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -30,6 +40,11 @@
             goToUser() {
                 console.log('go');
                 location.href = '/users-view/' + this.user.user.id;
+            },
+
+            checkOnline(date) {
+                const ONE_MIN = 1*60*1000;
+                return (new Date() - new Date(date)) < ONE_MIN;
             }
         }
     }
