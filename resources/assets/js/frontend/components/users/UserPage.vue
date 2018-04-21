@@ -2,11 +2,10 @@
     <div @click="goToUser()" class="user col-md-3 card">
         <div class="card-body">
             <img :src="url" :alt="user.first_name">
-            <div class="box about-box">
+            <div class="box about-box" v-if="user.disciplines.length > 0">
                 <p class="preferinte">Preferinte</p>
                 <ul class="list-group">
-                    <li class="list-item">Matematica</li>
-                    <li class="list-item">Fizica </li>
+                    <li class="list-item" v-for="discipline in user.disciplines">{{discipline.name}}</li>
                 </ul>
             </div>
 
@@ -23,12 +22,12 @@
         props: ['user'],
         computed: {
             url() {
-                return `https://avatar.tobi.sh/Vega-Brown.svg?text=${this.user.first_name[0]}${this.user.last_name[0]}`
+                return `https://avatar.tobi.sh/Vega-Brown.svg?text=${this.user.user.first_name}${this.user.user.last_name}`
             }
         },
         methods: {
             goToUser() {
-                location.href = '/user-view/' + this.user.id;
+                location.href = '/user-view/' + this.user.user.id;
             }
         }
     }

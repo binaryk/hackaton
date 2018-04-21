@@ -24,7 +24,7 @@
 
                                     <p class="card-text">
                                         <small>
-                                            <i class="fas fa-envelope"></i> {{ $user->email }}<br/>
+                                            <i class="fas fa-envelope"></i> {{ $user->user->email }}<br/>
                                             <i class="fas fa-calendar-check"></i> {{ __('strings.frontend.general.joined') }} {{ $user->created_at->timezone(get_user_timezone())->format('F jS, Y') }}
                                             <br>
                                             <i class="icon-star icons font-2xl d-block mt-4"></i> {!! $user->ratio !!}
@@ -40,27 +40,29 @@
                                 </div>
                             </div>
                         </div><!--col-md-4-->
-
                         <div class="col-md-8 order-2 order-sm-1">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card mb-4">
-                                        <div class="card-header">
-                                            Subiecte de interes
-                                        </div><!--card-header-->
 
-                                        <div class="card-body">
-                                            <ul class="list-group">
-                                                @foreach($user->disciplines as $discipline)
-                                                    <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
-                                                        {{ $discipline->name }}
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div><!--card-body-->
-                                    </div><!--card-->
-                                </div><!--col-md-6-->
-                            </div><!--row-->
+                            @if(count($user->disciplines) > 0)
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                Subiecte de interes
+                                            </div><!--card-header-->
+
+                                            <div class="card-body">
+                                                <ul class="list-group">
+                                                    @foreach($user->disciplines as $discipline)
+                                                        <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
+                                                            {{ $discipline->name }}
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div><!--card-body-->
+                                        </div><!--card-->
+                                    </div><!--col-md-6-->
+                                </div><!--row-->
+                            @endif
                             @if(count($classmates) > 0)
                                 <div class="row">
                                     <div class="col">
