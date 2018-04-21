@@ -1,20 +1,25 @@
 <template>
     <div class="landing">
-        <parralax :fixed="true">
-            <div class="with-text">
-                <img src="images/1.jpg" alt="">
-                <p class="text">7Code - Millennium school</p>
-            </div>
-        </parralax>
-        <parralax>
-            <div class="with-text">
-                <img src="images/2.jpg" alt="Login">
-                <div class="actions">
-                    <a href="/login" class="login btn btn-outline-primary active">Hai pe platforma :) </a>
-                    <a href="/register" class="register btn btn-outline-secondary active">Sau creeaza un cont nou acum</a>
+        <div class="with-text">
+            <img src="images/landing-header.png" alt="" class="landing-background">
+        </div>
+        <div class="with-text test">
+            <p>Millenium School este locul in care poti primi si oferi informatii utile</p>
+            <h4>Alatura-te comunitatii noastre</h4>
+            <div class="col-8 align-self-center">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="images/junior.png" class="img-responsive" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img src="images/senior.png" class="img-responsive" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img src="images/teacher.png" class="img-responsive" alt="">
+                    </div>
                 </div>
             </div>
-        </parralax>
+        </div>
     </div>
 </template>
 <script>
@@ -78,5 +83,37 @@
             z-index: 1 !important;
         }
     }
+    .navbar {
+        position: fixed;
+        top: 0;
+        z-index:99;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+    .landing-background {
+        width: 100%;
+    }
+    .test {
+        margin: 50px 0;
+        color: #6f6f6f;
+        text-align: center;
+    }
+    .align-self-center {
+        float:none;
+        margin: 0 auto;
+    }
+    .test p {
+        font-size: 22px;
+    }
 
+    .test h4 {
+        font-size: 26px;
+        font-weight:bold;
+        margin-bottom: 20px;
+    }
+    .test img {
+        float:none;
+        margin:0 auto;
+    }
 </style>

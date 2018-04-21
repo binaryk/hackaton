@@ -1,15 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-    <ul class="nav navbar-nav d-md-down-none">
-        <li class="nav-item px-3">
-            <a class="nav-link" href="/">Dashboard</a>
-        </li>
-        <li class="nav-item px-3">
-            <a href="/users-list" class="nav-link">Utilizatori</a>
-        </li>
-        <li class="nav-item px-3">
-            <a class="nav-link" href="#">Settings</a>
-        </li>
-    </ul>
+    @guest
+        <ul class="nav navbar-nav d-md-down-none">
+            <li class="nav-item"><a href="{{route('frontend.about')}}" class="nav-link" {{ active_class(Active::checkRoute('frontend.contact')) }}>Despre noi</a></li>
+            <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.about')) }}">Alatura-te echipei</a></li>
+            <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">{{ __('navs.frontend.contact') }}</a></li>
+
+        </ul>
+    @endguest
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,10 +23,10 @@
             @endauth
 
             @guest
-                <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>
+                <li class="nav-item" style="margin: 0 20px;" ><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>
 
                 @if (config('access.registration'))
-                    <li class="nav-item"><a href="{{route('frontend.auth.register')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('navs.frontend.register') }}</a></li>
+                    <li class="nav-item"><a href="{{route('frontend.auth.register')}}" style="border:1px solid rgb(216, 166, 49);color: rgb(216, 166, 49);font-weight:600;" class="register-button nav-link {{ active_class(Active::checkRoute('frontend.auth.register')) }}">{{ __('navs.frontend.register') }}</a></li>
                 @endif
             @else
                 <li class="nav-item dropdown">
@@ -45,10 +42,7 @@
                         <a href="{{ route('frontend.auth.logout') }}" class="dropdown-item">{{ __('navs.general.logout') }}</a>
                     </div>
                 </li>
-            @endguest
-
-            <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">{{ __('navs.frontend.contact') }}</a></li>
-        </ul>
+            @endguest        </ul>
         <notifications group="foo" />
     </div>
 </nav>

@@ -28,12 +28,12 @@
     <body>
         <div id="app">
             @include('includes.partials.logged-in-as')
-            @if(auth()->user())
+            {{--@if(auth()->user())--}}
              @include('frontend.includes.nav')
-            @endif
+            {{--@endif--}}
 
+            @yield('parallax')
             <div class="container-fluid">
-                @yield('parallax')
                 @include('includes.partials.messages')
                 <div class="row col-md-12">
                     <div class="col-md-2"></div>
