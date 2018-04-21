@@ -8356,6 +8356,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 
 
@@ -8373,7 +8375,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             selectedSchools: [],
             currentView: 1,
             sort: null,
-            usersList: this.users
+            usersList: this.users,
+            activeTab: 'students'
         };
     },
     created: function () {
@@ -8459,7 +8462,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return filter;
-        }()
+        }(),
+        setActiveTab: function setActiveTab(tab) {
+            this.activeTab = tab;
+        }
     }
 });
 
@@ -71215,11 +71221,10 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header" }, [
-        _vm._v(
-          "\n            Chat with: " +
-            _vm._s(_vm.chatWithUser.full_name) +
-            "\n        "
-        )
+        _vm._v("\n            Chat with: "),
+        _c("a", { attrs: { href: "/users-view/" + _vm.chatWithUser.id } }, [
+          _vm._v(_vm._s(_vm.chatWithUser.full_name))
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -71811,217 +71816,275 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "switch-container col-md-12" }, [
-          _c("div", { staticClass: "btn-group show" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success dropdown-toggle",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "dropdown",
-                  "aria-haspopup": "true",
-                  "aria-expanded": "true"
-                }
-              },
-              [
-                _vm._v(
-                  "\n                        Selecteaza institutia\n                    "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "dropdown-menu",
-                staticStyle: {
-                  position: "absolute",
-                  transform: "translate3d(0px, 35px, 0px)",
-                  top: "0px",
-                  left: "0px",
-                  "will-change": "transform"
-                },
-                attrs: { "x-placement": "bottom-start" }
-              },
-              _vm._l(_vm.schools, function(s) {
-                return _c(
-                  "a",
-                  {
-                    key: s.id,
-                    staticClass: "dropdown-item",
-                    attrs: { hchref: "#" }
-                  },
-                  [
-                    _c("input", {
-                      attrs: { type: "checkbox", value: "1" },
-                      on: {
-                        click: function($event) {
-                          _vm.changeSchool(s)
-                        }
+    _vm.activeTab == "students"
+      ? _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "switch-container col-md-12" }, [
+                _c("div", { staticClass: "btn-group show" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success dropdown-toggle",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "dropdown",
+                        "aria-haspopup": "true",
+                        "aria-expanded": "true"
                       }
-                    }),
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(s.name) +
-                        "\n                        "
-                    )
-                  ]
-                )
-              })
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "btn-group show" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success dropdown-toggle",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "dropdown",
-                  "aria-haspopup": "true",
-                  "aria-expanded": "true"
-                }
-              },
-              [
-                _vm._v(
-                  "\n                        Selecteaza materiile\n                    "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "dropdown-menu",
-                staticStyle: {
-                  position: "absolute",
-                  transform: "translate3d(0px, 35px, 0px)",
-                  top: "0px",
-                  left: "0px",
-                  "will-change": "transform"
-                },
-                attrs: { "x-placement": "bottom-start" }
-              },
-              _vm._l(_vm.disciplines, function(s) {
-                return _c(
-                  "a",
-                  {
-                    key: s.id,
-                    staticClass: "dropdown-item",
-                    attrs: { hchref: "#" }
-                  },
-                  [
-                    _c("input", {
-                      attrs: { type: "checkbox", value: "1" },
-                      on: {
-                        click: function($event) {
-                          _vm.changeDisciplines(s)
-                        }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Selecteaza institutia\n                        "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "dropdown-menu",
+                      staticStyle: {
+                        position: "absolute",
+                        transform: "translate3d(0px, 35px, 0px)",
+                        top: "0px",
+                        left: "0px",
+                        "will-change": "transform"
+                      },
+                      attrs: { "x-placement": "bottom-start" }
+                    },
+                    _vm._l(_vm.schools, function(s) {
+                      return _c(
+                        "a",
+                        {
+                          key: s.id,
+                          staticClass: "dropdown-item",
+                          attrs: { hchref: "#" }
+                        },
+                        [
+                          _c("input", {
+                            attrs: { type: "checkbox", value: "1" },
+                            on: {
+                              click: function($event) {
+                                _vm.changeSchool(s)
+                              }
+                            }
+                          }),
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(s.name) +
+                              "\n                            "
+                          )
+                        ]
+                      )
+                    })
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "btn-group show" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success dropdown-toggle",
+                      attrs: {
+                        type: "button",
+                        "data-toggle": "dropdown",
+                        "aria-haspopup": "true",
+                        "aria-expanded": "true"
                       }
-                    }),
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(s.name) +
-                        "\n                        "
-                    )
-                  ]
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Selecteaza materiile\n                        "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "dropdown-menu",
+                      staticStyle: {
+                        position: "absolute",
+                        transform: "translate3d(0px, 35px, 0px)",
+                        top: "0px",
+                        left: "0px",
+                        "will-change": "transform"
+                      },
+                      attrs: { "x-placement": "bottom-start" }
+                    },
+                    _vm._l(_vm.disciplines, function(s) {
+                      return _c(
+                        "a",
+                        {
+                          key: s.id,
+                          staticClass: "dropdown-item",
+                          attrs: { hchref: "#" }
+                        },
+                        [
+                          _c("input", {
+                            attrs: { type: "checkbox", value: "1" },
+                            on: {
+                              click: function($event) {
+                                _vm.changeDisciplines(s)
+                              }
+                            }
+                          }),
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(s.name) +
+                              "\n                            "
+                          )
+                        ]
+                      )
+                    })
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _vm.selectedSchools.length > 0
+                ? _c(
+                    "div",
+                    { staticClass: "col-12 selected-items" },
+                    [
+                      _vm._v(
+                        "\n                    Scoli:\n                    "
+                      ),
+                      _vm._l(_vm.selectedSchools, function(s) {
+                        return _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-labeled btn-info",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.changeSchool(s)
+                              }
+                            }
+                          },
+                          [
+                            _vm._m(0, true),
+                            _vm._v(
+                              "  " + _vm._s(s.name) + "\n                    "
+                            )
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm.selectedDisciplines.length > 0
+                ? _c(
+                    "div",
+                    { staticClass: "col-12 selected-items" },
+                    [
+                      _vm._v(
+                        "\n                    Materii:\n                    "
+                      ),
+                      _vm._l(_vm.selectedDisciplines, function(s) {
+                        return _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-labeled btn-info",
+                            attrs: { type: "button" },
+                            on: {
+                              click: function($event) {
+                                _vm.changeDisciplines(s)
+                              }
+                            }
+                          },
+                          [
+                            _vm._m(1, true),
+                            _vm._v(
+                              "  " + _vm._s(s.name) + "\n                    "
+                            )
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-12" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success ",
+                    attrs: {
+                      disabled:
+                        _vm.selectedDisciplines.length == 0 &&
+                        _vm.selectedSchools.length == 0
+                    },
+                    on: {
+                      click: function($event) {
+                        _vm.filter()
+                      }
+                    }
+                  },
+                  [_vm._v("Filter Questions")]
                 )
-              })
-            )
+              ])
+            ])
           ])
-        ]),
-        _vm._v(" "),
-        _vm.selectedSchools.length > 0
-          ? _c(
-              "div",
-              { staticClass: "col-12 selected-items" },
-              [
-                _vm._v("\n                Scoli:\n                "),
-                _vm._l(_vm.selectedSchools, function(s) {
-                  return _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-labeled btn-info",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          _vm.changeSchool(s)
-                        }
-                      }
-                    },
-                    [
-                      _vm._m(0, true),
-                      _vm._v("  " + _vm._s(s.name) + "\n                ")
-                    ]
-                  )
-                })
-              ],
-              2
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _vm.selectedDisciplines.length > 0
-          ? _c(
-              "div",
-              { staticClass: "col-12 selected-items" },
-              [
-                _vm._v("\n                Materii:\n                "),
-                _vm._l(_vm.selectedDisciplines, function(s) {
-                  return _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-labeled btn-info",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          _vm.changeDisciplines(s)
-                        }
-                      }
-                    },
-                    [
-                      _vm._m(1, true),
-                      _vm._v("  " + _vm._s(s.name) + "\n                ")
-                    ]
-                  )
-                })
-              ],
-              2
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-12" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success ",
-              attrs: {
-                disabled:
-                  _vm.selectedDisciplines.length == 0 &&
-                  _vm.selectedSchools.length == 0
-              },
-              on: {
-                click: function($event) {
-                  _vm.filter()
-                }
-              }
-            },
-            [_vm._v("Filter Questions")]
-          )
         ])
-      ])
-    ]),
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "col-sm-12 col-md-12" }, [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "col-md-12 mb-2" }, [
-            _vm._m(2),
+            _c(
+              "ul",
+              { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
+              [
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link active",
+                      attrs: {
+                        "data-toggle": "tab",
+                        href: "#home",
+                        role: "tab",
+                        "aria-controls": "home"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.setActiveTab("students")
+                        }
+                      }
+                    },
+                    [_vm._v("Studenti")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: {
+                        "data-toggle": "tab",
+                        href: "#profile",
+                        role: "tab",
+                        "aria-controls": "profile"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.setActiveTab("teachers")
+                        }
+                      }
+                    },
+                    [_vm._v("Profesori")]
+                  )
+                ])
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "tab-content" }, [
               _c(
@@ -72082,48 +72145,6 @@ var staticRenderFns = [
     return _c("span", { staticClass: "btn-label" }, [
       _c("i", { staticClass: "fa fa-times" })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
-      [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link active",
-              attrs: {
-                "data-toggle": "tab",
-                href: "#home",
-                role: "tab",
-                "aria-controls": "home"
-              }
-            },
-            [_vm._v("Studenti")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: {
-                "data-toggle": "tab",
-                href: "#profile",
-                role: "tab",
-                "aria-controls": "profile"
-              }
-            },
-            [_vm._v("Profesori")]
-          )
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
