@@ -7724,14 +7724,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             console.log(this.selectedDisciplines);
         },
-        changeSchool: function changeSchool(id) {
-            var index = this.selectedSchools.indexOf(id);
-            if (index === -1) this.selectedSchools.push(id);else this.selectedSchools.splice(find, 1);
-
-            console.log(this.selectedSchools);
+        changeSchool: function changeSchool(school) {
+            var find = this.selectedSchools.findIndex(function (d) {
+                return d.id === school.id;
+            });
+            if (find === -1) this.selectedSchools.push(school);else this.selectedSchools.splice(find, 1);
         },
         sortQuestions: function sortQuestions(type) {
             this.sort = type;
+            this.filter();
         },
         filter: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
@@ -7752,7 +7753,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 list = _context2.sent;
 
-                            case 5:
+                                this.list = list.data;
+
+                            case 6:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -7765,7 +7768,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return filter;
-        }()
+        }(),
+        isSelectedDiscipline: function isSelectedDiscipline(id) {
+            var find = this.selectedDisciplines.findIndex(function (d) {
+                return d.id === id;
+            });
+            if (find === -1) {
+                return false;
+            }
+            return true;
+        },
+        isSelectedSchool: function isSelectedSchool(id) {
+            var find = this.selectedSchools.findIndex(function (d) {
+                return d.id === id;
+            });
+            if (find === -1) {
+                return false;
+            }
+            return true;
+        }
     }
 
 });
@@ -12118,7 +12139,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.switch-container {\n  margin: 10px 0;\n}\n.list-group a {\n  margin-bottom: 10px;\n}\n.badge:hover {\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.switch-container {\n  margin: 10px 0;\n}\n.list-group a {\n  margin-bottom: 10px;\n}\n.badge:hover {\n  cursor: pointer;\n}\n.selectedItems {\n  margin: 2px 0;\n}\n.selectedItems button {\n  margin: 0 5px;\n}\n", ""]);
 
 // exports
 
@@ -70596,6 +70617,7 @@ var render = function() {
                 [
                   _c("input", {
                     attrs: { type: "checkbox", value: "1" },
+                    domProps: { checked: _vm.isSelectedSchool(s.id) },
                     on: {
                       click: function($event) {
                         _vm.changeSchool(s)
@@ -70656,6 +70678,7 @@ var render = function() {
                 [
                   _c("input", {
                     attrs: { type: "checkbox", value: "1" },
+                    domProps: { checked: _vm.isSelectedDiscipline(s.id) },
                     on: {
                       click: function($event) {
                         _vm.changeDisciplines(s)
@@ -70677,7 +70700,7 @@ var render = function() {
       _vm.selectedSchools.length > 0
         ? _c(
             "div",
-            { staticClass: "col-12" },
+            { staticClass: "col-12 selectedItems" },
             [
               _vm._v("\n            Scoli:\n            "),
               _vm._l(_vm.selectedSchools, function(s) {
@@ -70697,18 +70720,18 @@ var render = function() {
                     _vm._v("  " + _vm._s(s.name) + "\n            ")
                   ]
                 )
-              })
+              }),
+              _vm._v(" "),
+              _c("br")
             ],
             2
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
       _vm.selectedDisciplines.length > 0
         ? _c(
             "div",
-            { staticClass: "col-12" },
+            { staticClass: "col-12 selectedItems" },
             [
               _vm._v("\n            Materii:\n            "),
               _vm._l(_vm.selectedDisciplines, function(s) {
@@ -70766,6 +70789,23 @@ var render = function() {
           { staticClass: "pull-right", staticStyle: { float: "right" } },
           [
             _vm._v("\n                Order by:\n                "),
+            _c(
+              "span",
+              {
+                staticClass: "badge badge-pill ",
+                class: {
+                  "badge-secondary": _vm.sort == "updated_at",
+                  "badge-primary": _vm.sort !== "updated_at"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.sortQuestions("updated_at")
+                  }
+                }
+              },
+              [_vm._v("Date")]
+            ),
+            _vm._v(" "),
             _c(
               "span",
               {
