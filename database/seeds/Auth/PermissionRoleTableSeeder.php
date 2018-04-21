@@ -19,6 +19,7 @@ class PermissionRoleTableSeeder extends Seeder
     public function run()
     {
         $this->disableForeignKeys();
+        Role::truncate();
 
         // Create Roles
         $admin = Role::create(['name' => config('access.users.admin_role')]);

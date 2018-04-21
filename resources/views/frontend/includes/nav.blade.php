@@ -1,10 +1,29 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <img style="float:left; max-height: 35px;" src="/images/logo.png">
+    <ul class="nav navbar-nav d-md-down-none">
+        @if(auth()->user())
+            <li class="nav-item px-3">
+                <a class="nav-link" href="/">Dashboard</a>
+            </li>
+            <li class="nav-item px-3">
+                <a href="/users-list" class="nav-link">Utilizatori</a>
+            </li>
+            <li class="nav-item px-3">
+                <a href="/resources" class="nav-link">Resurse</a>
+            </li>
+            @if( auth()->user()->hasRole('teacher'))
+                <li class="nav-item px-3">
+                    <a href="/statistics" class="nav-link">Statistici</a>
+                </li>
+            @endif
+        @endif
+    </ul>
+
     @guest
         <ul class="nav navbar-nav d-md-down-none">
             <li class="nav-item"><a href="{{route('frontend.about')}}" class="nav-link" {{ active_class(Active::checkRoute('frontend.contact')) }}>Despre noi</a></li>
             <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.about')) }}">Alatura-te echipei</a></li>
             <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">{{ __('navs.frontend.contact') }}</a></li>
-
         </ul>
     @endguest
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
@@ -15,12 +34,10 @@
             @if (config('locale.status') && count(config('locale.languages')) > 1)
                 <li class="nav-item dropdown">
                     @include('includes.partials.lang')
+
                 </li>
             @endif
 
-            @auth
-                <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
-            @endauth
 
             @guest
                 <li class="nav-item" style="margin: 0 20px;" ><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.auth.login')) }}">{{ __('navs.frontend.login') }}</a></li>

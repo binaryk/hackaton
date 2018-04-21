@@ -43,7 +43,7 @@
 
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-success " v-on:click="filter()" :disabled="selectedDisciplines.length == 0 && selectedSchools.length == 0">Filter Questions</button>
+                        <button class="btn btn-success " v-on:click="filter()" >Filter Questions</button>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="home" role="tabpanel">
                                 <div class="row">
-                                    <user v-for="user in users" :key="user.id" :user="user"></user>
+                                    <user v-for="user in usersList" :key="user.id" :user="user"></user>
                                 </div>
                             </div>
                             <div class="tab-pane" id="profile" role="tabpanel">
