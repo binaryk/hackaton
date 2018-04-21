@@ -2,13 +2,31 @@
 
 @section('title', app_name() . ' | '.__('labels.frontend.auth.login_box_title'))
 
+@section('styles')
+    <style>
+        .container-fluid {
+            height:100vh;
+            background: url({!! asset('images/login.jpg') !!});
+            background-opacity: 0.7;
+            background-position: center;
+            background-size: cover;
+            padding-top: 350px;
+            background-repeat: no-repeat;
+        }
+        .form-control, select {
+            border-radius: 20px;
+            font-weight: 600;
+            color: #2da754 !important;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="row justify-content-center align-items-center">
         <div class="col col-sm-8 align-self-center">
             <div class="card">
                 <div class="card-header">
-                    <strong>
-                        {{ __('labels.frontend.auth.login_box_title') }}
+                    <strong class="text-center">
+                        Hai pe platforma :)
                     </strong>
                 </div><!--card-header-->
 
@@ -17,7 +35,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }}
+                                    {{ html()->label('Care este emaill tau?')->for('email') }}
 
                                     {{ html()->email('email')
                                         ->class('form-control')
@@ -31,7 +49,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.password'))->for('password') }}
+                                    {{ html()->label('Si parola?')->for('password') }}
 
                                     {{ html()->password('password')
                                         ->class('form-control')
@@ -45,7 +63,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        {{ html()->label(html()->checkbox('remember', true, 1) . ' ' . __('labels.frontend.auth.remember_me'))->for('remember') }}
+                                        {{ html()->label(html()->checkbox('remember', true, 1) . ' ' . 'Vrei sa ramai logat?')->for('remember') }}
                                     </div>
                                 </div><!--form-group-->
                             </div><!--col-->
@@ -53,8 +71,8 @@
 
                         <div class="row">
                             <div class="col">
-                                <div class="form-group clearfix">
-                                    {{ form_submit(__('labels.frontend.auth.login_button')) }}
+                                <div class="form-group clearfix pull-right">
+                                    {{ form_submit('Intra') }}
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
@@ -62,7 +80,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group text-right">
-                                    <a href="{{ route('frontend.auth.password.reset') }}">{{ __('labels.frontend.passwords.forgot_password') }}</a>
+                                    <a href="{{ route('frontend.auth.password.reset') }}">Ai uitat parola?</a>
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
