@@ -1,54 +1,21 @@
 <?php
 
-
-namespace App\Http\Controllers\Frontend\User;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Auth\User;
-use App\Repositories\Backend\Auth\UserRepository;
+use App\Models\Api\Discipline;
 use Illuminate\Http\Request;
 
-/**
- * Class UserController.
- */
-class UserController extends Controller
+class DisciplineController extends Controller
 {
-    /**
-     * @var UserRepository
-     */
-    protected $userRepository;
-
-    /**
-     * UserController constructor.
-     *
-     * @param UserRepository $userRepository
-     */
-    public function __construct(UserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
     /**
      * Display a listing of the resource.
      *
-     * @return string
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return User::with('roles')->get()->toJson();
-    }
-
-    public function listView()
-    {
-        // TODO: Get intereses MALAI
-        $users = User::with('roles')->get();
-        return view('frontend.users.list')->with(compact('users'));
-    }
-
-    public function singleView($id)
-    {
-        $user = User::where('id', $id)->with('roles')->first();
-        return view('frontend.users.single')->with(compact('user'));
+        return Discipline::all();
     }
 
     /**

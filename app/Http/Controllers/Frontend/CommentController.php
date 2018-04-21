@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Api\Question;
+use App\Models\Api\Comment;
 use Illuminate\Http\Request;
 
-class QuestionController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return Question::with('category')->orderBy('id', 'desc')->get();
+        return Comment::with('user')->get();
     }
 
     /**
@@ -36,8 +36,8 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $question = Question::create($request->all());
-        return Question::with('category')->find($question->id);
+        $comment = Comment::create($request->all());
+        return Comment::with('user')->find($comment->id);
     }
 
     /**
@@ -48,8 +48,7 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        $question = Question::where('id', $id)->with('user')->with('category')->first();
-        return view('frontend.questions.single')->with(compact('question'));
+        //
     }
 
     /**
@@ -86,6 +85,10 @@ class QuestionController extends Controller
         //
     }
 
+    public function questionComments(Request $request){
+        return Comment::with('user')->where('question_id', $request->get('question_id'))->get();
+    }
+
     /**
      * Add like for question
      *
@@ -93,7 +96,7 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function like($id) {
-        $question = Question::find($id);
+        $question = Comment::find($id);
         $likes = $question->likes;
         $likes++;
         $question->likes = $likes;
@@ -112,7 +115,7 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function dislike($id) {
-        $question = Question::find($id);
+        $question = Comment::find($id);
         $dislikes = $question->dislikes;
         $dislikes++;
         $question->dislikes = $dislikes;
@@ -122,26 +125,5 @@ class QuestionController extends Controller
         return response()->json([
             'status' => 200
         ]);
-    }
-
-    /**
-     * Add views for question
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function view($id) {
-        $question = Question::find($id);
-        $views = $question->views;
-        $views++;
-        $question->views = $views;
-
-
-        $question->save();
-
-        return response()->json([
-            'status' => 200
-        ]);
-
     }
 }

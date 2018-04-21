@@ -1,6 +1,11 @@
 <template>
     <div class="col-sm-12 col-xl-12">
         <div class="card">
+            <div class="card-body">
+                <add :user_id="1" @on-submit="onStore"></add>
+            </div>
+        </div>
+        <div class="card">
             <div class="switch-container col-md-12">
                 <button type="button" class="col-md-4 float-left btn btn-outline-secondary btn-md btn-">Recente</button>
                 <button type="button" class="col-md-4 float-left btn btn-outline-primary btn-md btn-">Dupa interese</button>
@@ -31,11 +36,13 @@
 </template>
 <script>
     import Question from './Question.vue';
+    import Add from './AddQuestion.vue';
     import API from '../../api/index.js';
     export default {
         name: 'QuestionsList',
         components: {
-            Question
+            Question,
+            Add
         },
         data() {
             return {
@@ -45,12 +52,18 @@
                 showInstitutions: false
             }
         },
-        async created() {
-            const schools = await API.School.list();
-            const list = await API.Question.list();
+        created() {
+            const schools = API.School.list();
+            const list = API.Question.list();
             this.list = list.data;
             this.schools = schools.data;
             console.log(list, schools, 'list form');
+        },
+        methods: {
+            onStore(post) {
+                console.log(post.data, 'data post');
+                this.list.unshift(post.data);
+            }
         }
 
     }
@@ -58,5 +71,8 @@
 <style lang="scss">
     .switch-container {
         margin: 10px;
+    }
+    .list-group a {
+        margin-bottom: 10px;
     }
 </style>

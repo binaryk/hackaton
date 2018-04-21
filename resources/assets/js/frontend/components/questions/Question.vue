@@ -1,9 +1,9 @@
 <template>
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" v-bind:class="{active: false}">
+    <a :href="url" class="list-group-item list-group-item-action flex-column align-items-start" v-bind:class="{active: false}">
         <div class="d-flex w-100 justify-content-between">
             <small>{{ question.created_at }}</small>
         </div>
-        <p class="mb-1">{{ question.content }}</p>
+        <p class="mb-1" v-html="question.content"></p>
         <small>Views <span class="badge badge-primary badge-pill">{{question.views}}</span></small>
         <button class="btn btn-sm  btn-danger" @click="dislike()">
             <i class="fa fa-thumbs-down"></i> Dislike
@@ -18,18 +18,25 @@
 <script>
     import API from '../../api';
     export default {
-        name: 'Question',
+        name: 'question',
         props: ['question'],
-        created() {
-            console.log(this.question, 'euasdjsal');
+        computed: {
+            url() {
+                return `question/${this.question.id}/show`;
+            }
         },
         methods: {
             async like() {
-                await API.Question.like(this.question.id);
+                await API.Question.like(this.question.id).then(res => {
+                    this.question.likes +=1;
+                    console.log('increment')
+                });
 
             },
             async dislike() {
-                await API.Question.dislike(this.question.id);
+                await API.Question.dislike(this.question.id).then(res => {
+                    this.question.dislikes +=1;
+                });
 
             },
         }

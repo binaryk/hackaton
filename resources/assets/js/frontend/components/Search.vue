@@ -1,11 +1,11 @@
 <template>
-    <div class="form-group row">
+    <div class="col-md-6">
         <div class="col-md-12">
             <div class="input-group">
 <span class="input-group-prepend">
 <button @click="search" type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
 </span>
-                <input v-model="str" type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Username" autocomplete="off">
+                <input v-model="str" type="text" id="input1-group2" name="input1-group2" class="form-control col-md-8" placeholder="Username" autocomplete="off">
             </div>
         </div>
     </div>

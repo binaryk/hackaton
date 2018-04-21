@@ -34,11 +34,12 @@ trait UserMethod
         switch ($this->avatar_type) {
             case 'gravatar':
                 if (! $size) {
+
                     $size = config('gravatar.default.size');
                 }
 
-                return gravatar()->get($this->email, ['size' => $size]);
-
+                return 'https://avatar.tobi.sh/Vega-Brown.svg?text=' . $this->first_name[0] . $this->last_name[0];
+//                return gravatar()->get($this->email, ['size' => $size]);
             case 'storage':
                 return url('storage/'.$this->avatar_location);
         }

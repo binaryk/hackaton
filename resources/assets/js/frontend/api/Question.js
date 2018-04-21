@@ -2,23 +2,22 @@ import axios from 'axios';
 
 export default new class {
     list() {
-        return axios.get(`questions`);
+        return axios.get(`/questions`);
     }
 
     like(id) {
-        return axios.get(`questions/${id}/like`);
+        return axios.get(`/question/${id}/like`);
     }
 
     dislike(id) {
-        return axios.get(`questions/${id}/dislike`);
+        return axios.get(`/question/${id}/dislike`);
+    }
+    view(id) {
+        return axios.get(`/question/${id}/view`);
     }
 
-    view(id) {
-        return axios.get(`questions/${id}/view`);
-    }
-    
     store(data){
-        return axios.post('questions', data);
+        return axios.post('/questions', data);
     }
 
 };
