@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api\Question;
+<<<<<<< HEAD
 use App\Models\Api\School;
 use App\Models\Api\Student;
 use App\Repositories\Frontend\Api\QuestionRepository;
+=======
+use App\Models\Auth\User;
+>>>>>>> d0e77cba1131657cc5c234a105389cf437ab6768
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -60,7 +64,8 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::where('id', $id)->with('user')->with('category')->with('comments')->first();
-        return view('frontend.questions.single')->with(compact('question'));
+        $user = User::where('id', auth()->user()->id)->with('roles')->first();
+        return view('frontend.questions.single')->with(compact('question', 'user'));
     }
 
     /**
@@ -109,6 +114,7 @@ class QuestionController extends Controller
         $likes++;
         $question->likes = $likes;
 
+        $question->user()->increment('reputation');
         $question->save();
 
         return response()->json([
@@ -128,6 +134,7 @@ class QuestionController extends Controller
         $dislikes++;
         $question->dislikes = $dislikes;
 
+        $question->user()->decrement('reputation');
         $question->save();
 
         return response()->json([

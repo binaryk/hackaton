@@ -1,6 +1,5 @@
 <template>
-    <div class="col-md-12">
-        <add-comment :user_id="user.id" :question_id="question.id" @on-submit="submitComment"></add-comment>
+    <div>
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify"></i> Comentarii
@@ -8,10 +7,11 @@
             </div>
             <div class="card-body">
                 <div class="list-group">
-                    <comment v-for="comment, index in comments" :comment="comment" :key="index"></comment>
+                    <comment v-for="comment, index in comments" :comment="comment" :user="user" :key="index"></comment>
                 </div>
             </div>
         </div>
+        <add-comment :user_id="user.id" :question_id="question.id" @on-submit="submitComment"></add-comment>
     </div>
 </template>
 <script>

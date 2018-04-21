@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <div class="form-group row">
-                <label class="col-md-3 col-form-label" >Intrebarea </label>
+                <label class="col-md-3 col-form-label" >Question </label>
                 <div class="col-md-9">
                     <quill-editor :content="form.content"
                                   :options="editorOption"
