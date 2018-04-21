@@ -20,6 +20,9 @@
                 </div>
             </div>
         </div>
+        <div class="with-text">
+            <img src="images/provocare2-01.png" alt="" class="landing-background">
+        </div>
     </div>
 </template>
 <script>
