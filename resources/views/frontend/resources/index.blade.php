@@ -3,5 +3,5 @@
 @section('title', app_name() . ' | '.__('navs.general.home'))
 
 @section('content')
-
+    test
 @endsection

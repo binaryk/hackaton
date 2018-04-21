@@ -26,6 +26,7 @@ Vue.component('add-comment', require('./components/comments/AddComment.vue'));
 Vue.component('comments-list', require('./components/comments/List.vue'));
 Vue.component('users-list', require('./components/users/UsersList.vue'));
 Vue.component('user-page', require('./components/users/UserPage.vue'));
+Vue.component('teacher-dashboard', require('./components/teacher/Dashboard.vue'))
 
 Vue.component('private-chat', require('./components/Chat/PrivateChat.vue'));
 Vue.component('users-chat', require('./components/Chat/UsersChat.vue'));

@@ -20,4 +20,8 @@ class DashboardController extends Controller
     public function main(){
         return view('frontend.user.main');
     }
+
+    public function statistics(){
+        return view('frontend.admin-dashboard');
+    }
 }

@@ -34,5 +34,6 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
          * User Main Page
          */
         Route::get('main', 'DashboardController@main')->name('main');
+        Route::get('statistics', 'DashboardController@statistics')->name('statistics');
     });
 });

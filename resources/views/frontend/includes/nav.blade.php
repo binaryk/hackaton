@@ -5,9 +5,15 @@
         </li>
         <li class="nav-item px-3">
             <a href="/users-list" class="nav-link">Utilizatori</a>
-        </li>        <li class="nav-item px-3">
+        </li>
+        <li class="nav-item px-3">
             <a href="/resources" class="nav-link">Resurse</a>
         </li>
+        @if( auth()->user()->hasRole('teacher'))
+            <li class="nav-item px-3">
+                <a href="/statistics" class="nav-link">Statistici</a>
+            </li>
+        @endif
     </ul>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
         <span class="navbar-toggler-icon"></span>
