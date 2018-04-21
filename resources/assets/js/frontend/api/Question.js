@@ -20,4 +20,8 @@ export default new class {
         return axios.post('/questions', data);
     }
 
+    filter(data) {
+        return axios.post('/questions/filter', data);
+    }
+
 };

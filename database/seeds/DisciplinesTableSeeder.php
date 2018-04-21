@@ -11,6 +11,8 @@ class DisciplinesTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('disciplines')->truncate();
+
         $disciplines = [
             ['name' => 'Matematica'],
             ['name' => 'Romana'],
@@ -21,8 +23,6 @@ class DisciplinesTableSeeder extends Seeder
             ['name' => 'Geografie']
         ];
 
-        foreach($disciplines as $discipline){
-            DB::table('disciplines')->insert($discipline);
-        }
+        DB::table('disciplines')->insert($disciplines);
     }
 }
