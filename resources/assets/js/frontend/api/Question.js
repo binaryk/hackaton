@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default new class {
     list() {
-        return axios.get(`questions`);
+        return axios.get(`/questions`);
     }
 
     like(id) {
@@ -18,7 +18,7 @@ export default new class {
     }
 
     store(data){
-        return axios.post('questions', data);
+        return axios.post('/questions', data);
     }
 
 };

@@ -17,4 +17,8 @@ class Question extends Model
     public function category(){
         return $this->belongsTo(Discipline::class, 'discipline_id', 'id');
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class, 'question_id', 'id');
+    }
 }
