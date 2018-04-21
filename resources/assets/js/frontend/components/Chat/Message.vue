@@ -1,10 +1,11 @@
 <template>
     <div class="container">
         <div class="row">
+
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default" v-for="message in messages">
-                    <div class="panel-heading"><strong>{{ message.user.name }}</strong></div>
                     <div class="panel-body">
+                    <div class="panel-heading"><strong v-if="typeof message.sent_by_user !== 'undefined'">{{ message.sent_by_user.full_name }}</strong></div>
                         <p>{{ message.message }}</p>
                     </div>
                 </div>
@@ -17,7 +18,7 @@
     export default {
         props: ['messages'],
         mounted() {
-            console.log(this.messages)
+            console.log('messages', this.messages)
         }
     }
 </script>

@@ -88,4 +88,42 @@ class CommentController extends Controller
     public function questionComments(Request $request){
         return Comment::with('user')->where('question_id', $request->get('question_id'))->orderBy('id', 'desc')->get();
     }
+
+    /**
+     * Add like for question
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function like($id) {
+        $question = Comment::find($id);
+        $likes = $question->likes;
+        $likes++;
+        $question->likes = $likes;
+
+        $question->save();
+
+        return response()->json([
+            'status' => 200
+        ]);
+    }
+
+    /**
+     * Add dislike for question
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function dislike($id) {
+        $question = Comment::find($id);
+        $dislikes = $question->dislikes;
+        $dislikes++;
+        $question->dislikes = $dislikes;
+
+        $question->save();
+
+        return response()->json([
+            'status' => 200
+        ]);
+    }
 }
