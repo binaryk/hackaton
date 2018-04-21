@@ -1,22 +1,30 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 with-padding" >
-                <quill-editor :content="form.description"
-                              :options="editorOption"
-                              @change="update($event)">
-                </quill-editor>
+    <div class="card">
+        <div class="card-header">
+            <strong>Adauga intrebarea aici</strong>
+        </div>
+        <div class="card-body">
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" >Intrebarea </label>
+                <div class="col-md-9">
+                    <quill-editor :content="form.content"
+                                  :options="editorOption"
+                                  @change="update($event)">
+                    </quill-editor>
+                </div>
             </div>
-            <div class="col-12 with-padding">
-                <select name="disciplines" id="" v-model="form.discipline" class="form-control">
-                    <option value="" disabled selected>Selecteaza disciplina</option>
-                    <option value="Matematica">Matematica</option>
-                    <option value="Istorie">Istorie</option>
-                </select>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="select1">Disciplina</label>
+                <div class="col-md-9">
+                    <select id="select1" name="select1" v-model="form.discipline_id" class="form-control">
+                        <option value="0">Please select</option>
+                        <option v-for="item, index in disciplines" :key="index" :value="item.id">{{ item.name }}</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-12 with-padding">
-                <button class="btn btn-primary" @click="submit">Trimite</button>
-            </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-sm btn-primary right" @click="submit"><i class="fa fa-dot-circle-o"></i> Trimite</button>
         </div>
     </div>
 </template>
@@ -30,6 +38,7 @@
 
     import API from '../../api/index.js';
     export default {
+        props: ['user_id'],
         components: {
             quillEditor
         },
@@ -41,26 +50,35 @@
                     }
                 },
                 form: {
-                    description: '',
-                    discipline: null
+                    content: '',
+                    discipline_id: null,
+                    user_id: null
                 },
+                disciplines: []
             }
+        },
+        created(){
+            this.form.user_id = this.user_id;
+            API.Discipline.list().then(res => {
+                this.disciplines = res.data;
+            })
         },
         methods: {
             update($event) {
-                this.form.description = $event.html;
+                this.form.content = $event.html;
             },
             async submit(){
-                const list = await API.Question.store(this.form).then(res => {
-                    console.log(list, 'added with success');
-                });
-
+                const list = await API.Question.store(this.form);
+                this.$emit('on-submit', list);
             }
         }
     }
 </script>
-<style scoped>
-    .with-padding{
-        padding: 15px;
+<style>
+    .right{
+        float: right;
+    }
+    .ql-container{
+        height: 100px;
     }
 </style>

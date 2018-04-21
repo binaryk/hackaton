@@ -20,6 +20,7 @@
         },
         methods: {
             search() {
+                
                 // TODO: Send an event to filter current list
                 console.log(this.str);
             }
