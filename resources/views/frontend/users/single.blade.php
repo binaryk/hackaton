@@ -38,7 +38,6 @@
                             </div>
                         </div><!--col-md-4-->
                         <div class="col-md-8 order-2 order-sm-1">
-                            <pre>{{ dd($user->toArray()) }}</pre>
                             @if(count($user->disciplines) > 0)
                                 <div class="row">
                                     <div class="col">
