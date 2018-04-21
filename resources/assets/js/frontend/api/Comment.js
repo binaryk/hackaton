@@ -7,5 +7,12 @@ export default new class {
     store(data){
         return axios.post('/comments', data);
     }
+    like(id) {
+        return axios.get(`/comments/${id}/like`);
+    }
+
+    dislike(id) {
+        return axios.get(`/comments/${id}/dislike`);
+    }
 
 }

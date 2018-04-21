@@ -52,9 +52,9 @@
                 showInstitutions: false
             }
         },
-        async created() {
-            const schools = await API.School.list();
-            const list = await API.Question.list();
+        created() {
+            const schools = API.School.list();
+            const list = API.Question.list();
             this.list = list.data;
             this.schools = schools.data;
             console.log(list, schools, 'list form');

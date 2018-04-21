@@ -12,7 +12,6 @@ export default new class {
     dislike(id) {
         return axios.get(`/questions/${id}/dislike`);
     }
-
     view(id) {
         return axios.get(`/questions/${id}/view`);
     }

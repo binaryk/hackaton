@@ -15,11 +15,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        return Question::orderBy('id', 'desc')->get();
-=======
-        return Question::with('category')->get();
->>>>>>> 3705b9327265bb02fcf4156319c944d823a069e4
+        return Question::with('category')->orderBy('id', 'desc')->get();
     }
 
     /**
