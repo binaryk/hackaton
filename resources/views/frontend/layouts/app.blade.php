@@ -22,22 +22,30 @@
         {{ style(mix('css/backend.css')) }}
 
         @stack('after-styles')
+        @yield('styles')
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     </head>
     <body>
         <div id="app">
             @include('includes.partials.logged-in-as')
-            @include('frontend.includes.nav')
+            @if(auth()->user())
+             @include('frontend.includes.nav')
+            @endif
 
             <div class="container-fluid">
+                @yield('parallax')
                 @include('includes.partials.messages')
                 <div class="row col-md-12">
                     <div class="col-md-2"></div>
                     <div class="col-md-8 main-panel">
                         @yield('content')
                     </div>
+
+                    @if(auth()->user())
                     <div class="col-md-2 rigth-sidebar">
                         @yield('right')
                     </div>
+                    @endif
                 </div>
             </div><!-- container -->
         </div><!-- #app -->

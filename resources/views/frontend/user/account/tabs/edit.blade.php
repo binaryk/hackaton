@@ -85,6 +85,7 @@
         </div><!--col-->
     </div><!--row-->
 
+@if(@\App\Models\Auth\User::where('id', auth()->user()->id)->with('roles')->first()->roles->first()->name === 'student')
     <div class="row">
         <div class="col">
             <div class="form-group">
@@ -97,6 +98,7 @@
             </div><!--form-group-->
         </div><!--col-->
     </div><!--row-->
+    @endif
 
     <div class="row">
         <div class="col">

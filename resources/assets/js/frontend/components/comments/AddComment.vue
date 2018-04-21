@@ -1,24 +1,25 @@
 <template>
-
-    <div class="card">
-        <div class="card-header">
-            <strong>Adauga commentariu</strong>
-        </div>
-        <div class="card-body">
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <quill-editor :content="form.content"
-                                  :options="editorOption"
-                                  @change="update($event)">
-                    </quill-editor>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>Adauga raspuns</strong>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <quill-editor :content="form.content"
+                                      :options="editorOption"
+                                      @change="update($event)">
+                        </quill-editor>
+                    </div>
                 </div>
             </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-sm btn-primary right" @click="submit"><i class="fa fa-dot-circle-o"></i> Trimite</button>
+            </div>
         </div>
-        <div class="card-footer">
-            <button type="button" class="btn btn-sm btn-primary right" @click="submit"><i class="fa fa-dot-circle-o"></i> Trimite</button>
-        </div>
+        <div class="clearfix"></div>
     </div>
-
 </template>
 
 <script>

@@ -4,11 +4,22 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api\Question;
+use App\Models\Api\School;
+use App\Models\Api\Student;
+use App\Repositories\Frontend\Api\QuestionRepository;
 use App\Models\Auth\User;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+
+    public $questionRepository;
+
+    public function __construct(QuestionRepository $questionRepository)
+    {
+        $this->questionRepository = $questionRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -147,5 +158,36 @@ class QuestionController extends Controller
             'status' => 200
         ]);
 
+    }
+
+    /**
+     * Filter questions by criteria
+     * @param Request $request
+     * @return $this
+     */
+    public function filter(Request $request) {
+        $sort = $request->get('sort');
+        $disciplines = $request->get('disciplines');
+        $schools = $request->get('schools');
+
+        $user = $this->getUser();
+        $usersIds = [];
+
+        if($schools){
+            $usersIds = $this->getUsersBySchoolsId($schools);
+        }
+
+        return $this->questionRepository->filter($sort, $usersIds, $disciplines, $user->id)->toJson();
+    }
+
+    /**
+     * Return all users id based on schools ids
+     * @param $schools
+     * @return array
+     */
+    private function getUsersBySchoolsId($schools)
+    {
+        $userIds = Student::whereIn('school_id', $schools)->select('user_id')->get()->toArray();
+        return array_map(function($x) { return $x['user_id']; }, $userIds);
     }
 }
