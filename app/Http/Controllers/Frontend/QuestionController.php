@@ -101,7 +101,6 @@ class QuestionController extends Controller
         $question->likes = $likes;
 
         $question->user()->increment('reputation');
-
         $question->save();
 
         return response()->json([
