@@ -19,13 +19,16 @@ class GlobalComposer
      */
     public function compose(View $view)
     {
-        $user = auth()->user();
-        $user->update(['last_activity' => new \DateTime()]);
-        $user->save();
+        if(!empty(auth()->user())) {
+            $user = auth()->user();
+            $user->update(['last_activity' => \DB::raw('NOW()')]);
+            $user->save();
 
-        $topUsers = User::orderBy('reputation', 'desc')->take(5)->get();
+            $topUsers = User::orderBy('reputation', 'desc')->take(5)->get();
 
-        $view->with('logged_in_user', auth()->user());
-        $view->with('topUsers', $topUsers);
+            $view->with('logged_in_user', auth()->user());
+            $view->with('topUsers', $topUsers);
+        }
+
     }
 }

@@ -2,7 +2,7 @@
     <div>
         <div class="card">
             <div class="card-header">
-                Chat with: {{ chatWithUser.full_name }}
+                Chat with: <a :href="'/users-view/'+chatWithUser.id">{{ chatWithUser.full_name }}</a>
             </div>
             <div class="card-body chat-body">
                 <message :messages="messages"></message>
