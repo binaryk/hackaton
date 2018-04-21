@@ -2,7 +2,7 @@
     <div class="col-sm-12 col-xl-12">
         <div class="card">
             <div class="card-body">
-                <add :user_id="1" @on-submit="onStore"></add>
+                <add :user_id="user.id" @on-submit="onStore"></add>
             </div>
         </div>
         <div class="card">
@@ -75,6 +75,7 @@
     import API from '../../api/index.js';
     export default {
         name: 'QuestionsList',
+        props: ['user'],
         components: {
             Question,
             Add

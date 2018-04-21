@@ -8366,6 +8366,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'QuestionsList',
+    props: ['user'],
     components: {
         Question: __WEBPACK_IMPORTED_MODULE_1__Question_vue___default.a,
         Add: __WEBPACK_IMPORTED_MODULE_2__AddQuestion_vue___default.a
@@ -71677,7 +71678,10 @@ var render = function() {
         "div",
         { staticClass: "card-body" },
         [
-          _c("add", { attrs: { user_id: 1 }, on: { "on-submit": _vm.onStore } })
+          _c("add", {
+            attrs: { user_id: _vm.user.id },
+            on: { "on-submit": _vm.onStore }
+          })
         ],
         1
       )

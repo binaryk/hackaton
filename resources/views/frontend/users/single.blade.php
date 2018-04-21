@@ -93,8 +93,8 @@
                                             <ul class="list-group">
                                                 @foreach($lastQuestions as $question)
                                                     <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
-                                                        {{ $question->name }}
-                                                        <span class="badge badge-primary badge-pill">14</span>
+                                                        {!! $question->content !!}
+                                                        <span class="badge badge-primary badge-pill">{!! $question->likes    !!}</span>
                                                     </li>
                                                 @endforeach
                                             </ul>

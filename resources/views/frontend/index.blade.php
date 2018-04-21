@@ -3,7 +3,7 @@
 @section('title', app_name() . ' | '.__('navs.general.home'))
 
 @section('content')
-    <questions-list></questions-list>
+    <questions-list :user="{{ json_encode(auth()->user())  }}"></questions-list>
 @endsection
 @section('right')
     <div>
