@@ -6,15 +6,15 @@ export default new class {
     }
 
     like(id) {
-        return axios.get(`questions/${id}/like`);
+        return axios.get(`/question/${id}/like`);
     }
 
     dislike(id) {
-        return axios.get(`questions/${id}/dislike`);
+        return axios.get(`/question/${id}/dislike`);
     }
 
     view(id) {
-        return axios.get(`questions/${id}/view`);
+        return axios.get(`/question/${id}/view`);
     }
 
     store(data){

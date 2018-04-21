@@ -25,7 +25,10 @@ Vue.component('chat', require('./components/Chat/Chat.vue'));
 Vue.component('question-layout', require('./components/questions/single/QuestionLayout.vue'));
 Vue.component('users-list', require('./components/users/UsersList.vue'));
 Vue.component('user-page', require('./components/users/UserPage.vue'));
+import Vue           from 'vue'
+import Notifications from 'vue-notification'
 
+Vue.use(Notifications)
 
 const app = new Vue({
     el: '#app'

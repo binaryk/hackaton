@@ -15,11 +15,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        return Question::orderBy('id', 'desc')->get();
-=======
-        return Question::with('category')->get();
->>>>>>> 3705b9327265bb02fcf4156319c944d823a069e4
+        return Question::orderBy('id', 'desc')->with('category')->get();
     }
 
     /**
@@ -52,7 +48,7 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        $question = Question::where('id', $id)->with('user')->first();
+        $question = Question::where('id', $id)->with('user')->with('category')->first();
         return view('frontend.questions.single')->with(compact('question'));
     }
 
