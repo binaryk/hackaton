@@ -70819,7 +70819,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("i", { staticClass: "fa fa-check" }),
-      _vm._v("Content\n                "),
+      _vm._v(" Intrebarea (?)\n                "),
       _c("div", { staticClass: "card-actions" }, [
         _c("a", { staticClass: "btn-setting", attrs: { href: "#" } }, [
           _c("i", { staticClass: "icon-settings" })

@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="card card-accent-info">
                 <div class="card-header">
-                    <i class="fa fa-check"></i>Content
+                    <i class="fa fa-check"></i> Intrebarea (?)
                     <div class="card-actions">
                         <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
                         <a href="#" class="btn-minimize" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true"><i class="icon-arrow-up"></i></a>
