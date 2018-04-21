@@ -47,7 +47,8 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
+        $question = Question::where('id', $id)->with('user')->first();
+        return view('frontend.questions.single')->with(compact('question'));
     }
 
     /**

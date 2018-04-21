@@ -1,5 +1,5 @@
 <template>
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" v-bind:class="{active: false}">
+    <a :href="url" class="list-group-item list-group-item-action flex-column align-items-start" v-bind:class="{active: false}">
         <div class="d-flex w-100 justify-content-between">
             <small>{{ question.created_at }}</small>
         </div>
@@ -22,6 +22,11 @@
         props: ['question'],
         created() {
             console.log(this.question, 'euasdjsal');
+        },
+        computed: {
+            url() {
+                return `question/${this.question.id}/show`;
+            }
         },
         methods: {
             async like() {
