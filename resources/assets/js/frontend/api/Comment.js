@@ -10,9 +10,12 @@ export default new class {
     like(id) {
         return axios.get(`/comments/${id}/like`);
     }
-
     dislike(id) {
         return axios.get(`/comments/${id}/dislike`);
+    }
+
+    answer(id) {
+        return axios.get(`/comments/${id}/answer`);
     }
 
 }

@@ -7266,11 +7266,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'comment',
-    props: ['comment'],
+    props: ['comment', 'user'],
+    created: function created() {
+        console.log(this.user.roles[0].name, 'user');
+    },
+
+    computed: {
+        isTeacher: function isTeacher() {
+            return this.user.roles[0] && this.user.roles[0].name === 'teacher';
+        }
+    },
     methods: {
         like: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
@@ -7325,6 +7337,38 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return dislike;
+        }(),
+        answer: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                _context3.next = 2;
+                                return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Comment.answer(this.comment.id);
+
+                            case 2:
+                                this.comment.isAnswer = 1;
+                                this.$notify({
+                                    group: 'foo',
+                                    type: 'success',
+                                    title: 'Notificare',
+                                    text: 'Multumim pentru raspuns!'
+                                });
+
+                            case 4:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this);
+            }));
+
+            function answer() {
+                return _ref3.apply(this, arguments);
+            }
+
+            return answer;
         }()
     }
 });
@@ -7341,6 +7385,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_index_js__ = __webpack_require__("./resources/assets/js/frontend/api/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AddComment_vue__ = __webpack_require__("./resources/assets/js/frontend/components/comments/AddComment.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AddComment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__AddComment_vue__);
+//
+//
 //
 //
 //
@@ -7659,12 +7705,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7750,6 +7790,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -7890,6 +7932,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'User',
@@ -7932,19 +7975,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'User',
     props: ['user'],
     computed: {
         url: function url() {
-            return 'https://avatar.tobi.sh/Vega-Brown.svg?text=' + this.user.first_name[0] + this.user.last_name[0];
+            return 'https://avatar.tobi.sh/Vega-Brown.svg?text=' + this.user.user.first_name + this.user.user.last_name;
         }
     },
     methods: {
         goToUser: function goToUser() {
-            location.href = '/user-view/' + this.user.id;
+            location.href = '/user-view/' + this.user.user.id;
         }
     }
 });
@@ -14014,7 +14056,7 @@ exports.push([module.i, "\ninput[type=\"text\"][data-v-ce2d6c5e] {\n    width: 1
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue":
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
@@ -14022,7 +14064,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.name{\n    margin-right: 15px;\n}\n", ""]);
+exports.push([module.i, "\n.name {\n  margin-right: 15px;\n}\n.answer {\n  display: inline-block;\n  cursor: pointer;\n}\n.answered {\n  color: #1ebb6e;\n}\n", ""]);
 
 // exports
 
@@ -70602,41 +70644,18 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-sm  btn-danger",
-          on: {
-            click: function($event) {
-              _vm.dislike()
-            }
-          }
-        },
-        [
-          _c("i", { staticClass: "fa fa-thumbs-down" }),
-          _vm._v(" Dislike\n    ")
-        ]
-      ),
-      _vm._v(" "),
-      _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-        _vm._v(_vm._s(_vm.question.likes))
+      _c("small", [
+        _vm._v("Likes "),
+        _c("span", { staticClass: "badge badge-success badge-pill" }, [
+          _vm._v(_vm._s(_vm.question.likes))
+        ])
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn  btn-sm btn-success",
-          on: {
-            click: function($event) {
-              _vm.like()
-            }
-          }
-        },
-        [_c("i", { staticClass: "fa fa-thumbs-up" }), _vm._v(" Like\n    ")]
-      ),
-      _vm._v(" "),
-      _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-        _vm._v(_vm._s(_vm.question.likes))
+      _c("small", [
+        _vm._v("Dislikes "),
+        _c("span", { staticClass: "badge badge-danger badge-pill" }, [
+          _vm._v(_vm._s(_vm.question.dislikes))
+        ])
       ])
     ]
   )
@@ -70728,61 +70747,62 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col-md-12" },
     [
-      _c("div", { staticClass: "card card-accent-info" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("p", { domProps: { innerHTML: _vm._s(_vm.question.content) } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-footer" }, [
-          _c("small", [
-            _vm._v("Views "),
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "card card-accent-info" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("p", { domProps: { innerHTML: _vm._s(_vm.question.content) } })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" }, [
+            _c("small", [
+              _vm._v("Views "),
+              _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+                _vm._v(_vm._s(_vm.question.views))
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn  btn-sm btn-success",
+                on: {
+                  click: function($event) {
+                    _vm.like()
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fa fa-thumbs-up" }),
+                _vm._v(" Like\n                ")
+              ]
+            ),
+            _vm._v(" "),
             _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-              _vm._v(_vm._s(_vm.question.views))
+              _vm._v(_vm._s(_vm.likes))
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-sm  btn-danger",
+                on: {
+                  click: function($event) {
+                    _vm.dislike()
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fa fa-thumbs-down" }),
+                _vm._v(" Dislike\n                ")
+              ]
+            ),
+            _vm._v(" "),
+            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+              _vm._v(_vm._s(_vm.dislikes))
             ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-sm  btn-danger",
-              on: {
-                click: function($event) {
-                  _vm.dislike()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "fa fa-thumbs-down" }),
-              _vm._v(" Dislike\n            ")
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-            _vm._v(_vm._s(_vm.dislikes))
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn  btn-sm btn-success",
-              on: {
-                click: function($event) {
-                  _vm.like()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "fa fa-thumbs-up" }),
-              _vm._v(" Like\n            ")
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-            _vm._v(_vm._s(_vm.likes))
           ])
         ])
       ]),
@@ -70799,7 +70819,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("i", { staticClass: "fa fa-check" }),
-      _vm._v("Content\n            "),
+      _vm._v(" Intrebarea (?)\n                "),
       _c("div", { staticClass: "card-actions" }, [
         _c("a", { staticClass: "btn-setting", attrs: { href: "#" } }, [
           _c("i", { staticClass: "icon-settings" })
@@ -71033,19 +71053,21 @@ var render = function() {
       _c("div", { staticClass: "card-body" }, [
         _c("img", { attrs: { src: _vm.url, alt: _vm.user.first_name } }),
         _vm._v(" "),
-        _c("div", { staticClass: "box about-box" }, [
-          _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
-          _vm._v(" "),
-          _c(
-            "ul",
-            { staticClass: "list-group" },
-            _vm._l(_vm.user.disciplines, function(discipline) {
-              return _c("li", { staticClass: "list-item" }, [
-                _vm._v(_vm._s(discipline.name))
-              ])
-            })
-          )
-        ])
+        _vm.user.disciplines.length > 0
+          ? _c("div", { staticClass: "box about-box" }, [
+              _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "list-group" },
+                _vm._l(_vm.user.disciplines, function(discipline) {
+                  return _c("li", { staticClass: "list-item" }, [
+                    _vm._v(_vm._s(discipline.name))
+                  ])
+                })
+              )
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer user-footer" }, [
@@ -71096,26 +71118,30 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col-md-12" },
     [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "div",
+              { staticClass: "list-group" },
+              _vm._l(_vm.comments, function(comment, index) {
+                return _c("comment", {
+                  key: index,
+                  attrs: { comment: comment, user: _vm.user }
+                })
+              })
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
       _c("add-comment", {
         attrs: { user_id: _vm.user.id, question_id: _vm.question.id },
         on: { "on-submit": _vm.submitComment }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "card" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c(
-            "div",
-            { staticClass: "list-group" },
-            _vm._l(_vm.comments, function(comment, index) {
-              return _c("comment", { key: index, attrs: { comment: comment } })
-            })
-          )
-        ])
-      ])
+      })
     ],
     1
   )
@@ -71127,7 +71153,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("i", { staticClass: "fa fa-align-justify" }),
-      _vm._v(" Comentarii\n            "),
+      _vm._v(" Comentarii\n                "),
       _c("small", [_vm._v("cele mai recente")])
     ])
   }
@@ -71229,7 +71255,21 @@ var render = function() {
       _c("div", { staticClass: "card-body" }, [
         _c("img", { attrs: { src: _vm.url, alt: _vm.user.first_name } }),
         _vm._v(" "),
-        _vm._m(0)
+        _vm.user.disciplines.length > 0
+          ? _c("div", { staticClass: "box about-box" }, [
+              _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "list-group" },
+                _vm._l(_vm.user.disciplines, function(discipline) {
+                  return _c("li", { staticClass: "list-item" }, [
+                    _vm._v(_vm._s(discipline.name))
+                  ])
+                })
+              )
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer user-footer" }, [
@@ -71243,26 +71283,12 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ])
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box about-box" }, [
-      _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "list-group" }, [
-        _c("li", { staticClass: "list-item" }, [_vm._v("Matematica")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-item" }, [_vm._v("Fizica ")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -71442,6 +71468,26 @@ var render = function() {
           _c(
             "button",
             {
+              staticClass: "btn  btn-sm btn-success",
+              on: {
+                click: function($event) {
+                  _vm.like()
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "fa fa-thumbs-up" }),
+              _vm._v(" Like\n            ")
+            ]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+            _vm._v(_vm._s(_vm.comment.likes))
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
               staticClass: "btn btn-sm  btn-danger",
               on: {
                 click: function($event) {
@@ -71460,24 +71506,25 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c(
-            "button",
+            "span",
             {
-              staticClass: "btn  btn-sm btn-success",
-              on: {
-                click: function($event) {
-                  _vm.like()
-                }
-              }
+              staticClass: "answer",
+              class: { answered: _vm.comment.isAnswer }
             },
             [
-              _c("i", { staticClass: "fa fa-thumbs-up" }),
-              _vm._v(" Like\n            ")
+              _vm.isTeacher || 1
+                ? _c("i", {
+                    staticClass: "icon-check icons font-2xl d-block mt-4",
+                    attrs: { title: "Este raspunsul corect?" },
+                    on: {
+                      click: function($event) {
+                        _vm.answer()
+                      }
+                    }
+                  })
+                : _vm._e()
             ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-            _vm._v(_vm._s(_vm.comment.likes))
-          ])
+          )
         ])
       ])
     ]
@@ -72894,23 +72941,23 @@ if(false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue":
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("4600613b", content, false, {});
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("51517b0c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comment.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comment.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comment.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comment.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -84337,6 +84384,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function dislike(id) {
             return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/comments/' + id + '/dislike');
         }
+    }, {
+        key: 'answer',
+        value: function answer(id) {
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/comments/' + id + '/answer');
+        }
     }]);
 
     return _class;
@@ -84938,7 +84990,7 @@ module.exports = Component.exports
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue")
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue")
 }
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */

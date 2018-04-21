@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api\Comment;
+use App\Models\Api\Question;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -104,6 +105,23 @@ class CommentController extends Controller
         $question->user()->increment('reputation');
 
         $question->save();
+
+        return response()->json([
+            'status' => 200
+        ]);
+    }
+
+    public function answer($id) {
+        // TODO: Trimite notificare la userul cui e intrebarea
+        $comment = Comment::find($id);
+
+        $question = Question::find($comment->question_id);
+        $question->answer_user_id = auth()->user()->id;
+        $question->answered = 1;
+        $comment->isAnswer = 1;
+
+        $question->save();
+        $comment->save();
 
         return response()->json([
             'status' => 200

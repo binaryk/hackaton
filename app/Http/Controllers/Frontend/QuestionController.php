@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api\Question;
+use App\Models\Auth\User;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -49,7 +50,8 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::where('id', $id)->with('user')->with('category')->with('comments')->first();
-        return view('frontend.questions.single')->with(compact('question'));
+        $user = User::where('id', auth()->user()->id)->with('roles')->first();
+        return view('frontend.questions.single')->with(compact('question', 'user'));
     }
 
     /**
