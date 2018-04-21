@@ -61,7 +61,8 @@
         },
         methods: {
             onStore(post) {
-                this.list.push(post.data);
+                console.log(post.data, 'data post');
+                this.list.unshift(post.data);
             }
         }
 

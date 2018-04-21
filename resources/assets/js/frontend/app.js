@@ -23,6 +23,8 @@ Vue.component('search', require('./components/Search.vue'));
 Vue.component('questions-list', require('./components/questions/List.vue'));
 Vue.component('chat', require('./components/Chat/Chat.vue'));
 Vue.component('question-layout', require('./components/questions/single/QuestionLayout.vue'));
+Vue.component('users-list', require('./components/users/UsersList.vue'));
+Vue.component('user-page', require('./components/users/UserPage.vue'));
 
 
 const app = new Vue({

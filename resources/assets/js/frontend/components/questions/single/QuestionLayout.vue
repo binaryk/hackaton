@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="card-body">
-                {{ question.content }}
+                <p v-html="question.content"></p>
             </div>
             <div class="card-footer">
                 <small>Views <span class="badge badge-primary badge-pill">{{question.views}}</span></small>

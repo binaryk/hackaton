@@ -62,8 +62,6 @@
             API.Discipline.list().then(res => {
                 this.disciplines = res.data;
             })
-            console.log('asldja');
-            
         },
         methods: {
             update($event) {
