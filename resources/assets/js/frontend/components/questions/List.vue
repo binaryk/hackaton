@@ -14,7 +14,7 @@
                         Selecteaza institutia
                     </button>
                     <div class="dropdown-menu" v-bind:class="{show: showInstitutions}" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item" href="#" v-for="s in schools" :key="s.id">
+                        <a class="dropdown-item" hchref="#" v-for="s in schools" :key="s.id">
                             {{ s.name }}
                         </a>
                     </div>
@@ -52,9 +52,9 @@
                 showInstitutions: false
             }
         },
-        async created() {
-            const schools = await API.School.list();
-            const list = await API.Question.list();
+        created() {
+            const schools = API.School.list();
+            const list = API.Question.list();
             this.list = list.data;
             this.schools = schools.data;
             console.log(list, schools, 'list form');

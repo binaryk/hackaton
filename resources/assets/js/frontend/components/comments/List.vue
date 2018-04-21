@@ -1,12 +1,15 @@
 <template>
     <div class="col-md-12">
-        <div class="card-header">
-            <i class="fa fa-align-justify"></i> Comentarii
-            <small>cele mai recente</small>
-        </div>
-        <div class="card-body">
-            <div class="list-group">
-                <comment v-for="comment, index in comments" :comment="comment" :key="index"></comment>
+        <add-comment :user_id="user.id" :question_id="question.id" @on-submit="submitComment"></add-comment>
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Comentarii
+                <small>cele mai recente</small>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <comment v-for="comment, index in comments" :comment="comment" :key="index"></comment>
+                </div>
             </div>
         </div>
     </div>
@@ -14,19 +17,26 @@
 <script>
     import comment from './Comment.vue'
     import API from '../../api/index.js';
+    import Add from './AddComment.vue';
     export default {
-        props: ['question_id'],
+        props: ['question', 'user'],
         components: {
             comment
         },
         created(){
-            API.Comment.list({question_id: this.question_id}).then(res => {
+            API.Comment.list({question_id: this.question.id}).then(res => {
                 this.comments = res.data;
             })
         },
         data(){
             return {
                 comments: []
+            }
+        },
+        methods: {
+            submitComment(comment) {
+                console.log(comment, 'comment');
+                this.comments.unshift(comment);
             }
         }
     }

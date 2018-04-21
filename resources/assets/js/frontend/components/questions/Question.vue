@@ -18,11 +18,8 @@
 <script>
     import API from '../../api';
     export default {
-        name: 'Question',
+        name: 'question',
         props: ['question'],
-        created() {
-            console.log(this.question, 'euasdjsal');
-        },
         computed: {
             url() {
                 return `question/${this.question.id}/show`;
@@ -30,11 +27,16 @@
         },
         methods: {
             async like() {
-                await API.Question.like(this.question.id);
+                await API.Question.like(this.question.id).then(res => {
+                    this.question.likes +=1;
+                    console.log('increment')
+                });
 
             },
             async dislike() {
-                await API.Question.dislike(this.question.id);
+                await API.Question.dislike(this.question.id).then(res => {
+                    this.question.dislikes +=1;
+                });
 
             },
         }

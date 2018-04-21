@@ -15,7 +15,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return Question::orderBy('id', 'desc')->get();
+        return Question::with('category')->orderBy('id', 'desc')->get();
     }
 
     /**
@@ -48,7 +48,7 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        $question = Question::where('id', $id)->with('user')->first();
+        $question = Question::where('id', $id)->with('user')->with('category')->with('comments')->first();
         return view('frontend.questions.single')->with(compact('question'));
     }
 

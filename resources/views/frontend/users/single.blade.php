@@ -33,7 +33,7 @@
 
                                     <p class="card-text">
 
-                                        <a href="#" class="btn btn-info btn-sm mb-1">
+                                        <a href="/privateChat/{!! $user->id !!}" class="btn btn-info btn-sm mb-1">
                                             <i class="fas fa-envelope"></i> Trimite mesaj
                                         </a>
                                     </p>
