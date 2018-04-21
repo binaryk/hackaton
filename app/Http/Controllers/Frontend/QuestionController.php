@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Question;
+use App\Models\Api\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -15,7 +15,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return Question::all();
+        return Question::with('category')->get();
     }
 
     /**
@@ -36,7 +36,8 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        return Question::create($request->all());
+        $question = Question::create($request->all());
+        return Question::with('category')->find($question->id);
     }
 
     /**
