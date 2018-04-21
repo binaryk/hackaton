@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-12">
+    <div>
         <add-comment :user_id="user.id" :question_id="question.id" @on-submit="submitComment"></add-comment>
         <div class="card">
             <div class="card-header">

@@ -101,6 +101,8 @@ class CommentController extends Controller
         $likes++;
         $question->likes = $likes;
 
+        $question->user()->increment('reputation');
+
         $question->save();
 
         return response()->json([
@@ -119,6 +121,8 @@ class CommentController extends Controller
         $dislikes = $question->dislikes;
         $dislikes++;
         $question->dislikes = $dislikes;
+
+        $question->user()->decrement('reputation');
 
         $question->save();
 

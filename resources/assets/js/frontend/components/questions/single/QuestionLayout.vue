@@ -12,15 +12,20 @@
                 <p v-html="question.content"></p>
             </div>
             <div class="card-footer">
-                <small>Views <span class="badge badge-primary badge-pill">{{question.views}}</span></small>
-                <button class="btn btn-sm  btn-danger" @click="dislike()">
-                    <i class="fa fa-thumbs-down"></i> Dislike
+                <button type="button" class="btn btn-sm btn-primary">
+                    <i class="fa fa-eye"></i> &nbsp;
+                    <span class="badge badge-light">{{question.views}}</span>
                 </button>
-                <span class="badge badge-primary badge-pill">{{dislikes}}</span>
-                <button class="btn  btn-sm btn-success" @click="like()">
-                    <i class="fa fa-thumbs-up"></i> Like
+
+                <button type="button" class="btn btn-sm btn-danger" @click="dislike($event); return false;">
+                    <i class="fa fa-thumbs-down"></i> &nbsp;
+                    <span class="badge badge-light">{{question.dislikes}}</span>
                 </button>
-                <span class="badge badge-primary badge-pill">{{likes}}</span>
+
+                <button type="button" class="btn  btn-sm btn-success" @click="like($event); return false;">
+                    <i class="fa fa-thumbs-up"></i> &nbsp;
+                    <span class="badge badge-light">{{question.likes}}</span>
+                </button>
             </div>
         </div>
         <comments-list :user="user" :question="question"></comments-list>

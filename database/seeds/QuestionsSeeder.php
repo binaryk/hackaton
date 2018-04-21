@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Auth\User;
-use App\Question;
+use App\Models\Api\Question;
 use Illuminate\Database\Seeder;
 
 /**
