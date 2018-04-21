@@ -24,4 +24,13 @@ export default new class {
         return axios.post('/questions/filter', data);
     }
 
+    youtube(params) {
+        return axios.get(`/youtube/v3/search`, {
+            params: {'maxResults': '25',
+                'part': 'snippet',
+                'q': 'legea lui arhimede',
+                'type': ''}
+        });
+    }
+
 };

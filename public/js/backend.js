@@ -54791,8 +54791,8 @@ window.Pusher = __webpack_require__("./node_modules/pusher-js/dist/web/pusher.js
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_5_laravel_echo___default.a({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "7d1370b048569da6a435",
+  cluster: "eu",
   encrypted: true
 });
 

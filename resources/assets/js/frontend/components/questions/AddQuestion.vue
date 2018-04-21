@@ -1,30 +1,47 @@
 <template>
-    <div class="card">
-        <div class="card-header">
-            <strong>Adauga intrebarea aici</strong>
-        </div>
-        <div class="card-body">
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" >Question </label>
-                <div class="col-md-9">
-                    <quill-editor :content="form.content"
-                                  :options="editorOption"
-                                  @change="update($event)">
-                    </quill-editor>
+    <div class="col-md-12 mb-2">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Intrebare simpla</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Formular interactiv</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="home" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Adauga intrebarea aici</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" >Question </label>
+                            <div class="col-md-9">
+                                <quill-editor :content="form.content"
+                                              :options="editorOption"
+                                              @change="update($event)">
+                                </quill-editor>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="select1">Disciplina</label>
+                            <div class="col-md-9">
+                                <select id="select1" name="select1" v-model="form.discipline_id" class="form-control">
+                                    <option value="0">Please select</option>
+                                    <option v-for="item, index in disciplines" :key="index" :value="item.id">{{ item.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-sm btn-primary right" @click="submit"><i class="fa fa-dot-circle-o"></i> Trimite</button>
+                    </div>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="select1">Disciplina</label>
-                <div class="col-md-9">
-                    <select id="select1" name="select1" v-model="form.discipline_id" class="form-control">
-                        <option value="0">Please select</option>
-                        <option v-for="item, index in disciplines" :key="index" :value="item.id">{{ item.name }}</option>
-                    </select>
-                </div>
+            <div class="tab-pane" id="profile" role="tabpanel">
+                <wizzard></wizzard>
             </div>
-        </div>
-        <div class="card-footer">
-            <button type="button" class="btn btn-sm btn-primary right" @click="submit"><i class="fa fa-dot-circle-o"></i> Trimite</button>
         </div>
     </div>
 </template>
@@ -35,12 +52,14 @@
 
     import { quillEditor } from 'vue-quill-editor';
     import { toolbar } from '../config'
+    import Wizzard from './wizard/Wizard.vue';
 
     import API from '../../api/index.js';
     export default {
         props: ['user_id'],
         components: {
-            quillEditor
+            quillEditor,
+            Wizzard
         },
         data (){
             return {

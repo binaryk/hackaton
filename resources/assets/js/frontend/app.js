@@ -35,7 +35,9 @@ Vue.component('top-users', require('./components/TopUsers.vue'));
 
 import Vue           from 'vue'
 import Notifications from 'vue-notification'
-
+import VueFormWizard from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+Vue.use(VueFormWizard)
 Vue.use(Notifications);
 
 const app = new Vue({
