@@ -85,7 +85,7 @@ class LoginController extends Controller
             resolve(UserSessionRepository::class)->clearSessionExceptCurrent($user);
         }
 
-        return redirect()->intended($this->redirectPath());
+        return redirect()->to('/');
     }
 
     /**
