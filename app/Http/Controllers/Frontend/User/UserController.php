@@ -4,7 +4,9 @@
 namespace App\Http\Controllers\Frontend\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Api\Question;
 use App\Models\Api\Student;
+use App\Models\Api\Teacher;
 use App\Models\Auth\User;
 use App\Repositories\Backend\Auth\UserRepository;
 use Illuminate\Http\Request;
@@ -41,8 +43,9 @@ class UserController extends Controller
 
     public function listView()
     {
-        $users = Student::with('user')->with('disciplines')->get();
-        return view('frontend.users.list')->with(compact('users'));
+        $teachers = Teacher::with('user')->with('disciplines')->get();
+        $users = Student::with(['user', 'school'])->with('disciplines')->get();
+        return view('frontend.users.list')->with(compact('users', 'teachers'));
     }
 
     public function singleView($id)
@@ -52,7 +55,9 @@ class UserController extends Controller
         if($user instanceof Student){
             $classmates = Student::where('classroom', '=', $user->classroom)->where( 'id', '<>', $user->id)->with('user')->get();
         }
-        return view('frontend.users.single')->with(compact('user', 'classmates', 'id'));
+
+        $lastQuestions = Question::where('user_id', $id)->orderBy('updated_at', 'desc')->take(5)->get();
+        return view('frontend.users.single')->with(compact('user', 'classmates', 'id', 'lastQuestions'));
     }
 
     /**
@@ -119,5 +124,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filter(Request $request){
+        $schools = $request->get('schools');
+        $disciplines = $request->get('disciplines');
+
+        $users = Student::with('disciplines');
+        if ($schools){
+            $users->whereIn('school_id', $schools);
+        }
+        if ($disciplines){
+            $users->whereHas('disciplines', function ($q) use ($disciplines){
+               return $q->whereIn('disciplines.id', $disciplines);
+            });
+        }
+        return $users->with('user')->get();
     }
 }

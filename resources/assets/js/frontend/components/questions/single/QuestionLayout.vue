@@ -1,31 +1,49 @@
 <template>
     <div>
-        <div class="card card-accent-info">
-            <div class="card-header">
-                <i class="fa fa-check"></i> Intrebarea (?)
-                <div class="card-actions">
-                    <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
-                    <a href="#" class="btn-minimize" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true"><i class="icon-arrow-up"></i></a>
+<<<<<<< HEAD
+        <div class="col-md-12">
+            <div class="card card-accent-info">
+                <div class="card-header">
+                    <i class="fa fa-check"></i> Intrebarea (?)
+                    <a :href="'/users-view/'+question.user.id" class="article-user">{{ question.user.full_name }}</a>
+                    <div class="card-actions">
+                        <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
+                        <a href="#" class="btn-minimize" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true"><i class="icon-arrow-up"></i></a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p v-html="question.content"></p>
+                </div>
+                <div class="card-footer">
+                    <small>Views <span class="badge badge-primary badge-pill">{{question.views}}</span></small>
+                    <button class="btn  btn-sm btn-success" @click="like()">
+                        <i class="fa fa-thumbs-up"></i> Like
+                    </button>
+                    <span class="badge badge-primary badge-pill">{{likes}}</span>
+                    <button class="btn btn-sm  btn-danger" @click="dislike()">
+                        <i class="fa fa-thumbs-down"></i> Dislike
+                    </button>
+                    <span class="badge badge-primary badge-pill">{{dislikes}}</span>
                 </div>
             </div>
             <div class="card-body">
                 <p v-html="question.content"></p>
             </div>
-            <div class="card-footer">
+            <div class="card-footer text-right">
                 <button type="button" class="btn btn-sm btn-primary">
                     <i class="fa fa-eye"></i> &nbsp;
                     <span class="badge badge-light">{{question.views}}</span>
-                </button>
-
-                <button type="button" class="btn btn-sm btn-danger" @click="dislike($event); return false;">
-                    <i class="fa fa-thumbs-down"></i> &nbsp;
-                    <span class="badge badge-light">{{dislikes}}</span>
                 </button>
 
                 <button type="button" class="btn  btn-sm btn-success" @click="like($event); return false;">
                     <i class="fa fa-thumbs-up"></i> &nbsp;
                     <span class="badge badge-light">{{likes}}</span>
                 </button>
+                <button type="button" class="btn btn-sm btn-danger" @click="dislike($event); return false;">
+                    <i class="fa fa-thumbs-down"></i> &nbsp;
+                    <span class="badge badge-light">{{dislikes}}</span>
+                </button>
+
             </div>
         </div>
 
@@ -42,6 +60,7 @@
             CommentsList
         },
         props: ['question', 'user'],
+
         created() {
             console.log(this.question, 'this question');
             console.log(this.user, 'this user');
@@ -72,8 +91,13 @@
                     text: 'Disike-ul a fost aprobat'
                 });
                 await API.Question.dislike(this.question.id);
-
             },
         }
     }
 </script>
+<style>
+    .article-user{
+        float: right;
+        margin-right: 110px;
+    }
+</style>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Composers;
 
+use App\Models\Auth\User;
 use Illuminate\View\View;
 
 /**
@@ -18,6 +19,16 @@ class GlobalComposer
      */
     public function compose(View $view)
     {
-        $view->with('logged_in_user', auth()->user());
+        if(!empty(auth()->user())) {
+            $user = auth()->user();
+            $user->update(['last_activity' => \DB::raw('NOW()')]);
+            $user->save();
+
+            $topUsers = User::orderBy('reputation', 'desc')->take(5)->get();
+
+            $view->with('logged_in_user', auth()->user());
+            $view->with('topUsers', $topUsers);
+        }
+
     }
 }

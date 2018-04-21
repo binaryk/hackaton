@@ -45,6 +45,7 @@ class User extends Authenticatable
         'active',
         'confirmation_code',
         'confirmed',
+        'last_activity',
         'timezone',
     ];
 

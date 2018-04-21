@@ -25,7 +25,7 @@ class AddDisciplineIdOnQuestion extends Migration
      */
     public function down()
     {
-        Schema::table('question', function (Blueprint $table){
+        Schema::table('questions', function (Blueprint $table){
             $table->dropColumn('discipline_id');
         });
     }

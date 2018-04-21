@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTeacherDisciplinesTable extends Migration
+class AddLastActivityUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateTeacherDisciplinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('teacher_disciplines', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('teacher_id');
-            $table->unsignedInteger('discipline_id');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->dateTime('last_activity');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateTeacherDisciplinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teacher_disciplines');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('last_activity');
+        });
     }
 }

@@ -84,8 +84,8 @@
             </div><!--form-group-->
         </div><!--col-->
     </div><!--row-->
-
-@if(@\App\Models\Auth\User::where('id', auth()->user()->id)->with('roles')->first()->roles->first()->name === 'student')
+<input type="hidden" name="teacher" value="@if(@\App\Models\Auth\User::where('id', auth()->user()->id)->with('roles')->first()->roles->first()->name === 'teacher') 1 @else 0 @endif">
+@if(@\App\Models\Auth\User::where('id', auth()->user()->id)->with('roles')->first()->roles->first()->name === 'student' || @\App\Models\Auth\User::where('id', auth()->user()->id)->with('roles')->first()->roles->first()->name === 'teacher')
     <div class="row">
         <div class="col">
             <div class="form-group">

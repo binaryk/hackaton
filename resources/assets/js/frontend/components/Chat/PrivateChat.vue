@@ -2,7 +2,7 @@
     <div>
         <div class="card">
             <div class="card-header">
-                Chat with: {{ chatWithUser.full_name }}
+                Chat with: <a :href="'/users-view/'+chatWithUser.id">{{ chatWithUser.full_name }}</a>
             </div>
             <div class="card-body chat-body">
                 <message :messages="messages"></message>
@@ -39,6 +39,7 @@
             this.fetchMessages();
             Echo.private('chat')
                 .listen('MessageSentEvent', (e) => {
+                    console.log('asdsada');
                     this.messages.push({
                         message: e.message.message,
                         sent_by_user: e.sentBy
