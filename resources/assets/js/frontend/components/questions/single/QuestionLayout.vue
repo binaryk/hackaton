@@ -1,31 +1,33 @@
 <template>
     <div>
-        <div class="card card-accent-info">
-            <div class="card-header">
-                <i class="fa fa-check"></i> Intrebarea (?)
-                <div class="card-actions">
-                    <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
-                    <a href="#" class="btn-minimize" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true"><i class="icon-arrow-up"></i></a>
+        <div class="col-12">
+            <div class="card card-accent-info ">
+                <div class="card-header">
+                    <i class="fa fa-check"></i> Intrebarea (?)
+                    <div class="card-actions">
+                        <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
+                        <a href="#" class="btn-minimize" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true"><i class="icon-arrow-up"></i></a>
+                    </div>
                 </div>
-            </div>
-            <div class="card-body">
-                <p v-html="question.content"></p>
-            </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-sm btn-primary">
-                    <i class="fa fa-eye"></i> &nbsp;
-                    <span class="badge badge-light">{{question.views}}</span>
-                </button>
+                <div class="card-body">
+                    <p v-html="question.content"></p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-sm btn-primary">
+                        <i class="fa fa-eye"></i> &nbsp;
+                        <span class="badge badge-light">{{question.views}}</span>
+                    </button>
 
-                <button type="button" class="btn btn-sm btn-danger" @click="dislike($event); return false;">
-                    <i class="fa fa-thumbs-down"></i> &nbsp;
-                    <span class="badge badge-light">{{dislikes}}</span>
-                </button>
+                    <button type="button" class="btn btn-sm btn-danger" @click="dislike($event); return false;">
+                        <i class="fa fa-thumbs-down"></i> &nbsp;
+                        <span class="badge badge-light">{{dislikes}}</span>
+                    </button>
 
-                <button type="button" class="btn  btn-sm btn-success" @click="like($event); return false;">
-                    <i class="fa fa-thumbs-up"></i> &nbsp;
-                    <span class="badge badge-light">{{likes}}</span>
-                </button>
+                    <button type="button" class="btn  btn-sm btn-success" @click="like($event); return false;">
+                        <i class="fa fa-thumbs-up"></i> &nbsp;
+                        <span class="badge badge-light">{{likes}}</span>
+                    </button>
+                </div>
             </div>
         </div>
 

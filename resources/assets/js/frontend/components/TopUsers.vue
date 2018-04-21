@@ -1,15 +1,13 @@
 <template>
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-align-justify"></i> Users
+            <i class="fa fa-align-justify"></i> Top Users
         </div>
         <div class="card-body">
-            {{  }}
             <ul class="list-group">
-                <li v-for="user in users" class="list-group-item" :key="user.id"
-                    v-bind:class="{ active: user.id == currentUser.id }">
+                <li v-for="user in users" class="list-group-item" :key="user.id">
+                    <span class="badge badge-success" > <i class="fa fa-star"></i> {{ user.reputation }}</span>
                     <a :href="'/privateChat/' + user.id">{{ user.full_name }}</a>
-                    <span class="badge badge-light">{{ user.roles[0].name }}</span>
                     <span class="float-right" v-bind:class="{ online: checkOnline(user.last_activity), offline: !checkOnline(user.last_activity) }">&#9679;</span>
                 </li>
             </ul>
@@ -33,7 +31,7 @@
 <script>
 
     export default {
-        props: ['users', 'chatWithUser'],
+        props: ['users'],
         data() {
             return {
                 currentUser: this.chatWithUser,
