@@ -7,7 +7,21 @@
         #disciplines {
             display: none;
         }
-    </style>
+    .container-fluid {
+        height:100vh;
+        background: url({!! asset('images/register.jpg') !!});
+        background-opacity: 0.7;
+        background-position: center;
+        background-size: cover;
+        padding-top: 20px;
+        background-repeat: no-repeat;
+    }
+        .form-control, select {
+            border-radius: 20px;
+            font-weight: 600;
+            color: #2da754 !important;
+        }
+</style>
 @endpush
 @section('content')
 
@@ -15,8 +29,8 @@
         <div class="col col-sm-8 align-self-center">
             <div class="card">
                 <div class="card-header">
-                    <strong>
-                        {{ __('labels.frontend.auth.register_box_title') }}
+                    <strong class="text-center">
+                        Completati campurile urmatoare
                     </strong>
                 </div><!--card-header-->
 
@@ -25,42 +39,42 @@
                     <div class="row">
                         <div class="col-12 col-md-12">
                             <div class="form-group">
-                                <label for="first_name">First name</label>
-                                <input type="text" name="first_name" class="form-control" placeholder="First name">
+                                <label for="first_name">Care este numele tau?</label>
+                                <input type="text" name="first_name" class="form-control" placeholder="Nume">
                             </div>
                         </div>
                         <div class="col-12 col-md-12">
                             <div class="form-group">
-                                <label for="last_name">Last name</label>
-                                <input type="text" name="last_name" class="form-control" placeholder="Last name">
+                                <label for="last_name">Si prenumele?</label>
+                                <input type="text" name="last_name" class="form-control" placeholder="Prenume">
                             </div>
                         </div>
 
                         <div class="col-12 col-md-12">
                             <div class="form-group">
-                                <label for="email">E-mail</label>
+                                <label for="email">Avem nevoie de email pentru confirmare</label>
                                 <input type="text" name="email" class="form-control" placeholder="E-mail">
                             </div>
                         </div>
 
                         <div class="col-12 col-md-12">
                             <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" class="form-control" placeholder="Password">
+                                <label for="password">Inventeaza o parola</label>
+                                <input type="password" name="password" class="form-control" placeholder="Parola">
                             </div>
                         </div>
 
                         <div class="col-12 col-md-12">
                             <div class="form-group">
-                                <label for="password_confirmation">Password confirmation</label>
-                                <input type="password" name="password_confirmation" class="form-control" placeholder="Password confirmation">
+                                <label for="password_confirmation">Te rugam sa o confirmi :)</label>
+                                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirmare parola">
                             </div>
                         </div>
 
 
                         <div class="col-12 col-md-12">
                             <div class="form-group">
-                                <label for="school_id">School</label>
+                                <label for="school_id">Unde inveti/activezi?</label>
                                 <select name="school_id" class="form-control" id="">
                                     @foreach ($schools as $school)
                                         <option value="{{ $school->id }}">{{ $school->name }}</option>
@@ -71,17 +85,17 @@
 
                         <div class="col-12 col-md-12">
                             <div class="form-group">
-                                <label for="type">Type</label>
+                                <label for="type">Esti student sau profesor?</label>
                                 <select name="type" class="form-control" id="">
                                     <option value="0">Student</option>
-                                    <option value="1">Teacher</option>
+                                    <option value="1">Profesor</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-12 col-md-12" >
                             <div class="form-group" id="classroom">
-                                <label for="classroom">Classroom</label>
+                                <label for="classroom">In ce clasa esti?</label>
                                 <select name="classroom" class="form-control" id="">
                                     <option value="1">I</option>
                                     <option value="2">II</option>

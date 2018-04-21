@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong>Adauga commentariu</strong>
+                <strong>Adauga raspuns</strong>
             </div>
             <div class="card-body">
                 <div class="form-group row">
