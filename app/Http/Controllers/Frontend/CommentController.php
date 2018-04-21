@@ -37,7 +37,7 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $comment = Comment::create($request->all());
-        return Comment::with('user')->get();
+        return Comment::with('user')->find($comment->id);
     }
 
     /**
@@ -83,5 +83,9 @@ class CommentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function questionComments(Request $request){
+        return Comment::with('user')->where('question_id', $request->get('question_id'))->get();
     }
 }
