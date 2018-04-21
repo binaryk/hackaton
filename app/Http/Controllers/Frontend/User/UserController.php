@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Frontend\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Api\Question;
 use App\Models\Api\Student;
 use App\Models\Api\Teacher;
 use App\Models\Auth\User;
@@ -54,7 +55,9 @@ class UserController extends Controller
         if($user instanceof Student){
             $classmates = Student::where('classroom', '=', $user->classroom)->where( 'id', '<>', $user->id)->with('user')->get();
         }
-        return view('frontend.users.single')->with(compact('user', 'classmates', 'id'));
+
+        $lastQuestions = Question::where('user_id', $id)->orderBy('updated_at', 'desc')->take(5)->get();
+        return view('frontend.users.single')->with(compact('user', 'classmates', 'id', 'lastQuestions'));
     }
 
     /**

@@ -91,18 +91,12 @@
 
                                         <div class="card-body">
                                             <ul class="list-group">
-                                                <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
-                                                    Cras justo odio ...
-                                                    <span class="badge badge-primary badge-pill">14</span>
-                                                </li>
-                                                <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
-                                                    Dapibus ac facilisis in ...
-                                                    <span class="badge badge-primary badge-pill">2</span>
-                                                </li>
-                                                <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
-                                                    Morbi leo risus ...
-                                                    <span class="badge badge-primary badge-pill">1</span>
-                                                </li>
+                                                @foreach($lastQuestions as $question)
+                                                    <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
+                                                        {{ $question->name }}
+                                                        <span class="badge badge-primary badge-pill">14</span>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </div><!--card-body-->
                                     </div><!--card-->
