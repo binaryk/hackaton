@@ -18,6 +18,7 @@
                     <option value="poezii">Poezii</option>
                     <option value="formule">Formule</option>
                     <option value="organica">Chimia organica</option>
+
                 </select>
             </tab-content>
             <tab-content title="Detalii" :before-change="beforeVideo">
@@ -63,12 +64,9 @@
             async search() {
                 let str = `${this.discipline} ${this.direction} ${this.q}`;
                 const {data} = await API.Question.youtube({q: str});
-                console.log(data, 'data the');
                 let first = data.items[0];
                 let video = first.id.videoId;
                 this.videoId = video;
-                console.log(this.youtube, 'asldjaskljdsa');
-                console.log(data, 'res you');
             },
             beforeVideo() {
                 this.search();

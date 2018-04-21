@@ -20,7 +20,9 @@
             @endif
 
             @auth
-                <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
+                <li class="nav-item"><a href="/" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">{{ __('navs.frontend.dashboard') }}</a></li>
+                <li class="nav-item"><a href="/users-list" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">Utilizatori</a></li>
+                <li class="nav-item"><a href="/resources" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">Resurse</a></li>
             @endauth
 
             @guest
