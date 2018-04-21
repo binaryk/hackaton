@@ -6,6 +6,7 @@
  */
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('contact', 'ContactController@index')->name('contact');
+Route::get('about', 'ContactController@about')->name('about');
 Route::post('contact/send', 'ContactController@send')->name('contact.send');
 
 /*

@@ -14,7 +14,7 @@ class AddLastActivityUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dateTime('last_activity')->default(0);
+            $table->dateTime('last_activity')->nullable();
         });
     }
 

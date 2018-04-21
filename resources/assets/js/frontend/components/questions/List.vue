@@ -1,6 +1,9 @@
 <template>
     <div class="col-sm-12 col-xl-12">
         <div class="card">
+            <div class="card-header">
+                Aici gasiti intrebari si raspunsuri din Liceul Tiberiu Popovici
+            </div>
             <div class="card-body">
                 <add :user_id="1" @on-submit="onStore"></add>
             </div>
@@ -45,7 +48,7 @@
                 </button>
             </div>
             <div class="col-12">
-                <button class="btn btn-success " v-on:click="filter()" :disabled="selectedDisciplines.length == 0 && selectedSchools.length == 0">Filter Questions</button>
+                <button class="btn btn-success " v-on:click="filter()">Filter Questions</button>
             </div>
             <br />
             <div class="card-header">

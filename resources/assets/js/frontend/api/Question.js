@@ -24,4 +24,15 @@ export default new class {
         return axios.post('/questions/filter', data);
     }
 
+    youtube(params) {
+        return axios.get(`https://www.googleapis.com/youtube/v3/search`, {
+            params: {
+                'maxResults': '25',
+                'part': 'snippet',
+                'q': params.q,
+                'type': '',
+                'key': 'AIzaSyAdrWk4INZuSaKFG1h7aakMJSRnbMvoRgo' }
+        });
+    }
+
 };

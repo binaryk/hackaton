@@ -1,5 +1,5 @@
 <template>
-    <div class="col-4">
+    <div class="col-md-4 col-sm-1 mb-1 col-sm-1">
         <div class="card" @click="goToUser()">
             <div class="card-header">
                 {{ user.user.full_name }}
