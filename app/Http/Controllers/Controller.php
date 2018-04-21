@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Api\Student;
 use App\Models\Api\Teacher;
+use App\Models\Auth\User;
 use App\Repositories\Frontend\Api\StudentRepository;
 use App\Repositories\Frontend\Api\TeacherRepository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -28,12 +29,14 @@ class Controller extends BaseController
 
     /**
      * Get Student or Teacher
+     * @param null $id
      * @return \Illuminate\Database\Eloquent\Model|null|object|static
      */
-    public function getUserInfo() {
-        $user = $this->getUser();
-        if($user->hasRole('student'))
+    public function getUserInfo($id = null) {
+        $user = $id ? User::with('roles')->find($id) : $this->getUser();
+        if($user->hasRole('student')){
             return Student::where('user_id', $user->id)->with('disciplines')->first();
+        }
 
         return Teacher::where('user_id', $user->id)->with('disciplines')->first();
     }

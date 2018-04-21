@@ -5,14 +5,13 @@
             <div class="box about-box">
                 <p class="preferinte">Preferinte</p>
                 <ul class="list-group">
-                    <li class="list-item">Matematica</li>
-                    <li class="list-item">Fizica </li>
+                    <li class="list-item" v-for="discipline in user.disciplines">{{discipline.name}}</li>
                 </ul>
             </div>
 
         </div>
         <div class="card-footer user-footer">
-            <a class="pretty"> {{ user.first_name }} {{ user.last_name }} </a>
+            <a class="pretty"> {{ user.user.first_name }} {{ user.user.last_name }} </a>
             <div class="ratio pull-right"><i class="icon-star icons font-2xl d-block mt-4"></i> <strong>120</strong></div>
         </div>
     </div>
@@ -23,13 +22,13 @@
         props: ['user'],
         computed: {
             url() {
-                return `https://avatar.tobi.sh/Vega-Brown.svg?text=${this.user.first_name[0]}${this.user.last_name[0]}`
+                return `https://avatar.tobi.sh/Vega-Brown.svg?text=${this.user.user.first_name}${this.user.user.last_name}`
             }
         },
         methods: {
             goToUser() {
                 console.log('go');
-                location.href = '/users-view/' + this.user.id;
+                location.href = '/users-view/' + this.user.user.id;
             }
         }
     }
