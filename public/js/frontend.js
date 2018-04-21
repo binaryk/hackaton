@@ -7266,11 +7266,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'comment',
-    props: ['comment'],
+    props: ['comment', 'user'],
+    created: function created() {
+        console.log(this.user.roles[0].name, 'user');
+    },
+
+    computed: {
+        isTeacher: function isTeacher() {
+            return this.user.roles[0] && this.user.roles[0].name === 'teacher';
+        }
+    },
     methods: {
         like: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
@@ -7325,6 +7335,38 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return dislike;
+        }(),
+        answer: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                _context3.next = 2;
+                                return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Comment.answer(this.comment.id);
+
+                            case 2:
+                                this.comment.isAnswer = 1;
+                                this.$notify({
+                                    group: 'foo',
+                                    type: 'success',
+                                    title: 'Notificare',
+                                    text: 'Multumim pentru raspuns!'
+                                });
+
+                            case 4:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this);
+            }));
+
+            function answer() {
+                return _ref3.apply(this, arguments);
+            }
+
+            return answer;
         }()
     }
 });
@@ -14014,7 +14056,7 @@ exports.push([module.i, "\ninput[type=\"text\"][data-v-ce2d6c5e] {\n    width: 1
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue":
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
@@ -14022,7 +14064,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.name{\n    margin-right: 15px;\n}\n", ""]);
+exports.push([module.i, "\n.name {\n  margin-right: 15px;\n}\n.answer {\n  display: inline-block;\n  cursor: pointer;\n}\n.answered {\n  color: #1ebb6e;\n}\n", ""]);
 
 // exports
 
@@ -71111,7 +71153,10 @@ var render = function() {
             "div",
             { staticClass: "list-group" },
             _vm._l(_vm.comments, function(comment, index) {
-              return _c("comment", { key: index, attrs: { comment: comment } })
+              return _c("comment", {
+                key: index,
+                attrs: { comment: comment, user: _vm.user }
+              })
             })
           )
         ])
@@ -71439,22 +71484,6 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-footer" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-sm  btn-danger",
-              on: {
-                click: function($event) {
-                  _vm.dislike()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "fa fa-thumbs-down" }),
-              _vm._v(" Dislike\n            ")
-            ]
-          ),
-          _vm._v(" "),
           _c("span", { staticClass: "badge badge-primary badge-pill" }, [
             _vm._v(_vm._s(_vm.comment.dislikes))
           ]),
@@ -71475,9 +71504,46 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm  btn-danger",
+              on: {
+                click: function($event) {
+                  _vm.dislike()
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "fa fa-thumbs-down" }),
+              _vm._v(" Dislike\n            ")
+            ]
+          ),
+          _vm._v(" "),
           _c("span", { staticClass: "badge badge-primary badge-pill" }, [
             _vm._v(_vm._s(_vm.comment.likes))
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "answer",
+              class: { answered: _vm.comment.isAnswer }
+            },
+            [
+              _vm.isTeacher || 1
+                ? _c("i", {
+                    staticClass: "icon-check icons font-2xl d-block mt-4",
+                    attrs: { title: "Este raspunsul corect?" },
+                    on: {
+                      click: function($event) {
+                        _vm.answer()
+                      }
+                    }
+                  })
+                : _vm._e()
+            ]
+          )
         ])
       ])
     ]
@@ -72894,23 +72960,23 @@ if(false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue":
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("4600613b", content, false, {});
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("51517b0c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comment.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comment.vue");
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comment.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Comment.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -84337,6 +84403,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function dislike(id) {
             return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/comments/' + id + '/dislike');
         }
+    }, {
+        key: 'answer',
+        value: function answer(id) {
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/comments/' + id + '/answer');
+        }
     }]);
 
     return _class;
@@ -84938,7 +85009,7 @@ module.exports = Component.exports
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue")
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fe26309c\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/frontend/components/comments/Comment.vue")
 }
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */

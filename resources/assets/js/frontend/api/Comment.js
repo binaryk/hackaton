@@ -15,4 +15,8 @@ export default new class {
         return axios.get(`/comments/${id}/dislike`);
     }
 
+    answer(id) {
+        return axios.get(`/comments/${id}/answer`);
+    }
+
 }
