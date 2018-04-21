@@ -9,7 +9,7 @@
                                 <input type="text" class="form-control" v-model="message.message">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class=" btn btn-primary">Sent</button>
+                                <button type="submit" class=" btn btn-primary">Send</button>
                             </div>
                         </form>
                     </div>
@@ -18,6 +18,12 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+    input[type="text"] {
+        width: 100%;
+    }
+</style>
 
 <script>
     export default {

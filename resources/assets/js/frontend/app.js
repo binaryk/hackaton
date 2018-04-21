@@ -21,7 +21,8 @@ Vue.component('test-component', require('./components/TestComponent.vue'));
 Vue.component('add-question', require('./components/questions/AddQuestion.vue'));
 Vue.component('search', require('./components/Search.vue'));
 Vue.component('questions-list', require('./components/questions/List.vue'));
-Vue.component('chat', require('./components/Chat/Chat.vue'));
+Vue.component('private-chat', require('./components/Chat/PrivateChat.vue'));
+Vue.component('users-chat', require('./components/Chat/UsersChat.vue'));
 
 
 const app = new Vue({

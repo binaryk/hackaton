@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Events\MessageSentEvent;
 use App\Message;
 
+use App\Models\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,17 +19,20 @@ class MessageController extends Controller
         $this->middleware('auth');
     }
 
-    public function fetch() {
-        return Message::with('user')->get();
+    public function fetch(User $user) {
+        return Message::with(['sentByUser', 'sentToUser'])->where('sent_by', $user->id)->orWhere('sent_to', $user->id)->get();
     }
 
-    public function sentMessage() {
-        $user = Auth::user();
+    public function sentMessage(User $user) {
+        $sentBy = Auth::user();
+        $sentTo = $user;
 
-        $message = $user->messages()->create([
+        $message = Message::create([
+            'sent_by' => $sentBy->id,
+            'sent_to' => $user->id,
             'message' => request()->message
         ]);
 
-        broadcast(new MessageSentEvent($user, $message));
+        broadcast(new MessageSentEvent($sentBy, $sentTo, $message));
     }
 }

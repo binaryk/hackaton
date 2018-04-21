@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    protected $fillable = ['message', 'user_id'];
+    protected $fillable = ['message', 'sent_by', 'sent_to'];
 
-    public function user() {
-        return $this->belongsTo('App\Models\Auth\User');
+    public function sentByUser() {
+        return $this->belongsTo('App\Models\Auth\User','sent_by');
+    }
+
+    public function sentToUser() {
+        return $this->belongsTo('App\Models\Auth\User','sent_to');
     }
 }
