@@ -16,4 +16,8 @@ class Teacher extends Model
     protected $fillable = ['user_id', 'school_id'];
 
     protected $timestamp = false;
+
+    public function disciplines() {
+        return $this->belongsToMany(Discipline::class, 'teacher_disciplines');
+    }
 }

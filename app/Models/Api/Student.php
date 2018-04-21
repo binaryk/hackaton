@@ -16,4 +16,8 @@ class Student extends Model
     protected $fillable = ['user_id', 'school_id', 'classroom', 'created_at', 'updated_at'];
 
     protected $timestamp = false;
+
+    public function disciplines() {
+        return $this->belongsToMany(Discipline::class, 'student_disciplines');
+    }
 }
