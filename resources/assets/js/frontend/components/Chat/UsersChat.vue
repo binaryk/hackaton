@@ -10,6 +10,7 @@
                     v-bind:class="{ active: user.id == currentUser.id }">
                     <a :href="'/privateChat/' + user.id">{{ user.full_name }}</a>
                     <span class="badge badge-light">{{ user.roles[0].name }}</span>
+                    <span v-bind:class="{ online: checkOnline(user.last_activity), offline: !checkOnline(user.last_activity) }">&#9679;</span>
                 </li>
             </ul>
         </div>
@@ -20,6 +21,12 @@
 <style>
     .list-group-item.active a {
         color: white;
+    }
+    .online {
+        color: lightgreen;
+    }
+    .offline {
+        color: black;
     }
 </style>
 
@@ -37,7 +44,10 @@
 
         },
         methods: {
-
+            checkOnline(date) {
+                const ONE_MIN = 1*60*1000;
+                return (new Date() - new Date(date)) < ONE_MIN;
+            }
         }
     }
 </script>

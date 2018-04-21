@@ -25,4 +25,8 @@ class Student extends Model
     public function user() {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function school() {
+        return $this->belongsTo(School::class);
+    }
 }

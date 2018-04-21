@@ -41,7 +41,7 @@ class UserController extends Controller
 
     public function listView()
     {
-        $users = Student::with('user')->with('disciplines')->get();
+        $users = Student::with(['user', 'school'])->with('disciplines')->get();
         return view('frontend.users.list')->with(compact('users'));
     }
 

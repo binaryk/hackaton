@@ -12,7 +12,7 @@
         </div>
         <div class="card-footer user-footer">
             <a class="pretty"> {{ user.first_name }} {{ user.last_name }} </a>
-            <div class="ratio pull-right"><i class="icon-star icons font-2xl d-block mt-4"></i> <strong>{{ user.user.reputation }}</strong></div>
+            <p><i class="fa fa-star"></i>  &nbsp; {{ user.user.reputation }}</p>
         </div>
     </div>
 </template>
