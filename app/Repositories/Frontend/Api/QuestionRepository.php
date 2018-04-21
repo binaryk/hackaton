@@ -39,13 +39,13 @@ class QuestionRepository extends BaseRepository
         }
 
         if($usersIds) {
-            $query->whereIn('user_id', [1,2,3]);
+            $query->whereIn('user_id', $usersIds);
         }
 
-//        if ($sort) {
-//            $query->orderby($request->orderBy, $request->sort);
-//        }
+        if ($sort) {
+            $query->orderby($sort, 'desc');
+        }
 
-        dd($query->toSql());
+        return $query->get();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api\Question;
+use App\Models\Api\School;
 use App\Models\Api\Student;
 use App\Repositories\Frontend\Api\QuestionRepository;
 use App\Models\Auth\User;
@@ -176,10 +177,7 @@ class QuestionController extends Controller
             $usersIds = $this->getUsersBySchoolsId($schools);
         }
 
-        $this->questionRepository->filter($sort, $usersIds, $disciplines, $user->id);
-//        Question::filter($sort, $disciplines, $usersIds, $user->id);
-        die();
-        return Question::orderBy('updated_at', 'desc')->get()->toJson();
+        return $this->questionRepository->filter($sort, $usersIds, $disciplines, $user->id)->toJson();
     }
 
     /**
