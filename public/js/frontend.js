@@ -7674,17 +7674,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     methods: {
         like: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var _this = this;
-
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
                                 _context.next = 2;
-                                return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Question.like(this.question.id).then(function (res) {
-                                    _this.question.likes += 1;
-                                    console.log('increment');
-                                });
+                                return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Question.like(this.question.id).then(function (res) {});
 
                             case 2:
                             case 'end':
@@ -7702,7 +7697,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         dislike: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var _this2 = this;
+                var _this = this;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
@@ -7710,7 +7705,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 0:
                                 _context2.next = 2;
                                 return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Question.dislike(this.question.id).then(function (res) {
-                                    _this2.question.dislikes += 1;
+                                    _this.question.dislikes += 1;
                                 });
 
                             case 2:
@@ -7888,6 +7883,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'User',
@@ -7930,19 +7926,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'User',
     props: ['user'],
     computed: {
         url: function url() {
-            return 'https://avatar.tobi.sh/Vega-Brown.svg?text=' + this.user.first_name[0] + this.user.last_name[0];
+            return 'https://avatar.tobi.sh/Vega-Brown.svg?text=' + this.user.user.first_name + this.user.user.last_name;
         }
     },
     methods: {
         goToUser: function goToUser() {
-            location.href = '/user-view/' + this.user.id;
+            location.href = '/user-view/' + this.user.user.id;
         }
     }
 });
@@ -71009,19 +71004,21 @@ var render = function() {
       _c("div", { staticClass: "card-body" }, [
         _c("img", { attrs: { src: _vm.url, alt: _vm.user.first_name } }),
         _vm._v(" "),
-        _c("div", { staticClass: "box about-box" }, [
-          _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
-          _vm._v(" "),
-          _c(
-            "ul",
-            { staticClass: "list-group" },
-            _vm._l(_vm.user.disciplines, function(discipline) {
-              return _c("li", { staticClass: "list-item" }, [
-                _vm._v(_vm._s(discipline.name))
-              ])
-            })
-          )
-        ])
+        _vm.user.disciplines.length > 0
+          ? _c("div", { staticClass: "box about-box" }, [
+              _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "list-group" },
+                _vm._l(_vm.user.disciplines, function(discipline) {
+                  return _c("li", { staticClass: "list-item" }, [
+                    _vm._v(_vm._s(discipline.name))
+                  ])
+                })
+              )
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer user-footer" }, [
@@ -71209,7 +71206,21 @@ var render = function() {
       _c("div", { staticClass: "card-body" }, [
         _c("img", { attrs: { src: _vm.url, alt: _vm.user.first_name } }),
         _vm._v(" "),
-        _vm._m(0)
+        _vm.user.disciplines.length > 0
+          ? _c("div", { staticClass: "box about-box" }, [
+              _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "list-group" },
+                _vm._l(_vm.user.disciplines, function(discipline) {
+                  return _c("li", { staticClass: "list-item" }, [
+                    _vm._v(_vm._s(discipline.name))
+                  ])
+                })
+              )
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer user-footer" }, [
@@ -71223,26 +71234,12 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ])
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box about-box" }, [
-      _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "list-group" }, [
-        _c("li", { staticClass: "list-item" }, [_vm._v("Matematica")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-item" }, [_vm._v("Fizica ")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

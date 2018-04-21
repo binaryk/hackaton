@@ -22,10 +22,7 @@
         methods: {
             async like() {
                 await API.Question.like(this.question.id).then(res => {
-                    this.question.likes +=1;
-                    console.log('increment')
                 });
-
             },
             async dislike() {
                 await API.Question.dislike(this.question.id).then(res => {
