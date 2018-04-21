@@ -14,12 +14,12 @@
                     </div>
                 </div>
             </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-sm btn-primary right" @click="submit"><i class="fa fa-dot-circle-o"></i> Trimite</button>
+            </div>
         </div>
-        <div class="card-footer">
-            <button type="button" class="btn btn-sm btn-primary right" @click="submit"><i class="fa fa-dot-circle-o"></i> Trimite</button>
-        </div>
+        <div class="clearfix"></div>
     </div>
-
 </template>
 
 <script>

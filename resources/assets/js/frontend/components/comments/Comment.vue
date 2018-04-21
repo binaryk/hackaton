@@ -1,6 +1,6 @@
 <template>
     <div class="list-group-item list-group-item-action flex-column align-items-start">
-        <div class="card">
+        <div class="card text-center" v-bind:class="{'bg-success': comment.isAnswer}">
             <div class="card-header">
                 <div class="d-flex w-100 ">
                     <span class="name">{{ comment.user.full_name}}</span>
@@ -69,8 +69,11 @@
         margin-right: 15px;
     }
     .answer {
-        display: inline-block;
         cursor: pointer;
+        height: 20px;
+        display: inline-block;
+        position: relative;
+        margin-left: 10px;
     }
 
     .answered {

@@ -56,7 +56,9 @@ class ProfileController extends Controller
             $request->has('avatar_location') ? $request->file('avatar_location') : false
         );
 
-        $this->updateDisciplines($request->get('disciplines'), $request->user()->id);
+        if($request->get('disciplines')) {
+            $this->updateDisciplines($request->get('disciplines'), $request->user()->id);
+        }
 
         // E-mail address was updated, user has to reconfirm
         if (is_array($output) && $output['email_changed']) {
@@ -74,11 +76,13 @@ class ProfileController extends Controller
      */
     private function updateDisciplines($data, $id)
     {
-        $student = $this->studentRepository->where('user_id', $id)->first();
-
-        $this->studentDisciplinesRepository->where('student_id', $student->id)->delete();
-        foreach($data as $d) {
-            $this->studentDisciplinesRepository->create(['student_id' => $student->id, 'discipline_id' => $d]);
+        try{
+            $student = $this->studentRepository->where('user_id', $id)->first();
+            $this->studentDisciplinesRepository->where('student_id', $student->id)->delete();
+            foreach($data as $d) {
+                $this->studentDisciplinesRepository->create(['student_id' => $student->id, 'discipline_id' => $d]);
+            }
+        } catch(\Exception $e) {
         }
     }
 }

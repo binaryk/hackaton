@@ -19,12 +19,12 @@
 
                 <button type="button" class="btn btn-sm btn-danger" @click="dislike($event); return false;">
                     <i class="fa fa-thumbs-down"></i> &nbsp;
-                    <span class="badge badge-light">{{question.dislikes}}</span>
+                    <span class="badge badge-light">{{dislikes}}</span>
                 </button>
 
                 <button type="button" class="btn  btn-sm btn-success" @click="like($event); return false;">
                     <i class="fa fa-thumbs-up"></i> &nbsp;
-                    <span class="badge badge-light">{{question.likes}}</span>
+                    <span class="badge badge-light">{{likes}}</span>
                 </button>
             </div>
         </div>

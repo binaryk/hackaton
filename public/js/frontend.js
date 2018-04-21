@@ -14215,7 +14215,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.name {\n  margin-right: 15px;\n}\n.answer {\n  display: inline-block;\n  cursor: pointer;\n}\n.answered {\n  color: #1ebb6e;\n}\n", ""]);
+exports.push([module.i, "\n.name {\n  margin-right: 15px;\n}\n.answer {\n  cursor: pointer;\n  height: 20px;\n  display: inline-block;\n  position: relative;\n  margin-left: 10px;\n}\n.answered {\n  color: #1ebb6e;\n}\n", ""]);
 
 // exports
 
@@ -71106,20 +71106,22 @@ var render = function() {
             1
           )
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-footer" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-sm btn-primary right",
+            attrs: { type: "button" },
+            on: { click: _vm.submit }
+          },
+          [_c("i", { staticClass: "fa fa-dot-circle-o" }), _vm._v(" Trimite")]
+        )
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-sm btn-primary right",
-          attrs: { type: "button" },
-          on: { click: _vm.submit }
-        },
-        [_c("i", { staticClass: "fa fa-dot-circle-o" }), _vm._v(" Trimite")]
-      )
-    ])
+    _c("div", { staticClass: "clearfix" })
   ])
 }
 var staticRenderFns = [
@@ -71192,7 +71194,7 @@ var render = function() {
               _c("i", { staticClass: "fa fa-thumbs-down" }),
               _vm._v("  \n                "),
               _c("span", { staticClass: "badge badge-light" }, [
-                _vm._v(_vm._s(_vm.question.dislikes))
+                _vm._v(_vm._s(_vm.dislikes))
               ])
             ]
           ),
@@ -71213,7 +71215,7 @@ var render = function() {
               _c("i", { staticClass: "fa fa-thumbs-up" }),
               _vm._v("  \n                "),
               _c("span", { staticClass: "badge badge-light" }, [
-                _vm._v(_vm._s(_vm.question.likes))
+                _vm._v(_vm._s(_vm.likes))
               ])
             ]
           )
@@ -71845,87 +71847,94 @@ var render = function() {
         "list-group-item list-group-item-action flex-column align-items-start"
     },
     [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-header" }, [
-          _c("div", { staticClass: "d-flex w-100 " }, [
-            _c("span", { staticClass: "name" }, [
-              _vm._v(_vm._s(_vm.comment.user.full_name))
+      _c(
+        "div",
+        {
+          staticClass: "card text-center",
+          class: { "bg-success": _vm.comment.isAnswer }
+        },
+        [
+          _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "d-flex w-100 " }, [
+              _c("span", { staticClass: "name" }, [
+                _vm._v(_vm._s(_vm.comment.user.full_name))
+              ]),
+              _vm._v(" "),
+              _c("small", [_vm._v(_vm._s(_vm.comment.created_at))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("p", {
+              staticClass: "mb-1",
+              domProps: { innerHTML: _vm._s(_vm.comment.content) }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn  btn-sm btn-success",
+                on: {
+                  click: function($event) {
+                    _vm.like()
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fa fa-thumbs-up" }),
+                _vm._v(" Like\n            ")
+              ]
+            ),
+            _vm._v(" "),
+            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+              _vm._v(_vm._s(_vm.comment.likes))
             ]),
             _vm._v(" "),
-            _c("small", [_vm._v(_vm._s(_vm.comment.created_at))])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("p", {
-            staticClass: "mb-1",
-            domProps: { innerHTML: _vm._s(_vm.comment.content) }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-footer" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn  btn-sm btn-success",
-              on: {
-                click: function($event) {
-                  _vm.like()
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-sm  btn-danger",
+                on: {
+                  click: function($event) {
+                    _vm.dislike()
+                  }
                 }
-              }
-            },
-            [
-              _c("i", { staticClass: "fa fa-thumbs-up" }),
-              _vm._v(" Like\n            ")
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-            _vm._v(_vm._s(_vm.comment.likes))
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-sm  btn-danger",
-              on: {
-                click: function($event) {
-                  _vm.dislike()
-                }
-              }
-            },
-            [
-              _c("i", { staticClass: "fa fa-thumbs-down" }),
-              _vm._v(" Dislike\n            ")
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-            _vm._v(_vm._s(_vm.comment.dislikes))
-          ]),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "answer",
-              class: { answered: _vm.comment.isAnswer }
-            },
-            [
-              _vm.isTeacher || 1
-                ? _c("i", {
-                    staticClass: "icon-check icons font-2xl d-block mt-4",
-                    attrs: { title: "Este raspunsul corect?" },
-                    on: {
-                      click: function($event) {
-                        _vm.answer()
+              },
+              [
+                _c("i", { staticClass: "fa fa-thumbs-down" }),
+                _vm._v(" Dislike\n            ")
+              ]
+            ),
+            _vm._v(" "),
+            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+              _vm._v(_vm._s(_vm.comment.dislikes))
+            ]),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "answer",
+                class: { answered: _vm.comment.isAnswer }
+              },
+              [
+                _vm.isTeacher || 1
+                  ? _c("i", {
+                      staticClass: "icon-check icons font-2xl d-block mt-4",
+                      attrs: { title: "Este raspunsul corect?" },
+                      on: {
+                        click: function($event) {
+                          _vm.answer()
+                        }
                       }
-                    }
-                  })
-                : _vm._e()
-            ]
-          )
-        ])
-      ])
+                    })
+                  : _vm._e()
+              ]
+            )
+          ])
+        ]
+      )
     ]
   )
 }
