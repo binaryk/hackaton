@@ -11,14 +11,14 @@
                 <p class="mb-1" v-html="comment.content"></p>
             </div>
             <div class="card-footer">
-                <button class="btn btn-sm  btn-danger" @click="dislike()">
-                    <i class="fa fa-thumbs-down"></i> Dislike
-                </button>
-                <span class="badge badge-primary badge-pill">{{comment.dislikes}}</span>
                 <button class="btn  btn-sm btn-success" @click="like()">
                     <i class="fa fa-thumbs-up"></i> Like
                 </button>
                 <span class="badge badge-primary badge-pill">{{comment.likes}}</span>
+                <button class="btn btn-sm  btn-danger" @click="dislike()">
+                    <i class="fa fa-thumbs-down"></i> Dislike
+                </button>
+                <span class="badge badge-primary badge-pill">{{comment.dislikes}}</span>
             </div>
         </div>
     </div>

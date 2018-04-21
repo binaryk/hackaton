@@ -5,8 +5,9 @@
         </div>
         <p class="mb-1" v-html="question.content"></p>
         <small>Views <span class="badge badge-primary badge-pill">{{question.views}}</span></small>
+        <small>Likes <span class="badge badge-success badge-pill">{{question.likes}}</span></small>
         <small>Dislikes <span class="badge badge-danger badge-pill">{{question.dislikes}}</span></small>
-        <small>Likes <span class="badge badge-success badge-pill">{{question.likes}}</span></small>    </a>
+    </a>
 </template>
 <script>
     import API from '../../api';
