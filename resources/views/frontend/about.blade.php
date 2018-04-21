@@ -29,19 +29,13 @@
             <div class="card">
                 <div class="card-header">
                     <strong>
-                        {{ __('labels.frontend.contact.box_title') }}
+                        About Us
                     </strong>
                 </div><!--card-header-->
 
                 <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci harum modi officiis quo reprehenderit, sed vero voluptate! Amet, architecto aut cumque cupiditate fuga illum, libero non numquam quisquam, rem unde.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci harum modi officiis quo reprehenderit, sed vero voluptate! Amet, architecto aut cumque cupiditate fuga illum, libero non numquam quisquam, rem unde.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci harum modi officiis quo reprehenderit, sed vero voluptate! Amet, architecto aut cumque cupiditate fuga illum, libero non numquam quisquam, rem unde.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci harum modi officiis quo reprehenderit, sed vero voluptate! Amet, architecto aut cumque cupiditate fuga illum, libero non numquam quisquam, rem unde.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci harum modi officiis quo reprehenderit, sed vero voluptate! Amet, architecto aut cumque cupiditate fuga illum, libero non numquam quisquam, rem unde.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci harum modi officiis quo reprehenderit, sed vero voluptate! Amet, architecto aut cumque cupiditate fuga illum, libero non numquam quisquam, rem unde.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci harum modi officiis quo reprehenderit, sed vero voluptate! Amet, architecto aut cumque cupiditate fuga illum, libero non numquam quisquam, rem unde.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci harum modi officiis quo reprehenderit, sed vero voluptate! Amet, architecto aut cumque cupiditate fuga illum, libero non numquam quisquam, rem unde.
+                    E-learning refers to learning and teaching using electronic media and requires the use of information and communication technologies combined with electronic media (Simonson, Smaldino, Albright, & Zvacek, 2000; Kok, 2013). <br />In education, e-learning should center on the student with the teacher serving as the learning facilitator. Teaching should always be about the needs and abilities of the students and how learning will happen easily for them.<br /> Learning is an ongoing process that must be purposeful and intentional for each student so that they may reach their fullest potential. <br />
+                    An e-learning culture is one in which the emphasis is on the teacher, the student, and the technology used to facilitate that learning experience (Simonson et al., 2000; Kok, 2013).
                 </div><!--card-body-->
             </div><!--card-->
         </div><!--col-->
