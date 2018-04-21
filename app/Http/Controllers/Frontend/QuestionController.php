@@ -4,13 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api\Question;
-<<<<<<< HEAD
-use App\Models\Api\School;
 use App\Models\Api\Student;
 use App\Repositories\Frontend\Api\QuestionRepository;
-=======
 use App\Models\Auth\User;
->>>>>>> d0e77cba1131657cc5c234a105389cf437ab6768
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
