@@ -3,8 +3,7 @@
 @section('title', app_name() . ' | '.__('navs.general.home'))
 
 @section('content')
-    <question-layout :question="{{ json_encode($question)  }}"></question-layout>
-    <comments-list :user="{{ json_encode(auth()->user())  }}" :question="{{ json_encode($question)  }}"></comments-list>
+    <question-layout :question="{{ json_encode($question)  }}" :user="{{ json_encode(auth()->user()) }}"></question-layout>
 @endsection
 @section('right')
     <div>

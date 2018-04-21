@@ -7523,11 +7523,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Question_vue__ = __webpack_require__("./resources/assets/js/frontend/components/questions/Question.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Question_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Question_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AddQuestion_vue__ = __webpack_require__("./resources/assets/js/frontend/components/questions/AddQuestion.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AddQuestion_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__AddQuestion_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_index_js__ = __webpack_require__("./resources/assets/js/frontend/api/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("./node_modules/babel-runtime/regenerator/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Question_vue__ = __webpack_require__("./resources/assets/js/frontend/components/questions/Question.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Question_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Question_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AddQuestion_vue__ = __webpack_require__("./resources/assets/js/frontend/components/questions/AddQuestion.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AddQuestion_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__AddQuestion_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_index_js__ = __webpack_require__("./resources/assets/js/frontend/api/index.js");
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -7571,8 +7577,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'QuestionsList',
     components: {
-        Question: __WEBPACK_IMPORTED_MODULE_0__Question_vue___default.a,
-        Add: __WEBPACK_IMPORTED_MODULE_1__AddQuestion_vue___default.a
+        Question: __WEBPACK_IMPORTED_MODULE_1__Question_vue___default.a,
+        Add: __WEBPACK_IMPORTED_MODULE_2__AddQuestion_vue___default.a
     },
     data: function data() {
         return {
@@ -7582,13 +7588,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             showInstitutions: false
         };
     },
-    created: function created() {
-        var schools = __WEBPACK_IMPORTED_MODULE_2__api_index_js__["a" /* default */].School.list();
-        var list = __WEBPACK_IMPORTED_MODULE_2__api_index_js__["a" /* default */].Question.list();
-        this.list = list.data;
-        this.schools = schools.data;
-        console.log(list, schools, 'list form');
-    },
+    created: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var schools, list;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return __WEBPACK_IMPORTED_MODULE_3__api_index_js__["a" /* default */].School.list();
+
+                        case 2:
+                            schools = _context.sent;
+                            _context.next = 5;
+                            return __WEBPACK_IMPORTED_MODULE_3__api_index_js__["a" /* default */].Question.list();
+
+                        case 5:
+                            list = _context.sent;
+
+                            this.list = list.data;
+                            this.schools = schools.data;
+                            console.log(list, schools, 'list form');
+
+                        case 9:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function created() {
+            return _ref.apply(this, arguments);
+        }
+
+        return created;
+    }(),
 
     methods: {
         onStore: function onStore(post) {
@@ -7709,6 +7744,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("./node_modules/babel-runtime/regenerator/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api__ = __webpack_require__("./resources/assets/js/frontend/api/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__comments_List_vue__ = __webpack_require__("./resources/assets/js/frontend/components/comments/List.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__comments_List_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__comments_List_vue__);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -7740,14 +7777,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'QuestionLayout',
-    props: ['question'],
+    components: {
+        CommentsList: __WEBPACK_IMPORTED_MODULE_2__comments_List_vue___default.a
+    },
+    props: ['question', 'user'],
     created: function created() {
         console.log(this.question, 'this question');
+        console.log(this.user, 'this user');
     },
     data: function data() {
         return {
@@ -7847,20 +7890,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'User',
     props: ['user'],
     computed: {
         url: function url() {
-            return 'https://avatar.tobi.sh/Vega-Brown.svg?text=' + this.user.first_name[0] + this.user.last_name[0];
+            return 'https://avatar.tobi.sh/Vega-Brown.svg?text=' + this.user.user.first_name + this.user.user.last_name;
         }
     },
     methods: {
         goToUser: function goToUser() {
             console.log('go');
-            location.href = '/users-view/' + this.user.id;
+            location.href = '/users-view/' + this.user.user.id;
         }
     }
 });
@@ -70684,64 +70726,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-md-12" }, [
-    _c("div", { staticClass: "card card-accent-info" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("p", { domProps: { innerHTML: _vm._s(_vm.question.content) } })
+  return _c(
+    "div",
+    { staticClass: "col-md-12" },
+    [
+      _c("div", { staticClass: "card card-accent-info" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("p", { domProps: { innerHTML: _vm._s(_vm.question.content) } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer" }, [
+          _c("small", [
+            _vm._v("Views "),
+            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+              _vm._v(_vm._s(_vm.question.views))
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm  btn-danger",
+              on: {
+                click: function($event) {
+                  _vm.dislike()
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "fa fa-thumbs-down" }),
+              _vm._v(" Dislike\n            ")
+            ]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+            _vm._v(_vm._s(_vm.dislikes))
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn  btn-sm btn-success",
+              on: {
+                click: function($event) {
+                  _vm.like()
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "fa fa-thumbs-up" }),
+              _vm._v(" Like\n            ")
+            ]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+            _vm._v(_vm._s(_vm.likes))
+          ])
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-footer" }, [
-        _c("small", [
-          _vm._v("Views "),
-          _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-            _vm._v(_vm._s(_vm.question.views))
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-sm  btn-danger",
-            on: {
-              click: function($event) {
-                _vm.dislike()
-              }
-            }
-          },
-          [
-            _c("i", { staticClass: "fa fa-thumbs-down" }),
-            _vm._v(" Dislike\n            ")
-          ]
-        ),
-        _vm._v(" "),
-        _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-          _vm._v(_vm._s(_vm.dislikes))
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn  btn-sm btn-success",
-            on: {
-              click: function($event) {
-                _vm.like()
-              }
-            }
-          },
-          [
-            _c("i", { staticClass: "fa fa-thumbs-up" }),
-            _vm._v(" Like\n            ")
-          ]
-        ),
-        _vm._v(" "),
-        _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-          _vm._v(_vm._s(_vm.likes))
-        ])
-      ])
-    ])
-  ])
+      _c("comments-list", { attrs: { user: _vm.user, question: _vm.question } })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -70984,40 +71033,38 @@ var render = function() {
       _c("div", { staticClass: "card-body" }, [
         _c("img", { attrs: { src: _vm.url, alt: _vm.user.first_name } }),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "box about-box" }, [
+          _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "list-group" },
+            _vm._l(_vm.user.disciplines, function(discipline) {
+              return _c("li", { staticClass: "list-item" }, [
+                _vm._v(_vm._s(discipline.name))
+              ])
+            })
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer user-footer" }, [
         _c("a", { staticClass: "pretty" }, [
           _vm._v(
             " " +
-              _vm._s(_vm.user.first_name) +
+              _vm._s(_vm.user.user.first_name) +
               " " +
-              _vm._s(_vm.user.last_name) +
+              _vm._s(_vm.user.user.last_name) +
               " "
           )
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ])
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box about-box" }, [
-      _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "list-group" }, [
-        _c("li", { staticClass: "list-item" }, [_vm._v("Matematica")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-item" }, [_vm._v("Fizica ")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -84461,7 +84508,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('test-component', __webpac
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('add-question', __webpack_require__("./resources/assets/js/frontend/components/questions/AddQuestion.vue"));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('search', __webpack_require__("./resources/assets/js/frontend/components/Search.vue"));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('questions-list', __webpack_require__("./resources/assets/js/frontend/components/questions/List.vue"));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('chat', __webpack_require__("./resources/assets/js/frontend/components/Chat/Chat.vue"));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('question-layout', __webpack_require__("./resources/assets/js/frontend/components/questions/single/QuestionLayout.vue"));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('add-comment', __webpack_require__("./resources/assets/js/frontend/components/comments/AddComment.vue"));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('comments-list', __webpack_require__("./resources/assets/js/frontend/components/comments/List.vue"));
@@ -84479,13 +84525,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app'
 });
-
-/***/ }),
-
-/***/ "./resources/assets/js/frontend/components/Chat/Chat.vue":
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Applications/XAMPP/xamppfiles/htdocs/hackaton/resources/assets/js/frontend/components/Chat/Chat.vue'");
 
 /***/ }),
 
