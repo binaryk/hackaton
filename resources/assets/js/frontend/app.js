@@ -23,6 +23,13 @@ Vue.component('search', require('./components/Search.vue'));
 Vue.component('questions-list', require('./components/questions/List.vue'));
 Vue.component('chat', require('./components/Chat/Chat.vue'));
 Vue.component('question-layout', require('./components/questions/single/QuestionLayout.vue'));
+<<<<<<< HEAD
+Vue.component('add-comment', require('./components/comments/AddComment.vue'));
+Vue.component('comments-list', require('./components/comments/List.vue'));
+=======
+Vue.component('users-list', require('./components/users/UsersList.vue'));
+Vue.component('user-page', require('./components/users/UserPage.vue'));
+>>>>>>> 03819df61a3e01b6cc6f57f314e81a58c632bae7
 
 
 const app = new Vue({
