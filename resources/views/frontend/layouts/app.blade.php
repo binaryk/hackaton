@@ -44,7 +44,7 @@
                     @if(auth()->user())
                     <div class="col-md-3 rigth-sidebar">
                         @yield('right')
-                    </div>
+                    </div>+
                     @endif
                 </div>
             </div><!-- container -->
