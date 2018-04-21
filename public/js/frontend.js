@@ -7215,27 +7215,34 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     data: function data() {
         return {
             list: [],
+            schools: [],
             currentView: 1,
             showInstitutions: false
         };
     },
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            var list;
+            var schools, list;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return __WEBPACK_IMPORTED_MODULE_2__api_index_js__["a" /* default */].Question.list();
+                            return __WEBPACK_IMPORTED_MODULE_2__api_index_js__["a" /* default */].School.list();
 
                         case 2:
+                            schools = _context.sent;
+                            _context.next = 5;
+                            return __WEBPACK_IMPORTED_MODULE_2__api_index_js__["a" /* default */].Question.list();
+
+                        case 5:
                             list = _context.sent;
 
                             this.list = list.data;
-                            console.log(list, 'list form');
+                            this.schools = schools.data;
+                            console.log(list, schools, 'list form');
 
-                        case 5:
+                        case 9:
                         case 'end':
                             return _context.stop();
                     }
@@ -7258,6 +7265,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("./node_modules/babel-runtime/regenerator/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api__ = __webpack_require__("./resources/assets/js/frontend/api/index.js");
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -7268,11 +7290,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'Question',
     props: ['question'],
     created: function created() {
         console.log(this.question, 'euasdjsal');
+    },
+
+    methods: {
+        like: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Question.like(this.question.id);
+
+                            case 2:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function like() {
+                return _ref.apply(this, arguments);
+            }
+
+            return like;
+        }(),
+        dislike: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.next = 2;
+                                return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Question.dislike(this.question.id);
+
+                            case 2:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function dislike() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return dislike;
+        }()
     }
 });
 
@@ -69496,18 +69568,18 @@ var render = function() {
               },
               attrs: { "x-placement": "bottom-start" }
             },
-            _vm._l(_vm.institutions, function(inst) {
+            _vm._l(_vm.schools, function(s) {
               return _c(
                 "a",
                 {
-                  key: _vm.institution.id,
+                  key: s.id,
                   staticClass: "dropdown-item",
                   attrs: { href: "#" }
                 },
                 [
                   _vm._v(
                     "\n                        " +
-                      _vm._s(_vm.institution.name) +
+                      _vm._s(s.name) +
                       "\n                    "
                   )
                 ]
@@ -69701,7 +69773,49 @@ var render = function() {
       _vm._v(" "),
       _c("p", { staticClass: "mb-1" }, [_vm._v(_vm._s(_vm.question.content))]),
       _vm._v(" "),
-      _c("small", [_vm._v("Donec id elit non mi porta.")])
+      _c("small", [
+        _vm._v("Views "),
+        _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+          _vm._v(_vm._s(_vm.question.views))
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm  btn-danger",
+          on: {
+            click: function($event) {
+              _vm.dislike()
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "fa fa-thumbs-down" }),
+          _vm._v(" Dislike\n    ")
+        ]
+      ),
+      _vm._v(" "),
+      _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+        _vm._v(_vm._s(_vm.question.likes))
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn  btn-sm btn-success",
+          on: {
+            click: function($event) {
+              _vm.like()
+            }
+          }
+        },
+        [_c("i", { staticClass: "fa fa-thumbs-up" }), _vm._v(" Like\n    ")]
+      ),
+      _vm._v(" "),
+      _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+        _vm._v(_vm._s(_vm.question.likes))
+      ])
     ]
   )
 }
@@ -81534,9 +81648,53 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('questions');
         }
     }, {
+        key: 'like',
+        value: function like(id) {
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('questions/' + id + '/like');
+        }
+    }, {
+        key: 'dislike',
+        value: function dislike(id) {
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('questions/' + id + '/dislike');
+        }
+    }, {
+        key: 'view',
+        value: function view(id) {
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('questions/' + id + '/view');
+        }
+    }, {
         key: 'store',
         value: function store(data) {
             return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('questions', data);
+        }
+    }]);
+
+    return _class;
+}())());
+
+/***/ }),
+
+/***/ "./resources/assets/js/frontend/api/School.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (new (function () {
+    function _class() {
+        _classCallCheck(this, _class);
+    }
+
+    _createClass(_class, [{
+        key: 'list',
+        value: function list() {
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('schools');
         }
     }]);
 
@@ -81553,12 +81711,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Question__ = __webpack_require__("./resources/assets/js/frontend/api/Question.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Discipline__ = __webpack_require__("./resources/assets/js/frontend/api/Discipline.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__School__ = __webpack_require__("./resources/assets/js/frontend/api/School.js");
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    Question: __WEBPACK_IMPORTED_MODULE_1__Question__["a" /* default */], Discipline: __WEBPACK_IMPORTED_MODULE_2__Discipline__["a" /* default */]
+    Question: __WEBPACK_IMPORTED_MODULE_1__Question__["a" /* default */],
+    School: __WEBPACK_IMPORTED_MODULE_3__School__["a" /* default */],
+    Discipline: __WEBPACK_IMPORTED_MODULE_2__Discipline__["a" /* default */]
 });
 
 /***/ }),
