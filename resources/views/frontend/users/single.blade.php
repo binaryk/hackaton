@@ -5,9 +5,9 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-tachometer-alt"></i>Profilul utilizatorului
+                    <i class="fas fa-tachometer-alt"></i> Profilul utilizatorului
                     <strong>
-                          {!! $user->name !!}
+                          {{ $user->user->first_name }} {{$user->user->last_name}}
                     </strong>
                 </div><!--card-header-->
 
@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col col-sm-4 order-1 order-sm-2  mb-4">
                             <div class="card mb-4 bg-light">
-                                <img class="card-img-top" src="{{ $user->picture }}" alt="Profile Picture">
+                                <img class="card-img-top" src="{{ $user->user->picture }}" alt="Profile Picture">
 
                                 <div class="card-body">
                                     <h4 class="card-title">
@@ -51,17 +51,37 @@
 
                                         <div class="card-body">
                                             <ul class="list-group">
-                                                <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
-                                                    Matematica
-                                                </li>
-                                                <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
-                                                    Fizica
-                                                </li>
+                                                @foreach($user->disciplines as $discipline)
+                                                    <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
+                                                        {{ $discipline->name }}
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </div><!--card-body-->
                                     </div><!--card-->
                                 </div><!--col-md-6-->
                             </div><!--row-->
+                            @if(count($classmates) > 0)
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                Subiecte de interes
+                                            </div><!--card-header-->
+
+                                            <div class="card-body">
+                                                <ul class="list-group">
+                                                    @foreach($classmates as $classmate)
+                                                        <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
+                                                            {{ $classmate->user->first_name }} {{ $classmate->user->last_name }}
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div><!--card-body-->
+                                        </div><!--card-->
+                                    </div><!--col-md-6-->
+                                </div><!--row-->
+                            @endif
 
                             <div class="row">
                                 <div class="col">
