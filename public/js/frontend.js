@@ -7890,20 +7890,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'User',
     props: ['user'],
     computed: {
         url: function url() {
-            return 'https://avatar.tobi.sh/Vega-Brown.svg?text=' + this.user.first_name[0] + this.user.last_name[0];
+            return 'https://avatar.tobi.sh/Vega-Brown.svg?text=' + this.user.user.first_name + this.user.user.last_name;
         }
     },
     methods: {
         goToUser: function goToUser() {
             console.log('go');
-            location.href = '/users-view/' + this.user.id;
+            location.href = '/users-view/' + this.user.user.id;
         }
     }
 });
@@ -71034,40 +71033,38 @@ var render = function() {
       _c("div", { staticClass: "card-body" }, [
         _c("img", { attrs: { src: _vm.url, alt: _vm.user.first_name } }),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "box about-box" }, [
+          _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "list-group" },
+            _vm._l(_vm.user.disciplines, function(discipline) {
+              return _c("li", { staticClass: "list-item" }, [
+                _vm._v(_vm._s(discipline.name))
+              ])
+            })
+          )
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer user-footer" }, [
         _c("a", { staticClass: "pretty" }, [
           _vm._v(
             " " +
-              _vm._s(_vm.user.first_name) +
+              _vm._s(_vm.user.user.first_name) +
               " " +
-              _vm._s(_vm.user.last_name) +
+              _vm._s(_vm.user.user.last_name) +
               " "
           )
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ])
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "box about-box" }, [
-      _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "list-group" }, [
-        _c("li", { staticClass: "list-item" }, [_vm._v("Matematica")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-item" }, [_vm._v("Fizica ")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
