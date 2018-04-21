@@ -7245,6 +7245,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Comment_vue__ = __webpack_require__("./resources/assets/js/frontend/components/comments/Comment.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Comment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Comment_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_index_js__ = __webpack_require__("./resources/assets/js/frontend/api/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AddComment_vue__ = __webpack_require__("./resources/assets/js/frontend/components/comments/AddComment.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AddComment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__AddComment_vue__);
 //
 //
 //
@@ -7258,18 +7260,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['question_id'],
+    props: ['question', 'user'],
     components: {
         comment: __WEBPACK_IMPORTED_MODULE_0__Comment_vue___default.a
     },
     created: function created() {
         var _this = this;
 
-        __WEBPACK_IMPORTED_MODULE_1__api_index_js__["a" /* default */].Comment.list({ question_id: this.question_id }).then(function (res) {
+        __WEBPACK_IMPORTED_MODULE_1__api_index_js__["a" /* default */].Comment.list({ question_id: this.question.id }).then(function (res) {
             _this.comments = res.data;
         });
     },
@@ -7277,6 +7281,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             comments: []
         };
+    },
+
+    methods: {
+        submitComment: function submitComment(comment) {
+            console.log(comment, 'comment');
+            this.comments.unshift(comment);
+        }
     }
 });
 
@@ -70796,19 +70807,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-md-12" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c(
-        "div",
-        { staticClass: "list-group" },
-        _vm._l(_vm.comments, function(comment, index) {
-          return _c("comment", { key: index, attrs: { comment: comment } })
-        })
-      )
-    ])
-  ])
+  return _c(
+    "div",
+    { staticClass: "col-md-12" },
+    [
+      _c("add-comment", {
+        attrs: { user_id: _vm.user.id, question_id: _vm.question.id },
+        on: { "on-submit": _vm.submitComment }
+      }),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "div",
+          { staticClass: "list-group" },
+          _vm._l(_vm.comments, function(comment, index) {
+            return _c("comment", { key: index, attrs: { comment: comment } })
+          })
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -71148,7 +71169,10 @@ var render = function() {
         _c("small", [_vm._v(_vm._s(_vm.comment.created_at))])
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "mb-1" }, [_vm._v(_vm._s(_vm.comment.content))]),
+      _c("p", {
+        staticClass: "mb-1",
+        domProps: { innerHTML: _vm._s(_vm.comment.content) }
+      }),
       _vm._v(" "),
       _c("small", [
         _vm._v("Views "),
