@@ -38,6 +38,19 @@ class UserController extends Controller
         return User::with('roles')->get()->toJson();
     }
 
+    public function listView()
+    {
+        // TODO: Get intereses MALAI
+        $users = User::with('roles')->get();
+        return view('frontend.users.list')->with(compact('users'));
+    }
+
+    public function singleView($id)
+    {
+        $user = User::where('id', $id)->with('roles')->first();
+        return view('frontend.users.single')->with(compact('user'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

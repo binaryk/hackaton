@@ -27,7 +27,6 @@
             },
             async dislike() {
                 await API.Comment.dislike(this.comment.id);
-
             },
         }
     }

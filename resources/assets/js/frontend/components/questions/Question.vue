@@ -3,7 +3,7 @@
         <div class="d-flex w-100 justify-content-between">
             <small>{{ question.created_at }}</small>
         </div>
-        <p class="mb-1">{{ question.content }}</p>
+        <p class="mb-1" v-html="question.content"></p>
         <small>Views <span class="badge badge-primary badge-pill">{{question.views}}</span></small>
         <button class="btn btn-sm  btn-danger" @click="dislike()">
             <i class="fa fa-thumbs-down"></i> Dislike
