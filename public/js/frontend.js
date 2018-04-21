@@ -7951,6 +7951,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return 'question/' + this.question.id + '/show';
         }
     },
+    created: function created() {
+        console.log(this.question, 'question');
+    },
+
     methods: {
         like: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(e) {
@@ -71040,11 +71044,10 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-header" }, [
-        _vm._v(
-          "\n            Chat with: " +
-            _vm._s(_vm.chatWithUser.full_name) +
-            "\n        "
-        )
+        _vm._v("\n            Chat with: "),
+        _c("a", { attrs: { href: "/users-view/" + _vm.chatWithUser.id } }, [
+          _vm._v(_vm._s(_vm.chatWithUser.full_name))
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -72290,16 +72293,16 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-sm btn-primary",
-                  class: { "btn-success": _vm.comment.isAnswer },
-                  attrs: { type: "button" }
-                },
-                [
-                  _vm.isTeacher
-                    ? _c("i", {
+              _vm.isTeacher
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-primary",
+                      class: { "btn-success": _vm.comment.isAnswer },
+                      attrs: { type: "button" }
+                    },
+                    [
+                      _c("i", {
                         staticClass: "icon-check icons",
                         class: { answered: _vm.comment.isAnswer },
                         attrs: { title: "Este raspunsul corect?" },
@@ -72309,9 +72312,9 @@ var render = function() {
                           }
                         }
                       })
-                    : _vm._e()
-                ]
-              )
+                    ]
+                  )
+                : _vm._e()
             ])
           ])
         ]

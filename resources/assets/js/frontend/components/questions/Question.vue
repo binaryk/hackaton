@@ -19,6 +19,9 @@
                 return `question/${this.question.id}/show`;
             }
         },
+        created() {
+            console.log(this.question, 'question');
+        },
         methods: {
             async like(e) {
                 e.preventDefault();

@@ -20,8 +20,8 @@
                         <i class="fa fa-thumbs-down"></i> &nbsp;
                         <span class="badge badge-light">{{comment.dislikes}}</span>
                     </button>
-                    <button type="button" class="btn btn-sm btn-primary" v-bind:class="{ 'btn-success': comment.isAnswer }">
-                        <i v-if="isTeacher" v-bind:class="{ answered: comment.isAnswer }" @click="answer()" title="Este raspunsul corect?" class="icon-check icons"></i>
+                    <button v-if="isTeacher" type="button" class="btn btn-sm btn-primary" v-bind:class="{ 'btn-success': comment.isAnswer }">
+                        <i v-bind:class="{ answered: comment.isAnswer }" @click="answer()" title="Este raspunsul corect?" class="icon-check icons"></i>
                     </button>
 
                 </div>
