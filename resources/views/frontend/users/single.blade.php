@@ -38,7 +38,6 @@
                             </div>
                         </div><!--col-md-4-->
                         <div class="col-md-8 order-2 order-sm-1">
-
                             @if(count($user->disciplines) > 0)
                                 <div class="row">
                                     <div class="col">
@@ -49,6 +48,7 @@
 
                                             <div class="card-body">
                                                 <ul class="list-group">
+
                                                     @foreach($user->disciplines as $discipline)
                                                         <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
                                                             {{ $discipline->name }}

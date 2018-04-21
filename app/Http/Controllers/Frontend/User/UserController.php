@@ -125,4 +125,20 @@ class UserController extends Controller
     {
         //
     }
+
+    public function filter(Request $request){
+        $schools = $request->get('schools');
+        $disciplines = $request->get('disciplines');
+
+        $users = Student::with('disciplines');
+        if ($schools){
+            $users->whereIn('school_id', $schools);
+        }
+        if ($disciplines){
+            $users->whereHas('disciplines', function ($q) use ($disciplines){
+               return $q->whereIn('disciplines.id', $disciplines);
+            });
+        }
+        return $users->with('user')->get();
+    }
 }

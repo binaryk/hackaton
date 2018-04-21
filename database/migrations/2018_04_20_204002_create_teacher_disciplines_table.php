@@ -17,8 +17,6 @@ class CreateTeacherDisciplinesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('teacher_id');
             $table->unsignedInteger('discipline_id');
-            $table->foreign('teacher_id')->references('id')->on('teachers');
-            $table->foreign('discipline_id')->references('id')->on('disciplines');
             $table->timestamps();
         });
     }

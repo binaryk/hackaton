@@ -5,5 +5,6 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
         Route::get('users-list', 'UserController@listView')->name('frontend-users-list');
         Route::get('users-view/{id}', 'UserController@singleView')->name('frontend-users-view');
         Route::resource('users', 'UserController');
+        Route::post('users/filter', 'UserController@filter');
     });
 });
