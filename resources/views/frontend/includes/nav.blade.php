@@ -6,9 +6,6 @@
         <li class="nav-item px-3">
             <a href="/users-list" class="nav-link">Utilizatori</a>
         </li>
-        <li class="nav-item px-3">
-            <a class="nav-link" href="#">Settings</a>
-        </li>
     </ul>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('labels.general.toggle_navigation') }}">
         <span class="navbar-toggler-icon"></span>

@@ -3,7 +3,7 @@
         <div class="card-body">
             <img :src="url" :alt="user.first_name">
 
-            <div class="box about-box" v-if="user.disciplines.length > 0">
+            <div class="box about-box" v-if="user.disciplines && user.disciplines.length > 0">
                 <p class="preferinte">Preferinte</p>
                 <ul class="list-group">
                     <li class="list-item" v-for="discipline in user.disciplines">{{discipline.name}}</li>

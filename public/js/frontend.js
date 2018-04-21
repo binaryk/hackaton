@@ -6892,6 +6892,7 @@ Vue.component('sent-message', __webpack_require__("./resources/assets/js/fronten
 
         this.fetchMessages();
         Echo.private('chat').listen('MessageSentEvent', function (e) {
+            console.log('asdsada');
             _this.messages.push({
                 message: e.message.message,
                 sent_by_user: e.sentBy
@@ -7764,14 +7765,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             console.log(this.selectedDisciplines);
         },
-        changeSchool: function changeSchool(id) {
-            var index = this.selectedSchools.indexOf(id);
-            if (index === -1) this.selectedSchools.push(id);else this.selectedSchools.splice(find, 1);
-
-            console.log(this.selectedSchools);
+        changeSchool: function changeSchool(school) {
+            var find = this.selectedSchools.findIndex(function (d) {
+                return d.id === school.id;
+            });
+            if (find === -1) this.selectedSchools.push(school);else this.selectedSchools.splice(find, 1);
         },
         sortQuestions: function sortQuestions(type) {
             this.sort = type;
+            this.filter();
         },
         filter: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
@@ -7792,7 +7794,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 list = _context2.sent;
 
-                            case 5:
+                                this.list = list.data;
+
+                            case 6:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -7805,7 +7809,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return filter;
-        }()
+        }(),
+        isSelectedDiscipline: function isSelectedDiscipline(id) {
+            var find = this.selectedDisciplines.findIndex(function (d) {
+                return d.id === id;
+            });
+            if (find === -1) {
+                return false;
+            }
+            return true;
+        },
+        isSelectedSchool: function isSelectedSchool(id) {
+            var find = this.selectedSchools.findIndex(function (d) {
+                return d.id === id;
+            });
+            if (find === -1) {
+                return false;
+            }
+            return true;
+        }
     }
 
 });
@@ -8151,16 +8173,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'UsersList',
-    props: ['users'],
+    props: ['users', 'teachers'],
     components: {
         User: __WEBPACK_IMPORTED_MODULE_0__User_vue___default.a
     },
     created: function created() {
-        console.log(this.users, 'users');
+        console.log(this.users, this.teachers, 'users');
     }
 });
 
@@ -14065,7 +14105,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.switch-container {\n  margin: 10px 0;\n}\n.list-group a {\n  margin-bottom: 10px;\n}\n.badge:hover {\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.switch-container {\n  margin: 10px 0;\n}\n.list-group a {\n  margin-bottom: 10px;\n}\n.badge:hover {\n  cursor: pointer;\n}\n.selectedItems {\n  margin: 2px 0;\n}\n.selectedItems button {\n  margin: 0 5px;\n}\n", ""]);
 
 // exports
 
@@ -70577,6 +70617,7 @@ var render = function() {
                 [
                   _c("input", {
                     attrs: { type: "checkbox", value: "1" },
+                    domProps: { checked: _vm.isSelectedSchool(s.id) },
                     on: {
                       click: function($event) {
                         _vm.changeSchool(s)
@@ -70637,6 +70678,7 @@ var render = function() {
                 [
                   _c("input", {
                     attrs: { type: "checkbox", value: "1" },
+                    domProps: { checked: _vm.isSelectedDiscipline(s.id) },
                     on: {
                       click: function($event) {
                         _vm.changeDisciplines(s)
@@ -70658,7 +70700,7 @@ var render = function() {
       _vm.selectedSchools.length > 0
         ? _c(
             "div",
-            { staticClass: "col-12" },
+            { staticClass: "col-12 selectedItems" },
             [
               _vm._v("\n            Scoli:\n            "),
               _vm._l(_vm.selectedSchools, function(s) {
@@ -70678,18 +70720,18 @@ var render = function() {
                     _vm._v("  " + _vm._s(s.name) + "\n            ")
                   ]
                 )
-              })
+              }),
+              _vm._v(" "),
+              _c("br")
             ],
             2
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
       _vm.selectedDisciplines.length > 0
         ? _c(
             "div",
-            { staticClass: "col-12" },
+            { staticClass: "col-12 selectedItems" },
             [
               _vm._v("\n            Materii:\n            "),
               _vm._l(_vm.selectedDisciplines, function(s) {
@@ -70747,6 +70789,23 @@ var render = function() {
           { staticClass: "pull-right", staticStyle: { float: "right" } },
           [
             _vm._v("\n                Order by:\n                "),
+            _c(
+              "span",
+              {
+                staticClass: "badge badge-pill ",
+                class: {
+                  "badge-secondary": _vm.sort == "updated_at",
+                  "badge-primary": _vm.sort !== "updated_at"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.sortQuestions("updated_at")
+                  }
+                }
+              },
+              [_vm._v("Date")]
+            ),
+            _vm._v(" "),
             _c(
               "span",
               {
@@ -71322,13 +71381,45 @@ var render = function() {
     _c("div", { staticClass: "col-sm-12 col-md-12" }, [
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body" }, [
-          _c(
-            "div",
-            { staticClass: "row" },
-            _vm._l(_vm.users, function(user) {
-              return _c("user", { key: user.id, attrs: { user: user } })
-            })
-          )
+          _c("div", { staticClass: "col-md-12 mb-2" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "tab-content" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "tab-pane active",
+                  attrs: { id: "home", role: "tabpanel" }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "row" },
+                    _vm._l(_vm.users, function(user) {
+                      return _c("user", { key: user.id, attrs: { user: user } })
+                    })
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "tab-pane",
+                  attrs: { id: "profile", role: "tabpanel" }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "row" },
+                    _vm._l(_vm.teachers, function(user) {
+                      return _c("user", { key: user.id, attrs: { user: user } })
+                    })
+                  )
+                ]
+              )
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-footer" }, [_vm._v("Toti utilizatorii")])
@@ -71336,7 +71427,50 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
+      [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: {
+                "data-toggle": "tab",
+                href: "#home",
+                role: "tab",
+                "aria-controls": "home"
+              }
+            },
+            [_vm._v("Studenti")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                "data-toggle": "tab",
+                href: "#profile",
+                role: "tab",
+                "aria-controls": "profile"
+              }
+            },
+            [_vm._v("Profesori")]
+          )
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -71468,7 +71602,7 @@ var render = function() {
       _c("div", { staticClass: "card-body" }, [
         _c("img", { attrs: { src: _vm.url, alt: _vm.user.first_name } }),
         _vm._v(" "),
-        _vm.user.disciplines.length > 0
+        _vm.user.disciplines && _vm.user.disciplines.length > 0
           ? _c("div", { staticClass: "box about-box" }, [
               _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
               _vm._v(" "),
@@ -71919,7 +72053,7 @@ var render = function() {
                 class: { answered: _vm.comment.isAnswer }
               },
               [
-                _vm.isTeacher || 1
+                _vm.isTeacher
                   ? _c("i", {
                       staticClass: "icon-check icons font-2xl d-block mt-4",
                       attrs: { title: "Este raspunsul corect?" },
@@ -84788,8 +84922,8 @@ window.Pusher = __webpack_require__("./node_modules/pusher-js/dist/web/pusher.js
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_5_laravel_echo___default.a({
   broadcaster: 'pusher',
-  key: "",
-  cluster: "mt1",
+  key: "7d1370b048569da6a435",
+  cluster: "eu",
   encrypted: true
 });
 
