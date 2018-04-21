@@ -10,13 +10,16 @@
             background-opacity: 0.7;
             background-position: center;
             background-size: cover;
-            padding-top: 350px;
+            padding-top: 200px;
             background-repeat: no-repeat;
         }
         .form-control, select {
             border-radius: 20px;
             font-weight: 600;
             color: #2da754 !important;
+        }
+        .navbar {
+            margin-bottom: 0 !important;
         }
     </style>
 @endsection
