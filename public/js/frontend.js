@@ -7097,6 +7097,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8239,6 +8242,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8308,16 +8312,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 3:
                                 _ref3 = _context2.sent;
                                 data = _ref3.data;
-
-                                console.log(data, 'data the');
                                 first = data.items[0];
                                 video = first.id.videoId;
 
                                 this.videoId = video;
-                                console.log(this.youtube, 'asldjaskljdsa');
-                                console.log(data, 'res you');
 
-                            case 11:
+                            case 8:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -71085,6 +71085,13 @@ var staticRenderFns = [
             ])
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "with-text" }, [
+        _c("img", {
+          staticClass: "landing-background",
+          attrs: { src: "images/provocare2-01.png", alt: "" }
+        })
       ])
     ])
   }
@@ -72786,7 +72793,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-4" }, [
+  return _c("div", { staticClass: "col-md-4 col-sm-1 mb-1 col-sm-1" }, [
     _c(
       "div",
       {
