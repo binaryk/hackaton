@@ -7191,6 +7191,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 
@@ -7653,6 +7654,41 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7667,13 +7703,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             list: [],
             schools: [],
+            disciplines: [],
+            selectedDisciplines: [],
+            selectedSchools: [],
             currentView: 1,
-            showInstitutions: false
+            sort: null
         };
     },
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            var schools, list;
+            var schools, disciplines, list;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
@@ -7684,16 +7723,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         case 2:
                             schools = _context.sent;
                             _context.next = 5;
-                            return __WEBPACK_IMPORTED_MODULE_3__api_index_js__["a" /* default */].Question.list();
+                            return __WEBPACK_IMPORTED_MODULE_3__api_index_js__["a" /* default */].Discipline.list();
 
                         case 5:
+                            disciplines = _context.sent;
+                            _context.next = 8;
+                            return __WEBPACK_IMPORTED_MODULE_3__api_index_js__["a" /* default */].Question.list();
+
+                        case 8:
                             list = _context.sent;
 
                             this.list = list.data;
                             this.schools = schools.data;
-                            console.log(list, schools, 'list form');
+                            this.disciplines = disciplines.data;
 
-                        case 9:
+                        case 12:
                         case 'end':
                             return _context.stop();
                     }
@@ -7710,9 +7754,58 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
     methods: {
         onStore: function onStore(post) {
-            console.log(post.data, 'data post');
             this.list.unshift(post.data);
-        }
+        },
+        changeDisciplines: function changeDisciplines(discipline) {
+            var find = this.selectedDisciplines.findIndex(function (d) {
+                return d.id === discipline.id;
+            });
+            if (find === -1) this.selectedDisciplines.push(discipline);else this.selectedDisciplines.splice(find, 1);
+
+            console.log(this.selectedDisciplines);
+        },
+        changeSchool: function changeSchool(id) {
+            var index = this.selectedSchools.indexOf(id);
+            if (index === -1) this.selectedSchools.push(id);else this.selectedSchools.splice(find, 1);
+
+            console.log(this.selectedSchools);
+        },
+        sortQuestions: function sortQuestions(type) {
+            this.sort = type;
+        },
+        filter: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var disciplines, schools, list;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                disciplines = this.selectedDisciplines.map(function (discipline) {
+                                    return discipline.id;
+                                });
+                                schools = this.selectedSchools.map(function (school) {
+                                    return school.id;
+                                });
+                                _context2.next = 4;
+                                return __WEBPACK_IMPORTED_MODULE_3__api_index_js__["a" /* default */].Question.filter({ sort: this.sort, disciplines: disciplines, schools: schools });
+
+                            case 4:
+                                list = _context2.sent;
+
+                            case 5:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function filter() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return filter;
+        }()
     }
 
 });
@@ -7754,20 +7847,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     methods: {
         like: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(e) {
                 var _this = this;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
+                                e.preventDefault();
+                                _context.next = 3;
                                 return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Question.like(this.question.id).then(function (res) {
                                     _this.question.likes += 1;
                                     console.log('increment');
                                 });
 
-                            case 2:
+                            case 3:
                             case 'end':
                                 return _context.stop();
                         }
@@ -7775,26 +7869,27 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee, this);
             }));
 
-            function like() {
+            function like(_x) {
                 return _ref.apply(this, arguments);
             }
 
             return like;
         }(),
         dislike: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(e) {
                 var _this2 = this;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                _context2.next = 2;
+                                e.preventDefault();
+                                _context2.next = 3;
                                 return __WEBPACK_IMPORTED_MODULE_1__api__["a" /* default */].Question.dislike(this.question.id).then(function (res) {
                                     _this2.question.dislikes += 1;
                                 });
 
-                            case 2:
+                            case 3:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -7802,7 +7897,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee2, this);
             }));
 
-            function dislike() {
+            function dislike(_x2) {
                 return _ref2.apply(this, arguments);
             }
 
@@ -7827,6 +7922,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -13966,7 +14065,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.switch-container {\n  margin: 10px;\n}\n.list-group a {\n  margin-bottom: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.switch-container {\n  margin: 10px 0;\n}\n.list-group a {\n  margin-bottom: 10px;\n}\n.badge:hover {\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -70435,26 +70534,6 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "switch-container col-md-12" }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "col-md-4 float-left btn btn-outline-secondary btn-md btn-",
-            attrs: { type: "button" }
-          },
-          [_vm._v("Recente")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "col-md-4 float-left btn btn-outline-primary btn-md btn-",
-            attrs: { type: "button" }
-          },
-          [_vm._v("Dupa interese")]
-        ),
-        _vm._v(" "),
         _c("div", { staticClass: "btn-group show" }, [
           _c(
             "button",
@@ -70465,11 +70544,6 @@ var render = function() {
                 "data-toggle": "dropdown",
                 "aria-haspopup": "true",
                 "aria-expanded": "true"
-              },
-              on: {
-                click: function($event) {
-                  _vm.showInstitutions = !_vm.showInstitutions
-                }
               }
             },
             [
@@ -70483,7 +70557,6 @@ var render = function() {
             "div",
             {
               staticClass: "dropdown-menu",
-              class: { show: _vm.showInstitutions },
               staticStyle: {
                 position: "absolute",
                 transform: "translate3d(0px, 35px, 0px)",
@@ -70502,6 +70575,74 @@ var render = function() {
                   attrs: { hchref: "#" }
                 },
                 [
+                  _c("input", {
+                    attrs: { type: "checkbox", value: "1" },
+                    on: {
+                      click: function($event) {
+                        _vm.changeSchool(s)
+                      }
+                    }
+                  }),
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(s.name) +
+                      "\n                    "
+                  )
+                ]
+              )
+            })
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "btn-group show" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success dropdown-toggle",
+              attrs: {
+                type: "button",
+                "data-toggle": "dropdown",
+                "aria-haspopup": "true",
+                "aria-expanded": "true"
+              }
+            },
+            [
+              _vm._v(
+                "\n                    Selecteaza materiile\n                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dropdown-menu",
+              staticStyle: {
+                position: "absolute",
+                transform: "translate3d(0px, 35px, 0px)",
+                top: "0px",
+                left: "0px",
+                "will-change": "transform"
+              },
+              attrs: { "x-placement": "bottom-start" }
+            },
+            _vm._l(_vm.disciplines, function(s) {
+              return _c(
+                "a",
+                {
+                  key: s.id,
+                  staticClass: "dropdown-item",
+                  attrs: { hchref: "#" }
+                },
+                [
+                  _c("input", {
+                    attrs: { type: "checkbox", value: "1" },
+                    on: {
+                      click: function($event) {
+                        _vm.changeDisciplines(s)
+                      }
+                    }
+                  }),
                   _vm._v(
                     "\n                        " +
                       _vm._s(s.name) +
@@ -70514,7 +70655,151 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _vm.selectedSchools.length > 0
+        ? _c(
+            "div",
+            { staticClass: "col-12" },
+            [
+              _vm._v("\n            Scoli:\n            "),
+              _vm._l(_vm.selectedSchools, function(s) {
+                return _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-labeled btn-info",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        _vm.changeSchool(s)
+                      }
+                    }
+                  },
+                  [
+                    _vm._m(0, true),
+                    _vm._v("  " + _vm._s(s.name) + "\n            ")
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _vm.selectedDisciplines.length > 0
+        ? _c(
+            "div",
+            { staticClass: "col-12" },
+            [
+              _vm._v("\n            Materii:\n            "),
+              _vm._l(_vm.selectedDisciplines, function(s) {
+                return _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-labeled btn-info",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        _vm.changeDisciplines(s)
+                      }
+                    }
+                  },
+                  [
+                    _vm._m(1, true),
+                    _vm._v("  " + _vm._s(s.name) + "\n            ")
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-12" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success ",
+            attrs: {
+              disabled:
+                _vm.selectedDisciplines.length == 0 &&
+                _vm.selectedSchools.length == 0
+            },
+            on: {
+              click: function($event) {
+                _vm.filter()
+              }
+            }
+          },
+          [_vm._v("Filter Questions")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-header" }, [
+        _c("i", { staticClass: "fa fa-align-justify" }),
+        _vm._v(" Intrebari\n            "),
+        _c("small", [_vm._v("cele mai recente")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "pull-right", staticStyle: { float: "right" } },
+          [
+            _vm._v("\n                Order by:\n                "),
+            _c(
+              "span",
+              {
+                staticClass: "badge badge-pill ",
+                class: {
+                  "badge-secondary": _vm.sort == "likes",
+                  "badge-primary": _vm.sort !== "likes"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.sortQuestions("likes")
+                  }
+                }
+              },
+              [_vm._v("Likes")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "badge badge-pill ",
+                class: {
+                  "badge-secondary": _vm.sort == "views",
+                  "badge-primary": _vm.sort !== "views"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.sortQuestions("views")
+                  }
+                }
+              },
+              [_vm._v("Views")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "badge badge-pill ",
+                class: {
+                  "badge-secondary": _vm.sort == "dislikes",
+                  "badge-primary": _vm.sort !== "dislikes"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.sortQuestions("dislikes")
+                  }
+                }
+              },
+              [_vm._v("Dislikes")]
+            )
+          ]
+        )
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c(
@@ -70533,10 +70818,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("i", { staticClass: "fa fa-align-justify" }),
-      _vm._v(" Intrebari\n            "),
-      _c("small", [_vm._v("cele mai recente")])
+    return _c("span", { staticClass: "btn-label" }, [
+      _c("i", { staticClass: "fa fa-times" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "btn-label" }, [
+      _c("i", { staticClass: "fa fa-times" })
     ])
   }
 ]
@@ -70614,7 +70905,7 @@ var render = function() {
     _c("div", { staticClass: "card-body" }, [
       _c("div", { staticClass: "form-group row" }, [
         _c("label", { staticClass: "col-md-3 col-form-label" }, [
-          _vm._v("Intrebarea ")
+          _vm._v("Question ")
         ]),
         _vm._v(" "),
         _c(
@@ -70815,19 +71106,19 @@ var render = function() {
             1
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-sm btn-primary right",
-            attrs: { type: "button" },
-            on: { click: _vm.submit }
-          },
-          [_c("i", { staticClass: "fa fa-dot-circle-o" }), _vm._v(" Trimite")]
-        )
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm btn-primary right",
+          attrs: { type: "button" },
+          on: { click: _vm.submit }
+        },
+        [_c("i", { staticClass: "fa fa-dot-circle-o" }), _vm._v(" Trimite")]
+      )
     ])
   ])
 }
@@ -70862,62 +71153,70 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card card-accent-info" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("p", { domProps: { innerHTML: _vm._s(_vm.question.content) } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-footer" }, [
-            _c("small", [
-              _vm._v("Views "),
-              _c("span", { staticClass: "badge badge-primary badge-pill" }, [
+      _c("div", { staticClass: "card card-accent-info" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("p", { domProps: { innerHTML: _vm._s(_vm.question.content) } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm btn-primary",
+              attrs: { type: "button" }
+            },
+            [
+              _c("i", { staticClass: "fa fa-eye" }),
+              _vm._v("  \n                "),
+              _c("span", { staticClass: "badge badge-light" }, [
                 _vm._v(_vm._s(_vm.question.views))
               ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn  btn-sm btn-success",
-                on: {
-                  click: function($event) {
-                    _vm.like()
-                  }
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm btn-danger",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.dislike($event)
+                  return false
                 }
-              },
-              [
-                _c("i", { staticClass: "fa fa-thumbs-up" }),
-                _vm._v(" Like\n                ")
-              ]
-            ),
-            _vm._v(" "),
-            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-              _vm._v(_vm._s(_vm.likes))
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-sm  btn-danger",
-                on: {
-                  click: function($event) {
-                    _vm.dislike()
-                  }
+              }
+            },
+            [
+              _c("i", { staticClass: "fa fa-thumbs-down" }),
+              _vm._v("  \n                "),
+              _c("span", { staticClass: "badge badge-light" }, [
+                _vm._v(_vm._s(_vm.question.dislikes))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn  btn-sm btn-success",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.like($event)
+                  return false
                 }
-              },
-              [
-                _c("i", { staticClass: "fa fa-thumbs-down" }),
-                _vm._v(" Dislike\n                ")
-              ]
-            ),
-            _vm._v(" "),
-            _c("span", { staticClass: "badge badge-primary badge-pill" }, [
-              _vm._v(_vm._s(_vm.dislikes))
-            ])
-          ])
+              }
+            },
+            [
+              _c("i", { staticClass: "fa fa-thumbs-up" }),
+              _vm._v("  \n                "),
+              _c("span", { staticClass: "badge badge-light" }, [
+                _vm._v(_vm._s(_vm.question.likes))
+              ])
+            ]
+          )
         ])
       ]),
       _vm._v(" "),
@@ -70933,7 +71232,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("i", { staticClass: "fa fa-check" }),
-      _vm._v(" Intrebarea (?)\n                "),
+      _vm._v(" Intrebarea (?)\n            "),
       _c("div", { staticClass: "card-actions" }, [
         _c("a", { staticClass: "btn-setting", attrs: { href: "#" } }, [
           _c("i", { staticClass: "icon-settings" })
@@ -71195,23 +71494,16 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "ratio pull-right" }, [
+          _c("i", { staticClass: "icon-star icons font-2xl d-block mt-4" }),
+          _vm._v(" "),
+          _c("strong", [_vm._v(_vm._s(_vm.user.user.reputation))])
+        ])
       ])
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ratio pull-right" }, [
-      _c("i", { staticClass: "icon-star icons font-2xl d-block mt-4" }),
-      _vm._v(" "),
-      _c("strong", [_vm._v("120")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -71397,23 +71689,16 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "ratio pull-right" }, [
+          _c("i", { staticClass: "icon-star icons font-2xl d-block mt-4" }),
+          _vm._v(" "),
+          _c("strong", [_vm._v(_vm._s(_vm.user.user.reputation))])
+        ])
       ])
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ratio pull-right" }, [
-      _c("i", { staticClass: "icon-star icons font-2xl d-block mt-4" }),
-      _vm._v(" "),
-      _c("strong", [_vm._v("120")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -84620,6 +84905,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: 'store',
         value: function store(data) {
             return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/questions', data);
+        }
+    }, {
+        key: 'filter',
+        value: function filter(data) {
+            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/questions/filter', data);
         }
     }]);
 
