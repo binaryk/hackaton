@@ -4,6 +4,7 @@
 
 @section('content')
     <question-layout :question="{{ json_encode($question)  }}"></question-layout>
+    <add-comment :user_id="{{auth()->user()->id}}" :question_id="{{$question->id}}"></add-comment>
 @endsection
 @section('right')
     <div>

@@ -71,4 +71,7 @@
     .switch-container {
         margin: 10px;
     }
+    .list-group a {
+        margin-bottom: 10px;
+    }
 </style>
