@@ -7010,6 +7010,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7022,7 +7029,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {},
 
-    methods: {}
+    methods: {
+        checkOnline: function checkOnline(date) {
+            var ONE_MIN = 1 * 60 * 1000;
+            return new Date() - new Date(date) < ONE_MIN;
+        }
+    }
 });
 
 /***/ }),
@@ -8091,6 +8103,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'User',
@@ -8104,6 +8126,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         goToUser: function goToUser() {
             console.log('go');
             location.href = '/users-view/' + this.user.user.id;
+        },
+        checkOnline: function checkOnline(date) {
+            var ONE_MIN = 1 * 60 * 1000;
+            return new Date() - new Date(date) < ONE_MIN;
         }
     }
 });
@@ -14180,7 +14206,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.list-group-item.active a {\n    color: white;\n}\n", ""]);
+exports.push([module.i, "\n.list-group-item.active a {\n    color: white;\n}\n.online {\n    color: lightgreen;\n}\n.offline {\n    color: black;\n}\n", ""]);
 
 // exports
 
@@ -71512,7 +71538,18 @@ var render = function() {
               _vm._v(" "),
               _c("span", { staticClass: "badge badge-light" }, [
                 _vm._v(_vm._s(user.roles[0].name))
-              ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  class: {
+                    online: _vm.checkOnline(user.last_activity),
+                    offline: !_vm.checkOnline(user.last_activity)
+                  }
+                },
+                [_vm._v("●")]
+              )
             ]
           )
         })
@@ -71588,56 +71625,85 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "user col-md-3 card",
-      on: {
-        click: function($event) {
-          _vm.goToUser()
+  return _c("div", { staticClass: "col-4" }, [
+    _c(
+      "div",
+      {
+        staticClass: "card",
+        on: {
+          click: function($event) {
+            _vm.goToUser()
+          }
         }
-      }
-    },
-    [
-      _c("div", { staticClass: "card-body" }, [
-        _c("img", { attrs: { src: _vm.url, alt: _vm.user.first_name } }),
-        _vm._v(" "),
-        _vm.user.disciplines && _vm.user.disciplines.length > 0
-          ? _c("div", { staticClass: "box about-box" }, [
-              _c("p", { staticClass: "preferinte" }, [_vm._v("Preferinte")]),
-              _vm._v(" "),
-              _c(
-                "ul",
-                { staticClass: "list-group" },
-                _vm._l(_vm.user.disciplines, function(discipline) {
-                  return _c("li", { staticClass: "list-item" }, [
-                    _vm._v(_vm._s(discipline.name))
-                  ])
-                })
-              )
-            ])
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer user-footer" }, [
-        _c("a", { staticClass: "pretty" }, [
+      },
+      [
+        _c("div", { staticClass: "card-header" }, [
           _vm._v(
-            " " +
-              _vm._s(_vm.user.user.first_name) +
-              " " +
-              _vm._s(_vm.user.user.last_name) +
-              " "
-          )
+            "\n            " +
+              _vm._s(_vm.user.user.full_name) +
+              "\n            "
+          ),
+          _vm.checkOnline(_vm.user.user.last_activity)
+            ? _c("span", { staticClass: "badge badge-success" }, [
+                _vm._v("Online")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.checkOnline(_vm.user.user.last_activity)
+            ? _c("span", { staticClass: "badge badge-danger" }, [
+                _vm._v("Offline")
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "ratio pull-right" }, [
-          _c("i", { staticClass: "icon-star icons font-2xl d-block mt-4" }),
+        _c("div", { staticClass: "card-body chat-body" }, [
+          _c("p", [
+            _c("img", {
+              staticStyle: { width: "100%" },
+              attrs: { src: _vm.url, alt: _vm.user.user.full_name }
+            })
+          ]),
           _vm._v(" "),
-          _c("strong", [_vm._v(_vm._s(_vm.user.user.reputation))])
+          _vm.user.school
+            ? _c("p", [
+                _vm._v("\n                Scoala: "),
+                _c("span", { staticClass: "badge badge-warning" }, [
+                  _vm._v(_vm._s(_vm.user.school.name))
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.user.disciplines.length > 0
+            ? _c("div", { staticClass: "box about-box" }, [
+                _c(
+                  "p",
+                  [
+                    _vm._v("\n                    Interese: "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _vm._l(_vm.user.disciplines, function(discipline) {
+                      return _c(
+                        "span",
+                        { staticClass: "badge badge-primary" },
+                        [_vm._v(_vm._s(discipline.name))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-footer" }, [
+          _c("span", [
+            _c("i", { staticClass: "fa fa-star" }),
+            _vm._v("    " + _vm._s(_vm.user.user.reputation))
+          ])
         ])
-      ])
-    ]
-  )
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -71825,10 +71891,9 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "ratio pull-right" }, [
-          _c("i", { staticClass: "icon-star icons font-2xl d-block mt-4" }),
-          _vm._v(" "),
-          _c("strong", [_vm._v(_vm._s(_vm.user.user.reputation))])
+        _c("p", [
+          _c("i", { staticClass: "fa fa-star" }),
+          _vm._v("    " + _vm._s(_vm.user.user.reputation))
         ])
       ])
     ]

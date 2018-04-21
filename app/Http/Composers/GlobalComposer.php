@@ -18,6 +18,10 @@ class GlobalComposer
      */
     public function compose(View $view)
     {
+        $user = auth()->user();
+        $user->update(['last_activity' => new \DateTime()]);
+        $user->save();
+
         $view->with('logged_in_user', auth()->user());
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Auth\Auth;
 use App\Models\Api\Student;
 use App\Models\Api\Teacher;
 use App\Models\Auth\User;
@@ -18,6 +19,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
 
     /**
      * Get Auth user
