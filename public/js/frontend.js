@@ -7003,7 +7003,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         search: function search() {
-
             // TODO: Send an event to filter current list
             console.log(this.str);
         }
@@ -7169,7 +7168,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Question_vue__ = __webpack_require__("./resources/assets/js/frontend/components/questions/Question.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Question_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Question_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_index_js__ = __webpack_require__("./resources/assets/js/frontend/api/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AddQuestion_vue__ = __webpack_require__("./resources/assets/js/frontend/components/questions/AddQuestion.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__AddQuestion_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__AddQuestion_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_index_js__ = __webpack_require__("./resources/assets/js/frontend/api/index.js");
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -7205,13 +7206,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'QuestionsList',
     components: {
-        Question: __WEBPACK_IMPORTED_MODULE_1__Question_vue___default.a
+        Question: __WEBPACK_IMPORTED_MODULE_1__Question_vue___default.a,
+        Add: __WEBPACK_IMPORTED_MODULE_2__AddQuestion_vue___default.a
     },
     data: function data() {
         return {
@@ -7229,12 +7237,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return __WEBPACK_IMPORTED_MODULE_2__api_index_js__["a" /* default */].School.list();
+                            return __WEBPACK_IMPORTED_MODULE_3__api_index_js__["a" /* default */].School.list();
 
                         case 2:
                             schools = _context.sent;
                             _context.next = 5;
-                            return __WEBPACK_IMPORTED_MODULE_2__api_index_js__["a" /* default */].Question.list();
+                            return __WEBPACK_IMPORTED_MODULE_3__api_index_js__["a" /* default */].Question.list();
 
                         case 5:
                             list = _context.sent;
@@ -7256,7 +7264,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
 
         return created;
-    }()
+    }(),
+
+    methods: {
+        onStore: function onStore(post) {
+            this.list.push(post.data);
+        }
+    }
+
 });
 
 /***/ }),
@@ -69620,6 +69635,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-sm-12 col-xl-12" }, [
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [
+          _c("add", { attrs: { user_id: 1 }, on: { "on-submit": _vm.onStore } })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "switch-container col-md-12" }, [
         _c(
