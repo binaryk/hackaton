@@ -7119,6 +7119,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         __WEBPACK_IMPORTED_MODULE_6__api_index_js__["a" /* default */].Discipline.list().then(function (res) {
             _this.disciplines = res.data;
         });
+        console.log('asldja');
     },
 
     methods: {
@@ -7139,8 +7140,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 list = _context.sent;
 
                                 this.$emit('on-submit', list);
+                                this.form.content = "";
+                                this.form.discipline_id = null;
 
-                            case 4:
+                            case 6:
                             case 'end':
                                 return _context.stop();
                         }

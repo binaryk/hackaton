@@ -62,6 +62,8 @@
             API.Discipline.list().then(res => {
                 this.disciplines = res.data;
             })
+            console.log('asldja');
+            
         },
         methods: {
             update($event) {
@@ -70,6 +72,8 @@
             async submit(){
                 const list = await API.Question.store(this.form);
                 this.$emit('on-submit', list);
+                this.form.content = "";
+                this.form.discipline_id = null;
             }
         }
     }
