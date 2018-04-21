@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Question;
+use App\Models\Api\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -15,7 +15,11 @@ class QuestionController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         return Question::orderBy('id', 'desc')->get();
+=======
+        return Question::with('category')->get();
+>>>>>>> 3705b9327265bb02fcf4156319c944d823a069e4
     }
 
     /**
@@ -36,7 +40,8 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        return Question::create($request->all());
+        $question = Question::create($request->all());
+        return Question::with('category')->find($question->id);
     }
 
     /**
@@ -83,5 +88,64 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Add like for question
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function like($id) {
+        $question = Question::find($id);
+        $likes = $question->likes;
+        $likes++;
+        $question->likes = $likes;
+
+        $question->save();
+
+        return response()->json([
+            'status' => 200
+        ]);
+    }
+
+    /**
+     * Add dislike for question
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function dislike($id) {
+        $question = Question::find($id);
+        $dislikes = $question->dislikes;
+        $dislikes++;
+        $question->dislikes = $dislikes;
+
+        $question->save();
+
+        return response()->json([
+            'status' => 200
+        ]);
+    }
+
+    /**
+     * Add views for question
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function view($id) {
+        $question = Question::find($id);
+        $views = $question->views;
+        $views++;
+        $question->views = $views;
+
+
+        $question->save();
+
+        return response()->json([
+            'status' => 200
+        ]);
+
     }
 }

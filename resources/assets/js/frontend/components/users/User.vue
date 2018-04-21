@@ -28,6 +28,7 @@
         },
         methods: {
             goToUser() {
+                console.log('go');
                 location.href = '/users-view/' + this.user.id;
             }
         }

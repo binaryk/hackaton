@@ -87,6 +87,19 @@
 
     <div class="row">
         <div class="col">
+            <div class="form-group">
+                <label for="disciplines">Disciplines</label>
+                <select name="disciplines[]" multiple class="form-control" id="">
+                    @foreach ($disciplines as $discipline)
+                        <option value="{{ $discipline->id }}">{{ $discipline->name }}</option>
+                    @endforeach
+                </select>
+            </div><!--form-group-->
+        </div><!--col-->
+    </div><!--row-->
+
+    <div class="row">
+        <div class="col">
             <div class="form-group mb-0 clearfix">
                 {{ form_submit(__('labels.general.buttons.update')) }}
             </div><!--form-group-->

@@ -7515,6 +7515,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         goToUser: function goToUser() {
+            console.log('go');
             location.href = '/users-view/' + this.user.id;
         }
     }
