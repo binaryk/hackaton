@@ -37,12 +37,12 @@
                 @include('includes.partials.messages')
                 <div class="row col-md-12">
                     <div class="col-md-2"></div>
-                    <div class="col-md-8 main-panel">
+                    <div class="col-md-7 main-panel">
                         @yield('content')
                     </div>
 
                     @if(auth()->user())
-                    <div class="col-md-2 rigth-sidebar">
+                    <div class="col-md-3 rigth-sidebar">
                         @yield('right')
                     </div>
                     @endif
