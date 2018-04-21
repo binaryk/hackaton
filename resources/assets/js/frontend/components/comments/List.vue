@@ -8,7 +8,7 @@
                 </div>
                 <div class="card-body">
                     <div class="list-group">
-                        <comment v-for="comment, index in comments" :comment="comment" :key="index"></comment>
+                        <comment v-for="comment, index in comments" :comment="comment" :user="user" :key="index"></comment>
                     </div>
                 </div>
             </div>

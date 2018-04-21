@@ -3,7 +3,8 @@
         <div class="col-md-12">
             <div class="card card-accent-info">
                 <div class="card-header">
-                    <i class="fa fa-check"></i>Content
+                    <i class="fa fa-check"></i> Intrebarea (?)
+                    <a :href="'/users-view/'+question.user.id" class="article-user">{{ question.user.full_name }}</a>
                     <div class="card-actions">
                         <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
                         <a href="#" class="btn-minimize" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true"><i class="icon-arrow-up"></i></a>
@@ -38,6 +39,7 @@
             CommentsList
         },
         props: ['question', 'user'],
+
         created() {
             console.log(this.question, 'this question');
             console.log(this.user, 'this user');
@@ -73,3 +75,9 @@
         }
     }
 </script>
+<style>
+    .article-user{
+        float: right;
+        margin-right: 110px;
+    }
+</style>

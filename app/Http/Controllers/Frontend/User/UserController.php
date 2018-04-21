@@ -52,7 +52,7 @@ class UserController extends Controller
         if($user instanceof Student){
             $classmates = Student::where('classroom', '=', $user->classroom)->where( 'id', '<>', $user->id)->with('user')->get();
         }
-        return view('frontend.users.single')->with(compact('user', 'classmates'));
+        return view('frontend.users.single')->with(compact('user', 'classmates', 'id'));
     }
 
     /**
