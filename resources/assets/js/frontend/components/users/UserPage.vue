@@ -1,7 +1,8 @@
 <template>
     <div @click="goToUser()" class="user col-md-3 card">
         <div class="card-body">
-            <img :src="url" :alt="user.first_name">
+            <!--<img :src="url" :alt="user.first_name">-->
+            <img src="images/avatar.png" alt="" >
             <div class="box about-box" v-if="user.disciplines.length > 0">
                 <p class="preferinte">Preferinte</p>
                 <ul class="list-group">
@@ -22,7 +23,8 @@
         props: ['user'],
         computed: {
             url() {
-                return `https://avatar.tobi.sh/Vega-Brown.svg?text=${this.user.user.first_name}${this.user.user.last_name}`
+                console.log('asdasda');
+                return `https://avatar.tobi.sh/yellow-darkred.svg?text=${this.user.user.first_name}%20${this.user.user.last_name}`
             }
         },
         methods: {
@@ -71,5 +73,10 @@
                }
            }
        }
+   }
+
+
+   .user-avatar{
+       text-align: center;
    }
 </style>

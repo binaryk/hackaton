@@ -7,8 +7,9 @@
                 <span class="badge badge-danger" v-if="!checkOnline(user.user.last_activity)">Offline</span>
             </div>
             <div class="card-body chat-body">
-                <p>
-                    <img :src="url" :alt="user.user.full_name" style="width: 100%;">
+                <p class="user-avatar">
+                    <img src="images/avatar.png" alt="" >
+                    <!--<img :src="url" :alt="user.user.full_name" style="width: 100%;">-->
                 </p>
                 <p v-if="user.school">
                     Scoala: <span class="badge badge-warning">{{ user.school.name }}</span>
@@ -33,7 +34,7 @@
         props: ['user'],
         computed: {
             url() {
-                return `https://avatar.tobi.sh/Vega-Brown.svg?text=${this.user.user.first_name}${this.user.user.last_name}`
+                return `https://avatar.tobi.sh/yellow-darkred.svg?text=${this.user.user.first_name}%20${this.user.user.last_name}`
             }
         },
         methods: {
@@ -88,5 +89,10 @@
                }
            }
        }
+
+   }
+
+   .user-avatar{
+       text-align: center;
    }
 </style>
