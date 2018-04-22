@@ -35,4 +35,8 @@ export default new class {
         });
     }
 
+    books({q}) {
+        return axios.get('https://www.googleapis.com/books/v1/volumes?q='+q);
+    }
+
 };
