@@ -28,7 +28,7 @@
                             <books :books="books"></books>
                         </div>
                         <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/neisO88bTHQ?start=30" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <iframe width="450" height="315" src="https://www.youtube.com/embed/neisO88bTHQ?start=30" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
