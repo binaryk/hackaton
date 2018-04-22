@@ -22,18 +22,20 @@
             </tab-content>
             <tab-content title="Detalii" :before-change="beforeSearch">
                 <p> Ce anume nu intelegi din disciplina <strong>{{ discipline }}</strong> si domeniul <strong>{{direction}}</strong> ? </p>
-                <textarea name="" id="" cols="70" rows="10" v-model="q"></textarea>
+                <textarea name="" id="" style="width: 100%;" rows="5" v-model="q"></textarea>
             </tab-content>
-            <tab-content title="Cautare" :before-change="beforeEnd">
+            <tab-content title="Cautare" :before-change="beforeEnd" style="min-height: 400px;">
                 <p>Cu ajutorului motorului de cautare inteligent am depistat urmatorul rezultat:</p>
                 <div v-if="steps[0] === 'youtube'">
                     <iframe width="560" height="315" :src="youtube" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
-                <div v-if="steps[0] === 'simulation'">
+                <div v-if="steps[0] === 'simulation' && simulationURL" >
                     <iframe width="100%" height="400" :src="simulationURL"></iframe>
                 </div>
-                <div v-if="steps[0] === 'wolphram'">
-                    Wolphram
+                <div v-if="steps[0] === 'wolphram' && wolphramURL">
+                    <div style="overflow: hidden; height: 350px;">
+                        <iframe width="100%" id="wolphram"  :src="wolphramURL" style="height: 700px; margin-top: -370px; "></iframe>
+                    </div>
                 </div>
             </tab-content>
         </form-wizard>
@@ -49,7 +51,7 @@
                 discipline: 0,
                 direction: '',
                 q: '',
-                videoId: 'iAid_eh-eTA',
+                videoId: null,
                 simulationURL: null,
                 wolphramURL: null,
                 steps: ['youtube', 'simulation', 'wolphram']
@@ -70,15 +72,15 @@
             },
             beforeSearch() {
                 this.searchYoutube();
-                this.searchSimulation();
                 this.searchWolphram();
+                this.searchSimulation();
                 return true;
             },
             searchYoutube() {
 
                 let str = `${this.discipline} ${this.direction} ${this.q}`;
                 API.Question.youtube({q: str}).then(res => {
-                    let data = res.data
+                    let data = res.data;
                     let first = data.items[0];
                     let video = first.id.videoId;
                     this.videoId = video;
@@ -101,13 +103,14 @@
                         this.simulationURL = simulations[keyword];
                     }
                 });
-                if(this.steps[0] === 'simulation' && !this.simulationURL) {
-                    this.steps.shift();
+                if(!this.simulationURL) {
+                    this.steps = this.steps.filter(step => step !== 'simulation');
                 }
 
             },
             searchWolphram() {
-                //
+                const url = 'http://www.wolframalpha.com/input/?i=';
+                this.wolphramURL = url + encodeURI(this.q);
             },
 
             beforeEnd() {
@@ -115,6 +118,9 @@
                     let goNext = confirm('Ai aflat raspunsul?');
                     if(!goNext) {
                         this.steps.shift();
+                        if(this.steps.length === 0) {
+                            window.location.href = '/dashboard';
+                        }
                     } else {
                         window.location.href = '/dashboard';
                     }

@@ -32,6 +32,7 @@ Vue.component('private-chat', require('./components/Chat/PrivateChat.vue'));
 Vue.component('users-chat', require('./components/Chat/UsersChat.vue'));
 Vue.component('parallax', require('./components/Parallax.vue'));
 Vue.component('top-users', require('./components/TopUsers.vue'));
+Vue.component('resources-view', require('./components/ResourcesView.vue'));
 
 
 import Vue           from 'vue'
