@@ -34,6 +34,8 @@ class MessageSentEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        logger('fuck here');
+        logger(config('broadcasting'));
         return new PrivateChannel('chat');
     }
 }
