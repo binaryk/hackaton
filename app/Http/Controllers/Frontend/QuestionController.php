@@ -27,7 +27,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return Question::with('category')->orderBy('id', 'desc')->get();
+        return Question::with('category')->with('user')->with('comments')->orderBy('id', 'desc')->get();
     }
 
     /**

@@ -10,17 +10,17 @@
         </div>
         <div class="card">
             <div class="switch-container col-md-12">
-                <div class="btn-group show">
-                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Selecteaza institutia
-                    </button>
-                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item" hchref="#" v-for="s in schools" :key="s.id">
-                            <input type="checkbox" value="1" :checked="isSelectedSchool(s.id)" v-on:click="changeSchool(s)">
-                            {{ s.name }}
-                        </a>
-                    </div>
-                </div>
+<!--                <div class="btn-group show">-->
+<!--                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+<!--                        Selecteaza institutia-->
+<!--                    </button>-->
+<!--                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">-->
+<!--                        <a class="dropdown-item" hchref="#" v-for="s in schools" :key="s.id">-->
+<!--                            <input type="checkbox" value="1" :checked="isSelectedSchool(s.id)" v-on:click="changeSchool(s)">-->
+<!--                            {{ s.name }}-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="btn-group show">
                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Selecteaza materiile

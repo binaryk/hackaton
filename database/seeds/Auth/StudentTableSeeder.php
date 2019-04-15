@@ -21,23 +21,29 @@ class StudentTableSeeder extends Seeder
         $this->disableForeignKeys();
         Student::truncate();
 
-        // Add the master administrator, user id of 1
-        Student::create([
-            'user_id' => '3',
-            'school_id' => '1',
-            'classroom' => 'V',
-        ]);
-        Student::create([
-            'user_id' => '4',
-            'school_id' => '2',
-            'classroom' => 'IV',
-        ]);
+        for($i = 6; $i <= 28 + 6; $i++) {
+            Student::create([
+                'user_id' => $i,
+                'school_id' => '1',
+                'classroom' => 'IX A',
+            ]);
+        }
 
-        Student::create([
-            'user_id' => '5',
-            'school_id' => '1',
-            'classroom' => 'V',
-        ]);
+        for($i = 35; $i <= 61; $i++) {
+            Student::create([
+                'user_id' => $i,
+                'school_id' => '1',
+                'classroom' => 'IX B',
+            ]);
+        }
+
+        for($i = 62; $i <= 82; $i++) {
+            Student::create([
+                'user_id' => $i,
+                'school_id' => '1',
+                'classroom' => 'X A',
+            ]);
+        }
 
         $this->enableForeignKeys();
     }
