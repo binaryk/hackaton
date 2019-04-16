@@ -1,6 +1,6 @@
 <template>
     <div class="col-md-4 col-sm-1 mb-1 col-sm-1">
-        <div class="card" @click="goToUser()">
+        <div class="card" @click="goToUser()" v-if="user.user">
             <div class="card-header">
                 {{ user.user.full_name }}
                 <span class="badge badge-success" v-if="checkOnline(user.user.last_activity)">Online</span>
@@ -39,7 +39,6 @@
         },
         methods: {
             goToUser() {
-                console.log('go');
                 location.href = '/users-view/' + this.user.user.id;
             },
 
