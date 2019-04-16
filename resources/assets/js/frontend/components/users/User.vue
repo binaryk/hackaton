@@ -11,9 +11,6 @@
                     <img src="images/avatar.png" alt="" >
                     <!--<img :src="url" :alt="user.user.full_name" style="width: 100%;">-->
                 </p>
-                <p v-if="user.school">
-                    Scoala: <span class="badge badge-warning">{{ user.school.name }}</span>
-                </p>
 
                 <div class="box about-box" v-if="user.disciplines.length > 0">
                     <p>
