@@ -44,26 +44,44 @@
         },
         methods: {
             async like() {
-                this.$notify({
-                    group: 'foo',
-                    type: 'success',
-                    title: 'Notificare',
-                    text: 'Like-ul a fost aprobat'
-                });
                 await API.Comment.like(this.comment.id).then(res => {
-                    this.comment.likes++;
+                    if(res.data.status === 200) {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'success',
+                            title: 'Notificare',
+                            text: 'Like-ul a fost aprobat'
+                        });
+                        this.comment.likes++;
+                    } else {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'error',
+                            title: 'Notificare',
+                            text: 'Nu mai puteti da like acestei postari'
+                        });
+                    }
                 });
 
             },
             async dislike() {
-                this.$notify({
-                    group: 'foo',
-                    type: 'warning',
-                    title: 'Notificare',
-                    text: 'Disike-ul a fost aprobat'
-                });
                 await API.Comment.dislike(this.comment.id).then(res => {
-                    this.comment.dislikes++;
+                    if(res.data.status === 200) {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'warning',
+                            title: 'Notificare',
+                            text: 'Disike-ul a fost aprobat'
+                        });
+                        this.comment.dislikes++;
+                    } else {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'error',
+                            title: 'Notificare',
+                            text: 'Nu mai puteti da dislike acestei postari'
+                        });
+                    }
                 });
             },
             async answer() {

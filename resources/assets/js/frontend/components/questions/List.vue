@@ -58,7 +58,6 @@
                     Order by:
                     <span class="badge badge-pill " v-bind:class="{'badge-secondary': (sort == 'updated_at'),  'badge-primary': (sort !== 'updated_at')}" v-on:click="sortQuestions('updated_at')">Date</span>
                     <span class="badge badge-pill " v-bind:class="{'badge-secondary': (sort == 'likes'),  'badge-primary': (sort !== 'likes')}" v-on:click="sortQuestions('likes')">Likes</span>
-                    <span class="badge badge-pill " v-bind:class="{'badge-secondary': (sort == 'views'),  'badge-primary': (sort !== 'views')}" v-on:click="sortQuestions('views')">Views</span>
                     <span class="badge badge-pill " v-bind:class="{'badge-secondary': (sort == 'dislikes'),  'badge-primary': (sort !== 'dislikes')}" v-on:click="sortQuestions('dislikes')">Dislikes</span>
                 </div>
             </div>

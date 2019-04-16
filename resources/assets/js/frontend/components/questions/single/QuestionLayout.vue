@@ -14,7 +14,6 @@
                     <p v-html="question.content"></p>
                 </div>
                 <div class="card-footer">
-                    <small>Views <span class="badge badge-primary badge-pill">{{question.views}}</span></small>
                     <button class="btn  btn-sm btn-success" @click="like()">
                         <i class="fa fa-thumbs-up"></i> Like
                     </button>
@@ -53,24 +52,44 @@
         },
         methods: {
             async like() {
-                this.$notify({
-                    group: 'foo',
-                    type: 'success',
-                    title: 'Notificare',
-                    text: 'Like-ul a fost aprobat'
+                await API.Question.like(this.question.id).then((res) => {
+                    if(res.data.status === 200) {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'success',
+                            title: 'Notificare',
+                            text: 'Like-ul a fost aprobat'
+                        });
+                        this.likes++;
+                    } else {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'error',
+                            title: 'Notificare',
+                            text: 'Nu mai puteti da like acestei postari'
+                        });
+                    }
                 });
-                await API.Question.like(this.question.id);
-                this.likes++;
             },
             async dislike() {
-                this.dislikes++;
-                this.$notify({
-                    group: 'foo',
-                    type: 'success',
-                    title: 'Notificare',
-                    text: 'Disike-ul a fost aprobat'
+                await API.Question.dislike(this.question.id).then((res) => {
+                    if(res.data.status === 200) {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'warning',
+                            title: 'Notificare',
+                            text: 'Disike-ul a fost aprobat'
+                        });
+                        this.dislikes++;
+                    } else {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'error',
+                            title: 'Notificare',
+                            text: 'Nu mai puteti da dislike acestei postari'
+                        });
+                    }
                 });
-                await API.Question.dislike(this.question.id);
             },
         }
     }

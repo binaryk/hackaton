@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Api\Dislike;
+use App\Models\Api\Like;
 use App\Models\Api\Question;
 use App\Models\Api\School;
 use App\Models\Api\Student;
+use App\Models\Api\View;
 use App\Repositories\Frontend\Api\QuestionRepository;
 use App\Models\Auth\User;
 use Illuminate\Http\Request;
@@ -107,6 +110,23 @@ class QuestionController extends Controller
      */
     public function like($id) {
         $question = Question::find($id);
+        $like = Like::where('user_id', auth()->user()->id)
+            ->where('question_id', $question->id)
+            ->where('type', 'question')
+            ->first();
+
+        if ($like) {
+            return response()->json([
+                'status' => 400
+            ]);
+        }
+        $l = new Like();
+        $l->user_id = auth()->user()->id;
+        $l->question_id = $question->id;
+        $l->type = 'question';
+        $l->save();
+
+
         $likes = $question->likes;
         $likes++;
         $question->likes = $likes;
@@ -127,6 +147,24 @@ class QuestionController extends Controller
      */
     public function dislike($id) {
         $question = Question::find($id);
+        $dislike = Dislike::where('user_id', auth()->user()->id)
+            ->where('question_id', $question->id)
+            ->where('type', 'question')
+            ->first();
+
+        if ($dislike) {
+            return response()->json([
+                'status' => 400
+            ]);
+        }
+        $l = new Dislike();
+        $l->user_id = auth()->user()->id;
+        $l->question_id = $question->id;
+        $l->type = 'question';
+        $l->save();
+
+
+
         $dislikes = $question->dislikes;
         $dislikes++;
         $question->dislikes = $dislikes;
@@ -147,6 +185,23 @@ class QuestionController extends Controller
      */
     public function view($id) {
         $question = Question::find($id);
+
+        $view = View::where('user_id', auth()->user()->id)
+            ->where('question_id', $question->id)
+            ->where('type', 'question')
+            ->first();
+
+        if ($view) {
+            return response()->json([
+                'status' => 400
+            ]);
+        }
+        $l = new View();
+        $l->user_id = auth()->user()->id;
+        $l->question_id = $question->id;
+        $l->type = 'question';
+        $l->save();
+
         $views = $question->views;
         $views++;
         $question->views = $views;

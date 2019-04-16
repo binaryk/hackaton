@@ -45,6 +45,8 @@ class QuestionRepository extends BaseRepository
         if ($sort) {
             $query->orderby($sort, 'desc');
         }
+        $query->with('user');
+        $query->with('comments');
 
         return $query->get();
     }
