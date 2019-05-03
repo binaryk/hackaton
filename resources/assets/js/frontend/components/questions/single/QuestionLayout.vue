@@ -41,8 +41,6 @@
         props: ['question', 'user'],
 
         created() {
-            console.log(this.question, 'this question');
-            console.log(this.user, 'this user');
         },
         data() {
             return {

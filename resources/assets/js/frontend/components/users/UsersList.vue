@@ -50,13 +50,19 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="home" role="tabpanel">
+                                <div class="form-group">
+                                    <input type="text" name="search" v-model="searchUser" class="form-control" placeholder="Cauta">
+                                </div>
                                 <div class="row">
                                     <user v-for="user in usersList" :key="user.id" :user="user"></user>
                                 </div>
                             </div>
                             <div class="tab-pane" id="profile" role="tabpanel">
+                                <div class="form-group">
+                                    <input type="text" name="search" v-model="searchTeacher" class="form-control" placeholder="Cauta">
+                                </div>
                                 <div class="row">
-                                    <user v-for="user in teachers" :key="user.id" :user="user"></user>
+                                    <user v-for="user in teachersList" :key="user.id" :user="user"></user>
                                 </div>
                             </div>
                         </div>
@@ -85,15 +91,37 @@
                 currentView: 1,
                 sort: null,
                 usersList: this.users,
-                activeTab: 'students'
+                teachersList: this.teachers,
+                activeTab: 'students',
+                searchUser: '',
+                searchTeacher: ''
             }
+        },
+        watch: {
+            searchUser: function (value) {
+                if(value.length > 3) {
+                    this.usersList = this.usersList.filter((user) => {
+                        return !user.user.full_name.toLowerCase().indexOf(value.toLowerCase());
+                    })
+                }else {
+                    this.usersList = this.users;
+                }
+            },
+            searchTeacher: function (value) {
+                if(value.length > 3) {
+                    this.teachersList = this.teachersList.filter((user) => {
+                        return !user.user.full_name.toLowerCase().indexOf(value.toLowerCase());
+                    })
+                }else {
+                    this.teachersList = this.teachers;
+                }
+            },
         },
         async created() {
             const schools = await API.School.list();
             const disciplines = await API.Discipline.list();
             this.schools = schools.data;
             this.disciplines = disciplines.data;
-
         },
         methods: {
             changeDisciplines(discipline) {

@@ -18,7 +18,7 @@
 </template>
 
 
-<style>
+<style scoped>
     .list-group-item.active a {
         color: white;
     }
@@ -27,6 +27,10 @@
     }
     .offline {
         color: black;
+    }
+    .card-body {
+        height: 528px;
+        overflow: scroll;
     }
 </style>
 

@@ -61,7 +61,6 @@ class ProfileController extends Controller
             $request->only('first_name', 'last_name', 'email', 'avatar_type', 'avatar_location', 'timezone'),
             $request->has('avatar_location') ? $request->file('avatar_location') : false
         );
-
         if($request->get('disciplines')) {
             if($request->get('teacher') === '1') {
                 $this->updateDisciplinesTeachers($request->get('disciplines'), $request->user()->id);
@@ -88,7 +87,6 @@ class ProfileController extends Controller
     {
         try{
             $student = $this->studentRepository->where('user_id', $id)->first();
-            dd($student);
             $this->studentDisciplinesRepository->where('student_id', $student->id)->delete();
             foreach($data as $d) {
                 $this->studentDisciplinesRepository->create(['student_id' => $student->id, 'discipline_id' => $d]);

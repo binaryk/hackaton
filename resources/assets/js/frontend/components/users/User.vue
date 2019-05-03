@@ -2,7 +2,7 @@
     <div class="col-md-4 col-sm-1 mb-1 col-sm-1">
         <div class="card" @click="goToUser()" v-if="user.user">
             <div class="card-header">
-                {{ user.user.full_name }}
+                <a :href="'/privateChat/' + user.user.id">{{ user.user.full_name }}</a>
                 <span class="badge badge-success" v-if="checkOnline(user.user.last_activity)">Online</span>
                 <span class="badge badge-danger" v-if="!checkOnline(user.user.last_activity)">Offline</span>
             </div>
