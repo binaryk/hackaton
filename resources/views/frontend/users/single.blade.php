@@ -95,7 +95,6 @@
                                                     <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center">
                                                         <a href="{{ url('/question/' . $question->id . '/show') }}" style="width: 100%;">
                                                             {{ strip_tags(substr($question->content, 0, 50)) }}
-                                                            <span style="float: right;" class=" badge badge-primary badge-pill">{{ $question->answered  }}</span>
                                                         </a>
                                                     </li>
                                                 @endforeach
