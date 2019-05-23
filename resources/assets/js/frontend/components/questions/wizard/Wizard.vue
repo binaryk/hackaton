@@ -50,7 +50,7 @@
         },
         computed: {
             youtube() {
-               return `https://www.youtube.com/embed/${this.videoId}?rel=0&amp;controls=0&amp;showinfo=0`;
+               return `https://www.youtube.com/embed/${this.videoId}`;
             }
         },
         methods: {

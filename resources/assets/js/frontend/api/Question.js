@@ -31,7 +31,7 @@ export default new class {
                 'part': 'snippet',
                 'q': params.q,
                 'type': '',
-                'key': 'AIzaSyAdrWk4INZuSaKFG1h7aakMJSRnbMvoRgo' }
+                'key': 'AIzaSyDBCGb9OTE9FJqtIgFk0XCSuDfZKiTffR8' }
         });
     }
 

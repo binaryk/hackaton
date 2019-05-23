@@ -52,7 +52,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $question = Question::create($request->all());
-        return Question::with('category')->find($question->id);
+        return Question::with(['category', 'user', 'comments'])->find($question->id);
     }
 
     /**
