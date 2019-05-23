@@ -25,8 +25,10 @@ class GlobalComposer
             if($user->disciplines) unset($user->disciplines);
             if($user->student) unset($user->student);
 
-            $user->update(['last_activity' => \DB::raw('NOW()')]);
-            $user->save();
+            User::find($user->id)->update(['last_activity' => \DB::raw('NOW()')]);
+//
+//            $user->update(['last_activity' => \DB::raw('NOW()')]);
+//            $user->save();
 
             $topUsers = User::orderBy('reputation', 'desc')->take(5)->get();
 
