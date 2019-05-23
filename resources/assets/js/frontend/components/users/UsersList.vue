@@ -100,7 +100,10 @@
         watch: {
             searchUser: function (value) {
                 if(value.length > 3) {
+                    console.log('this.usersList', this.usersList);
                     this.usersList = this.usersList.filter((user) => {
+                        if (!user.user)
+                            return false;
                         return !user.user.full_name.toLowerCase().indexOf(value.toLowerCase());
                     })
                 }else {
@@ -110,6 +113,8 @@
             searchTeacher: function (value) {
                 if(value.length > 3) {
                     this.teachersList = this.teachersList.filter((user) => {
+                        if (!user.user)
+                            return false;
                         return !user.user.full_name.toLowerCase().indexOf(value.toLowerCase());
                     })
                 }else {
