@@ -139,14 +139,14 @@ return [
 
             'profile' => [
                 'avatar'             => 'Avatar',
-                'created_at'         => 'Created At',
+                'created_at'         => 'Data de început',
                 'edit_information'   => 'Edit Information',
                 'email'              => 'E-mail',
-                'last_updated'       => 'Last Updated',
+                'last_updated'       => 'Ultima modificare',
                 'name'               => 'Name',
                 'first_name'         => 'First Name',
                 'last_name'          => 'Last Name',
-                'update_information' => 'Update Information',
+                'update_information' => 'Salveză',
             ],
         ],
 

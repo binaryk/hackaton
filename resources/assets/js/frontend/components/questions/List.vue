@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-12 selectedItems" v-if="selectedSchools.length > 0">
-                Scoli:
+                Școli:
                 <button type="button" class="btn btn-labeled btn-info" v-on:click="changeSchool(s)" v-for="s in selectedSchools">
                     <span class="btn-label"><i class="fa fa-times" ></i></span>&nbsp; {{ s.name }}
                 </button>
