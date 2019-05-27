@@ -109,8 +109,8 @@
         color: #fff;
     }
     .content-text {
-        font-size: 28px;
-
+        font-size: 14px;
+        line-height: 1.4;
     }
     .time {
         position: absolute;
