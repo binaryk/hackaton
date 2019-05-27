@@ -10,7 +10,7 @@ class ChatController extends Controller
 
     public function privateChat(User $user)
     {
-        $users = User::with('roles')->get();
+        $users = User::with('roles')->orderBy('reputation', 'desc')->get();
         return view('frontend.chat.private-chat', ['users' => $users, 'chatWithUser' => $user]);
     }
 }

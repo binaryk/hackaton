@@ -3,7 +3,7 @@
     <ul class="nav navbar-nav d-md-down-none">
         @if(auth()->user())
             <li class="nav-item px-3">
-                <a class="nav-link" href="/">Dashboard</a>
+                <a class="nav-link" href="/">Pagina principala</a>
             </li>
             <li class="nav-item px-3">
                 <a href="/users-list" class="nav-link">Utilizatori</a>

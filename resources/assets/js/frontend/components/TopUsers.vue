@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-align-justify"></i> Top Users
+            <i class="fa fa-align-justify"></i> Top Utilizatori
         </div>
         <div class="card-body">
             <ul class="list-group">

@@ -6,7 +6,7 @@
                     <div class="switch-container col-md-12">
                         <div class="btn-group show">
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Selecteaza materiile
+                                Selecteaza disciplinele
                             </button>
                             <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
                                 <a class="dropdown-item" hchref="#" v-for="s in disciplines" :key="s.id">
@@ -24,14 +24,14 @@
                     </div>
                     <br />
                     <div class="col-12 selected-items" v-if="selectedDisciplines.length > 0">
-                        Materii:
+                        Discipline:
                         <button type="button" class="btn btn-labeled btn-info" v-on:click="changeDisciplines(s)" v-for="s in selectedDisciplines">
                             <span class="btn-label" ><i class="fa fa-times" ></i></span>&nbsp; {{ s.name }}
                         </button>
 
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-success " v-on:click="filter()" >Filter</button>
+                        <button class="btn btn-success " v-on:click="filter()" >Filtrează</button>
                     </div>
                 </div>
             </div>
