@@ -6,18 +6,7 @@
                     <div class="switch-container col-md-12">
                         <div class="btn-group show">
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Selecteaza institutia
-                            </button>
-                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                <a class="dropdown-item" hchref="#" v-for="s in schools" :key="s.id">
-                                    <input type="checkbox" value="1" v-on:click="changeSchool(s)">
-                                    {{ s.name }}
-                                </a>
-                            </div>
-                        </div>
-                        <div class="btn-group show">
-                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Selecteaza materiile
+                                Selecteaza disciplinele
                             </button>
                             <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
                                 <a class="dropdown-item" hchref="#" v-for="s in disciplines" :key="s.id">
@@ -32,18 +21,17 @@
                         <button type="button" class="btn btn-labeled btn-info" v-on:click="changeSchool(s)" v-for="s in selectedSchools">
                             <span class="btn-label"><i class="fa fa-times" ></i></span>&nbsp; {{ s.name }}
                         </button>
-
                     </div>
                     <br />
                     <div class="col-12 selected-items" v-if="selectedDisciplines.length > 0">
-                        Materii:
+                        Discipline:
                         <button type="button" class="btn btn-labeled btn-info" v-on:click="changeDisciplines(s)" v-for="s in selectedDisciplines">
                             <span class="btn-label" ><i class="fa fa-times" ></i></span>&nbsp; {{ s.name }}
                         </button>
 
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-success " v-on:click="filter()" >Filter Questions</button>
+                        <button class="btn btn-success " v-on:click="filter()" >Filtrează</button>
                     </div>
                 </div>
             </div>
@@ -62,13 +50,19 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="home" role="tabpanel">
+                                <div class="form-group">
+                                    <input type="text" name="search" v-model="searchUser" class="form-control" placeholder="Cauta">
+                                </div>
                                 <div class="row">
                                     <user v-for="user in usersList" :key="user.id" :user="user"></user>
                                 </div>
                             </div>
                             <div class="tab-pane" id="profile" role="tabpanel">
+                                <div class="form-group">
+                                    <input type="text" name="search" v-model="searchTeacher" class="form-control" placeholder="Cauta">
+                                </div>
                                 <div class="row">
-                                    <user v-for="user in teachers" :key="user.id" :user="user"></user>
+                                    <user v-for="user in teachersList" :key="user.id" :user="user"></user>
                                 </div>
                             </div>
                         </div>
@@ -97,15 +91,42 @@
                 currentView: 1,
                 sort: null,
                 usersList: this.users,
-                activeTab: 'students'
+                teachersList: this.teachers,
+                activeTab: 'students',
+                searchUser: '',
+                searchTeacher: ''
             }
+        },
+        watch: {
+            searchUser: function (value) {
+                if(value.length > 3) {
+                    console.log('this.usersList', this.usersList);
+                    this.usersList = this.usersList.filter((user) => {
+                        if (!user.user)
+                            return false;
+                        return !user.user.full_name.toLowerCase().indexOf(value.toLowerCase());
+                    })
+                }else {
+                    this.usersList = this.users;
+                }
+            },
+            searchTeacher: function (value) {
+                if(value.length > 3) {
+                    this.teachersList = this.teachersList.filter((user) => {
+                        if (!user.user)
+                            return false;
+                        return !user.user.full_name.toLowerCase().indexOf(value.toLowerCase());
+                    })
+                }else {
+                    this.teachersList = this.teachers;
+                }
+            },
         },
         async created() {
             const schools = await API.School.list();
             const disciplines = await API.Discipline.list();
             this.schools = schools.data;
             this.disciplines = disciplines.data;
-
         },
         methods: {
             changeDisciplines(discipline) {

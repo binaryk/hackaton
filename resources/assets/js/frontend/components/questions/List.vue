@@ -2,7 +2,7 @@
     <div class="col-sm-12 col-xl-12">
         <div class="card">
             <div class="card-header">
-                Aici gasiti intrebari si raspunsuri din Liceul Tiberiu Popovici
+                Pagina principală
             </div>
             <div class="card-body">
                 <add :user_id="user.id" @on-submit="onStore"></add>
@@ -12,18 +12,7 @@
             <div class="switch-container col-md-12">
                 <div class="btn-group show">
                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Selecteaza institutia
-                    </button>
-                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        <a class="dropdown-item" hchref="#" v-for="s in schools" :key="s.id">
-                            <input type="checkbox" value="1" :checked="isSelectedSchool(s.id)" v-on:click="changeSchool(s)">
-                            {{ s.name }}
-                        </a>
-                    </div>
-                </div>
-                <div class="btn-group show">
-                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Selecteaza materiile
+                        Selecteaza disciplinele
                     </button>
                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
                         <a class="dropdown-item" hchref="#" v-for="s in disciplines" :key="s.id">
@@ -34,7 +23,7 @@
                 </div>
             </div>
             <div class="col-12 selectedItems" v-if="selectedSchools.length > 0">
-                Scoli:
+                Școli:
                 <button type="button" class="btn btn-labeled btn-info" v-on:click="changeSchool(s)" v-for="s in selectedSchools">
                     <span class="btn-label"><i class="fa fa-times" ></i></span>&nbsp; {{ s.name }}
                 </button>
@@ -42,23 +31,22 @@
             </div>
 
             <div class="col-12 selectedItems" v-if="selectedDisciplines.length > 0">
-                Materii:
+                Discipline:
                 <button type="button" class="btn btn-labeled btn-info" v-on:click="changeDisciplines(s)" v-for="s in selectedDisciplines">
                     <span class="btn-label" ><i class="fa fa-times" ></i></span>&nbsp; {{ s.name }}
                 </button>
             </div>
             <div class="col-12">
-                <button class="btn btn-success " v-on:click="filter()">Filter Questions</button>
+                <button class="btn btn-success " v-on:click="filter()">Filtrează întrebarile</button>
             </div>
             <br />
             <div class="card-header">
-                <i class="fa fa-align-justify"></i> Intrebari
+                <i class="fa fa-align-justify"></i> Întrebari
                 <small>cele mai recente</small>
                 <div class="pull-right" style="float:right">
-                    Order by:
+                    Ordoneaza după:
                     <span class="badge badge-pill " v-bind:class="{'badge-secondary': (sort == 'updated_at'),  'badge-primary': (sort !== 'updated_at')}" v-on:click="sortQuestions('updated_at')">Date</span>
                     <span class="badge badge-pill " v-bind:class="{'badge-secondary': (sort == 'likes'),  'badge-primary': (sort !== 'likes')}" v-on:click="sortQuestions('likes')">Likes</span>
-                    <span class="badge badge-pill " v-bind:class="{'badge-secondary': (sort == 'views'),  'badge-primary': (sort !== 'views')}" v-on:click="sortQuestions('views')">Views</span>
                     <span class="badge badge-pill " v-bind:class="{'badge-secondary': (sort == 'dislikes'),  'badge-primary': (sort !== 'dislikes')}" v-on:click="sortQuestions('dislikes')">Dislikes</span>
                 </div>
             </div>

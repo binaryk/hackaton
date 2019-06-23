@@ -15,6 +15,7 @@ class DisciplinesTableSeeder extends Seeder
 
         $disciplines = [
             ['name' => 'Matematica'],
+            ['name' => 'Informatica'],
             ['name' => 'Romana'],
             ['name' => 'Chimie'],
             ['name' => 'Fizica'],

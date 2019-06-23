@@ -15,7 +15,7 @@ return [
 
     'general' => [
         'home'   => 'Home',
-        'logout' => 'Logout',
+        'logout' => 'Deconectare',
     ],
 
     'frontend' => [
@@ -26,7 +26,7 @@ return [
         'register'  => 'Register',
 
         'user' => [
-            'account'         => 'My Account',
+            'account'         => 'Contul meu',
             'administration'  => 'Administration',
             'change_password' => 'Change Password',
             'my_information'  => 'My Information',

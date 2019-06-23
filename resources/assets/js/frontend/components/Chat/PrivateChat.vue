@@ -39,7 +39,6 @@
             this.fetchMessages();
             Echo.private('chat')
                 .listen('MessageSentEvent', (e) => {
-                    console.log('asdsada');
                     this.messages.push({
                         message: e.message.message,
                         sent_by_user: e.sentBy

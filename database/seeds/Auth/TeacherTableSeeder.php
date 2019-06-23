@@ -21,15 +21,9 @@ class TeacherTableSeeder extends Seeder
         $this->disableForeignKeys();
         Teacher::truncate();
         Teacher::create([
-            'user_id' => '6',
+            'user_id' => '5',
             'school_id' => '1'
         ]);
-
-        Teacher::create([
-            'user_id' => '7',
-            'school_id' => '3'
-        ]);
-
 
         $this->enableForeignKeys();
     }

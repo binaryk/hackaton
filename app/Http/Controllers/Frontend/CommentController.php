@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api\Comment;
+use App\Models\Api\Dislike;
+use App\Models\Api\Like;
 use App\Models\Api\Question;
 use Illuminate\Http\Request;
 
@@ -98,6 +100,24 @@ class CommentController extends Controller
      */
     public function like($id) {
         $question = Comment::find($id);
+
+        $like = Like::where('user_id', auth()->user()->id)
+            ->where('question_id', $question->id)
+            ->where('type', 'comment')
+            ->first();
+
+        if ($like) {
+            return response()->json([
+                'status' => 400
+            ]);
+        }
+        $l = new Like();
+        $l->user_id = auth()->user()->id;
+        $l->question_id = $question->id;
+        $l->type = 'comment';
+        $l->save();
+
+
         $likes = $question->likes;
         $likes++;
         $question->likes = $likes;
@@ -136,6 +156,21 @@ class CommentController extends Controller
      */
     public function dislike($id) {
         $question = Comment::find($id);
+        $dislike = Dislike::where('user_id', auth()->user()->id)
+            ->where('question_id', $question->id)
+            ->where('type', 'comment')
+            ->first();
+
+        if ($dislike) {
+            return response()->json([
+                'status' => 400
+            ]);
+        }
+        $l = new Dislike();
+        $l->user_id = auth()->user()->id;
+        $l->question_id = $question->id;
+        $l->type = 'comment';
+        $l->save();
         $dislikes = $question->dislikes;
         $dislikes++;
         $question->dislikes = $dislikes;

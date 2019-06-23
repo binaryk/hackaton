@@ -9,7 +9,7 @@
                 <li v-for="user in users" class="list-group-item" :key="user.id"
                     v-bind:class="{ active: user.id == currentUser.id }">
                     <a :href="'/privateChat/' + user.id">{{ user.full_name }}</a>
-                    <span class="badge badge-light">{{ user.roles[0].name }}</span>
+<!--                    <span class="badge badge-light">{{ user.roles[0].name }}</span>-->
                     <span class="float-right" v-bind:class="{ online: checkOnline(user.last_activity), offline: !checkOnline(user.last_activity) }">&#9679;</span>
                 </li>
             </ul>
@@ -18,7 +18,7 @@
 </template>
 
 
-<style>
+<style scoped>
     .list-group-item.active a {
         color: white;
     }
@@ -27,6 +27,10 @@
     }
     .offline {
         color: black;
+    }
+    .card-body {
+        height: 528px;
+        overflow: scroll;
     }
 </style>
 

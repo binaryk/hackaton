@@ -8,18 +8,6 @@
                     </option>
                 </select>
             </tab-content>
-            <tab-content title="Directie">
-                <select v-model="direction" class="form-control form-control-lg">
-                    <option value="mecanica fluidelor">Mecanica Fluidelor</option>
-                    <option value="mecanica solidelor">Mecanica Solidelor</option>
-                    <option value="dinamica">Dinamica</option>
-                    <option value="termodinamica">Termodinamica</option>
-                    <option value="romane">Romane</option>
-                    <option value="poezii">Poezii</option>
-                    <option value="formule">Formule</option>
-                    <option value="organica">Chimia organica</option>
-                </select>
-            </tab-content>
             <tab-content title="Detalii" :before-change="beforeSearch">
                 <p> Ce anume nu intelegi din disciplina <strong>{{ discipline }}</strong> si domeniul <strong>{{direction}}</strong> ? </p>
                 <textarea name="" id="" style="width: 100%;" rows="5" v-model="q"></textarea>
@@ -59,11 +47,10 @@
         },
         created() {
             API.Discipline.list().then(res => this.disciplines = res.data);
-
         },
         computed: {
             youtube() {
-               return `https://www.youtube.com/embed/${this.videoId}?rel=0&amp;controls=0&amp;showinfo=0`;
+               return `https://www.youtube.com/embed/${this.videoId}`;
             }
         },
         methods: {
@@ -71,13 +58,17 @@
                 console.log('complete')
             },
             beforeSearch() {
-                this.searchYoutube();
-                this.searchWolphram();
-                this.searchSimulation();
+                if (this.discipline === 'Matematica') {
+                    this.searchWolphram();
+                } else if(this.discipline === 'Fizica') {
+                    this.searchSimulation();
+                } else {
+                    this.searchYoutube();
+                }
+
                 return true;
             },
             searchYoutube() {
-
                 let str = `${this.discipline} ${this.direction} ${this.q}`;
                 API.Question.youtube({q: str}).then(res => {
                     let data = res.data;
@@ -97,7 +88,6 @@
                     'refractia': 'https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_ro.html'
                 };
 
-
                 Object.keys(simulations).map((keyword) => {
                     if(this.q.indexOf(keyword) !== -1) {
                         this.simulationURL = simulations[keyword];
@@ -105,12 +95,14 @@
                 });
                 if(!this.simulationURL) {
                     this.steps = this.steps.filter(step => step !== 'simulation');
+                    return;
                 }
-
+                this.steps = ['simulation', 'youtube', 'wolphram'];
             },
             searchWolphram() {
                 const url = 'http://www.wolframalpha.com/input/?i=';
                 this.wolphramURL = url + encodeURI(this.q);
+                this.steps = ['wolphram', 'simulation', 'youtube'];
             },
 
             beforeEnd() {
