@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-align-justify"></i> Users
+            <i class="fa fa-align-justify"></i> Utilizatori
         </div>
         <div class="card-body">
             {{  }}

@@ -2,7 +2,7 @@
     <div class="col-md-12 mb-2">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Intrebare simpla</a>
+                <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home">Întrebare simplă</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Formular interactiv</a>
@@ -15,7 +15,7 @@
             <div class="tab-pane active" id="home" role="tabpanel">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Adauga intrebarea aici</strong>
+                        <strong>Adaugă întrebarea aici</strong>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">

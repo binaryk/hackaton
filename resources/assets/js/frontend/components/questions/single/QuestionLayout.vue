@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="card card-accent-info">
                 <div class="card-header">
-                    <i class="fa fa-check"></i> Intrebarea (?)
+                    <i class="fa fa-check"></i> Întrebarea (?)
                     <a :href="'/users-view/'+question.user.id" class="article-user">{{ question.user.full_name }}</a>
                     <div class="card-actions">
                         <a href="#" class="btn-setting"><i class="icon-settings"></i></a>
